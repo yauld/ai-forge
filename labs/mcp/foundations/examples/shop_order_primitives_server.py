@@ -6,7 +6,7 @@
 通过 MCP Inspector 启动：
 
     npx -y @modelcontextprotocol/inspector \
-      uv run --no-sync python examples/shop_order_primitives_server.py
+      uv run --no-sync python labs/mcp/foundations/examples/shop_order_primitives_server.py
 """
 
 from __future__ import annotations

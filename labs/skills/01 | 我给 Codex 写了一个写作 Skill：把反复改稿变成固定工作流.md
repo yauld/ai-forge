@@ -120,7 +120,7 @@ AGENTS.md
 
 分层之后，每种信息待在最合适的位置。
 
-项目中原来还有一份 `MEMORY.md`，用于保存此前积累的详细偏好。但它更适合作为历史记录，而不是唯一的强制入口。
+`MEMORY.md` 可以保存长期偏好，但不适合作为项目规则的唯一强制入口。
 
 当前官方文档也建议：必须稳定执行的项目规则放进 `AGENTS.md`；Memory 更适合帮助 Codex 回忆长期偏好，不能代替项目必须遵守的规则。
 
@@ -128,12 +128,12 @@ AGENTS.md
 
 `AGENTS.md` 是 Codex 的项目级长期规则。
 
-当前项目使用了两层：
+项目可以使用两层规则：
 
 ```text
 项目根目录/
 ├── AGENTS.md
-└── notebooks/
+└── labs/
     └── langgraph/
         └── AGENTS.md
 ```
@@ -145,7 +145,7 @@ AGENTS.md
 - 优先使用真实项目代码；
 - 完成后运行文章检查器。
 
-`notebooks/langgraph/AGENTS.md` 只约束 LangGraph 系列，例如：
+`labs/langgraph/AGENTS.md` 只约束 LangGraph 系列，例如：
 
 - 文章面向初学者；
 - 最多八个大章节；
@@ -223,7 +223,7 @@ scripts/check_article.py
 使用方式：
 
 ```bash
-python scripts/check_article.py "notebooks/skills/文章.md"
+python scripts/check_article.py "labs/skills/文章.md"
 ```
 
 核心检查逻辑类似：

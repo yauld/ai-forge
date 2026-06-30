@@ -29,5 +29,5 @@
 
 读完 LangGraph 后，可以继续进入：
 
-- [MCP 实战](../mcp)：理解外部工具和上下文能力如何被协议化。
-- [LangChain Middleware](../langchain)：理解 Agent 调用过程中的工程拦截层。
+- [MCP 实战](../../mcp/foundations)：理解外部工具和上下文能力如何被协议化。
+- [LangChain Middleware](../../langchain/foundations)：理解 Agent 调用过程中的工程拦截层。

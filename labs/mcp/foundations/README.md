@@ -54,14 +54,14 @@ uv sync
 
 ```bash
 npx -y @modelcontextprotocol/inspector \
-  uv run --no-sync --script notebooks/mcp/examples/shop_order_analysis_server.py
+  uv run --no-sync --script labs/mcp/foundations/examples/shop_order_analysis_server.py
 ```
 
 启动 Tool、Resource、Prompt primitives 示例：
 
 ```bash
 npx -y @modelcontextprotocol/inspector \
-  uv run --no-sync python notebooks/mcp/examples/shop_order_primitives_server.py
+  uv run --no-sync python labs/mcp/foundations/examples/shop_order_primitives_server.py
 ```
 
 如果你只想看文章，可以先读前 3 篇；如果你想理解 MCP 的实际消息流，再打开第 4 篇 Notebook。
@@ -73,7 +73,7 @@ npx -y @modelcontextprotocol/inspector \
 稳定入口：
 
 ```text
-https://github.com/yauld/ai-forge/tree/main/notebooks/mcp
+https://github.com/yauld/ai-forge/tree/main/labs/mcp/foundations
 ```
 
 ## 设计要点
@@ -88,5 +88,5 @@ https://github.com/yauld/ai-forge/tree/main/notebooks/mcp
 
 读完 MCP 后，可以继续进入：
 
-- [LangGraph 实战](../langgraph)：把 MCP 能力放进可控工作流。
-- [LangChain 实战](../langchain)：理解工具调用和 Agent 运行时控制。
+- [LangGraph 实战](../../langgraph/foundations)：把 MCP 能力放进可控工作流。
+- [LangChain 实战](../../langchain/foundations)：理解工具调用和 Agent 运行时控制。

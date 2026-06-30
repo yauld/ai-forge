@@ -26,7 +26,7 @@ MCP Inspector 通过 `npx` 启动，因此本机还需要可用的 Node.js / npm
 
 ```bash
 npx -y @modelcontextprotocol/inspector \
-  uv run --no-sync --script notebooks/mcp/examples/shop_order_analysis_server.py
+  uv run --no-sync --script labs/mcp/foundations/examples/shop_order_analysis_server.py
 ```
 
 这个 Server 提供：
@@ -64,7 +64,7 @@ npx -y @modelcontextprotocol/inspector \
 
 ```bash
 npx -y @modelcontextprotocol/inspector \
-  uv run --no-sync python notebooks/mcp/examples/shop_order_primitives_server.py
+  uv run --no-sync python labs/mcp/foundations/examples/shop_order_primitives_server.py
 ```
 
 这个 Server 提供：

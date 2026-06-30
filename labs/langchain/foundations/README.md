@@ -28,6 +28,6 @@
 
 读完 LangChain 后，可以继续进入：
 
-- [LangGraph 实战](../langgraph)：把流程组织成可控状态图。
-- [RAG 实战](../rag)：补齐知识检索链路。
-- [MCP 实战](../mcp)：理解工具生态与上下文协议。
+- [LangGraph 实战](../../langgraph/foundations)：把流程组织成可控状态图。
+- [RAG 实战](../../rag/foundations)：补齐知识检索链路。
+- [MCP 实战](../../mcp/foundations)：理解工具生态与上下文协议。

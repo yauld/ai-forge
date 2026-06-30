@@ -52,7 +52,7 @@ labs/<topic>/<lesson>/
 └── data/
 ```
 
-独立服务、脚本和最小项目放到 `examples/`。文章专属素材放在实验目录的 `assets/`，跨主题复用素材放在顶层 `assets/`。
+独立服务、脚本和最小项目放到当前专题或实验目录的 `examples/`。文章专属素材放在实验目录的 `assets/`；同一专题复用的素材放在该专题最近的公共 `assets/`；README 等仓库门面使用的素材放在 `docs/assets/`。不使用根目录 `assets/`。
 
 ## 实验页 README 模板
 

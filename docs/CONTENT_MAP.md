@@ -2,15 +2,13 @@
 
 这份地图用于帮助读者快速找到 AI Forge 中的学习主题。
 
-AI Forge 的长期公开结构是 `labs/`、`examples/`、`assets/`、`drafts/` 和 `docs/`。旧 `notebooks/` 内容已经迁移到新结构中，迁移过程中没有改写已完成文章正文和 Notebook 内容。
+AI Forge 的公开结构是 `labs/`、`drafts/` 和 `docs/`。示例代码和内容资源跟随所属专题，分别放在对应实验目录的 `examples/` 和 `assets/` 中；仓库门面资源放在 `docs/assets/`。
 
 ## 主要入口
 
 | 入口 | 说明 |
 | --- | --- |
 | [labs](../labs) | 可复现实验和 Notebook |
-| [examples](../examples) | 独立示例服务、脚本和最小项目 |
-| [docs/MIGRATION_PLAN.md](MIGRATION_PLAN.md) | 旧内容迁移记录 |
 
 ## LangChain
 
@@ -29,7 +27,7 @@ AI Forge 的长期公开结构是 `labs/`、`examples/`、`assets/`、`drafts/` 
 - Middleware：限流、失败兜底、人工审批、敏感信息脱敏、上下文整理、自定义拦截逻辑
 - LCEL、Embeddings 与语义检索
 
-已迁移实验：
+实验入口：
 
 - [labs/langchain/foundations](../labs/langchain/foundations)
 
@@ -59,7 +57,7 @@ AI Forge 的长期公开结构是 `labs/`、`examples/`、`assets/`、`drafts/` 
 - Durable Execution
 - 跨会话记忆
 
-已迁移实验：
+实验入口：
 
 - [labs/langgraph/foundations](../labs/langgraph/foundations)
 
@@ -86,7 +84,7 @@ AI Forge 的长期公开结构是 `labs/`、`examples/`、`assets/`、`drafts/` 
 - Retriever
 - Prompt 组装与 LLM 调用
 
-已迁移实验：
+实验入口：
 
 - [labs/rag/foundations](../labs/rag/foundations)
 
@@ -100,7 +98,7 @@ AI Forge 的长期公开结构是 `labs/`、`examples/`、`assets/`、`drafts/` 
 
 实验入口：[labs/mcp](../labs/mcp)
 
-示例入口：[examples/mcp-servers](../examples/mcp-servers)
+示例入口：[labs/mcp/foundations/examples](../labs/mcp/foundations/examples)
 
 适合目标：理解 MCP 在 AI 应用架构中的位置，以及 Tool、Resource、Prompt 如何被设计和调用。
 
@@ -112,7 +110,7 @@ AI Forge 的长期公开结构是 `labs/`、`examples/`、`assets/`、`drafts/` 
 - 从 `initialize` 到 `tools/call` 的通信过程
 - 订单分析 MCP Server 示例
 
-已迁移实验：
+实验入口：
 
 - [labs/mcp/foundations](../labs/mcp/foundations)
 
@@ -140,4 +138,4 @@ AI Forge 的长期公开结构是 `labs/`、`examples/`、`assets/`、`drafts/` 
 
 入口：[drafts/backlog](../drafts/backlog)
 
-这里保存仍在跟踪或构思中的选题，包括 MCP 安全、Skill 供应链安全、提示词安全、模型安全护栏、多智能体系统等。后续成熟后再迁移到正式主题目录。
+这里保存仍在跟踪或构思中的选题，包括 MCP 安全、Skill 供应链安全、提示词安全、模型安全护栏、多智能体系统等。内容成熟后再整理到正式主题目录。

@@ -27,5 +27,5 @@
 
 读完 RAG 后，可以继续进入：
 
-- [LangChain 实战](../langchain)：理解如何把 RAG 接进模型调用链。
-- [LangGraph 实战](../langgraph)：把 RAG 作为工作流中的一个可控节点。
+- [LangChain 实战](../../langchain/foundations)：理解如何把 RAG 接进模型调用链。
+- [LangGraph 实战](../../langgraph/foundations)：把 RAG 作为工作流中的一个可控节点。

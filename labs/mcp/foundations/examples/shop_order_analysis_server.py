@@ -12,7 +12,7 @@ Resources、Prompts、Tools 如何一起协作。
 通过 MCP Inspector 启动：
 
     npx -y @modelcontextprotocol/inspector \
-      uv run --no-sync --script examples/shop_order_analysis_server.py
+      uv run --no-sync --script labs/mcp/foundations/examples/shop_order_analysis_server.py
 """
 
 from __future__ import annotations

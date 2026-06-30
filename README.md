@@ -17,7 +17,7 @@ AI Engineering 实战锻造场。
 - 想从“会调大模型 API”走向“能设计 AI 应用”的开发者。
 - 正在学习 LangChain、LangGraph、RAG、MCP、Agent 的工程实践者。
 - 希望把公众号文章、Notebook、示例代码结合起来系统学习的读者。
-- 想观察一个 AI Engineering 知识库如何从实验记录逐步整理成公开项目的人。
+- 希望沿着清晰路线持续积累 AI Engineering 实战能力的人。
 
 ## 内容地图
 
@@ -32,18 +32,19 @@ AI Engineering 实战锻造场。
 
 更细的主题索引见 [docs/CONTENT_MAP.md](docs/CONTENT_MAP.md)。
 
-## 仓库结构规划
+## 内容组织
 
-AI Forge 已经从早期 `notebooks/` 实验仓库，整理成更适合长期学习和传播的结构：
+AI Forge 使用下面的结构组织学习内容：
 
 | 目录 | 作用 |
 | --- | --- |
 | [labs](labs) | 可复现实验，面向想动手运行和验证的读者 |
-| [examples](examples) | 独立示例服务、脚本和最小项目 |
-| [assets](assets) | 跨文章、跨实验复用的公共图片资源 |
 | [drafts](drafts) | 后续文章选题、提纲和未发布草稿 |
+| [docs](docs) | 内容地图、发布规范、路线规划和仓库级资源 |
 
-已经完成的旧文章和 Notebook 不做内容修改，只做路径级迁移。新的公众号文章会优先采用 `labs + examples + docs` 的结构。
+示例代码和内容资源默认跟随所属专题，分别放在对应实验目录的 `examples/` 和 `assets/` 中，避免读者跨目录寻找上下文。仓库门面使用的资源放在 `docs/assets/`。
+
+新的公众号文章优先采用 `labs + 专题内 examples/assets + docs` 的结构。
 
 ## 推荐学习路线
 
@@ -97,6 +98,12 @@ uv run python path/to/example.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python path/to/example.py
 ```
 
+检查公共入口、相对链接和目录约定：
+
+```bash
+UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/check_repo.py
+```
+
 ## 公众号与 GitHub 如何配合
 
 AI Forge 的内容会采用“双层发布”方式：
@@ -134,13 +141,11 @@ https://github.com/yauld/ai-forge
 │   ├── mcp/
 │   ├── rag/
 │   └── skills/
-├── examples/        # 独立示例服务和脚本
-├── assets/          # 公共图片资源
 ├── drafts/          # 未来文章草稿和选题
 ├── docs/
+│   ├── assets/      # 仓库门面使用的资源
 │   ├── ARTICLE_TEMPLATE.md
 │   ├── CONTENT_MAP.md
-│   ├── MIGRATION_PLAN.md
 │   ├── PUBLISHING.md
 │   └── ROADMAP.md
 ├── pyproject.toml
@@ -153,7 +158,7 @@ https://github.com/yauld/ai-forge
 - 每个主题尽量回答一个清晰问题，而不是堆砌材料。
 - 公众号负责传播，GitHub 负责复现和长期沉淀。
 - 优先保留可运行代码、Notebook、截图和实验数据。
-- 已完成文章和 Notebook 内容保持稳定，迁移只改变组织方式。
+- 对已发布内容保持克制，只在确有必要时更新正文。
 
 ## Roadmap
 
