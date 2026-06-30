@@ -2,9 +2,7 @@
 
 AI Engineering 实战锻造场。
 
-这个仓库用真实代码、Notebook、示例服务和文章草稿，系统记录 AI 应用工程中的关键实践：LangChain、LangGraph、RAG、MCP、Agent 工程化、记忆、工具调用、可观测流程和安全控制。
-
-它不是资料搬运，也不是 API 速查。AI Forge 更像一个长期更新的工程工作台：公众号文章负责讲清楚问题和判断，GitHub 仓库负责沉淀完整实验、运行代码、截图素材和可复现路径。
+这个仓库通过文章、Notebook 和可运行示例，持续研究 LangChain、LangGraph、RAG、MCP、Agent 工程化、记忆、工具调用与安全控制。每个专题的 README 同时记录已经完成的内容和接下来准备研究的问题。
 
 [![Python](https://img.shields.io/badge/Python-3.13+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![uv](https://img.shields.io/badge/package%20manager-uv-261230)](https://docs.astral.sh/uv/)
@@ -12,69 +10,22 @@ AI Engineering 实战锻造场。
 [![LangGraph](https://img.shields.io/badge/LangGraph-1.x-1C3C3C)](https://www.langchain.com/langgraph)
 [![MCP](https://img.shields.io/badge/MCP-practice-5B5BD6)](https://modelcontextprotocol.io/)
 
-## 适合谁
+## 专题入口
 
-- 想从“会调大模型 API”走向“能设计 AI 应用”的开发者。
-- 正在学习 LangChain、LangGraph、RAG、MCP、Agent 的工程实践者。
-- 希望把公众号文章、Notebook、示例代码结合起来系统学习的读者。
-- 希望沿着清晰路线持续积累 AI Engineering 实战能力的人。
-
-## 内容地图
-
-| 方向 | 主要内容 | 入口 |
+| 专题 | 研究范围 | 文章与后续计划 |
 | --- | --- | --- |
-| LangChain | 模型调用、Messages、Prompt、Tools、Memory、Agent、Middleware、LCEL、Embeddings | [labs/langchain](labs/langchain) |
-| LangGraph | State、Node、Edge、条件边、Reducer、Checkpoint、Human-in-the-loop、Durable Execution、Memory | [labs/langgraph](labs/langgraph) |
-| RAG | 文档加载、文本切分、向量库、Retriever、Prompt 组装、最小问答链路 | [labs/rag](labs/rag) |
-| MCP | Host、Client、Server、Tool、Resource、Prompt、JSON-RPC 通信流程、订单分析示例 | [labs/mcp](labs/mcp) |
-| Skills | Codex Skills、工作流固化、AI 辅助创作与工程自动化 | [labs/skills](labs/skills) |
-| Coding | Python、FastAPI、工程基础与服务化实验 | [labs/coding](labs/coding) |
+| LangChain | 模型、Messages、Prompt、Tools、Memory、Agent、Middleware、LCEL、Embeddings | [查看专题](labs/langchain/foundations) |
+| LangGraph | State、Node、Edge、Checkpoint、Human-in-the-loop、Durable Execution、Memory | [查看专题](labs/langgraph/foundations) |
+| RAG | 文档加载、文本切分、向量库、Retriever、Prompt 与问答链路 | [查看专题](labs/rag/foundations) |
+| MCP | Host、Client、Server、Tool、Resource、Prompt、JSON-RPC 与 Transport | [查看专题](labs/mcp/foundations) |
+| Skills | Codex Skills、工作流固化与工程自动化 | [查看内容](labs/skills) |
+| Coding | Python、FastAPI 与 AI 工程所需的服务化基础 | [查看内容](labs/coding) |
 
-更细的主题索引见 [docs/CONTENT_MAP.md](docs/CONTENT_MAP.md)。
-
-## 内容组织
-
-AI Forge 使用下面的结构组织学习内容：
-
-| 目录 | 作用 |
-| --- | --- |
-| [labs](labs) | 可复现实验，面向想动手运行和验证的读者 |
-| [drafts](drafts) | 后续文章选题、提纲和未发布草稿 |
-| [docs](docs) | 内容地图、发布规范、路线规划和仓库级资源 |
-
-示例代码和内容资源默认跟随所属专题，分别放在对应实验目录的 `examples/` 和 `assets/` 中，避免读者跨目录寻找上下文。仓库门面使用的资源放在 `docs/assets/`。
-
-新的公众号文章优先采用 `labs + 专题内 examples/assets + docs` 的结构。
-
-## 推荐学习路线
-
-### 1. 从 LangChain 进入 AI 应用开发
-
-先理解模型、消息、提示词和工具，再进入记忆、Agent 和 Middleware。适合希望掌握 LLM 应用基本工程接口的读者。
-
-起点：[labs/langchain](labs/langchain)
-
-### 2. 用 LangGraph 理解可控 Agent 流程
-
-从 State、Node、Edge 开始，逐步进入 checkpoint、人工审批、失败恢复和跨会话记忆。适合希望构建可控、多步骤、可恢复 AI 工作流的读者。
-
-起点：[labs/langgraph](labs/langgraph)
-
-### 3. 用 RAG 打通知识问答链路
-
-从文档加载、切分、向量化、检索器到最小问答链路，建立 RAG 的工程直觉。
-
-起点：[labs/rag](labs/rag)
-
-### 4. 用 MCP 理解工具生态和上下文协议
-
-从架构角色出发，理解 Host、Client、Server 如何协作，再落到 Tool、Resource、Prompt 和通信过程。
-
-起点：[labs/mcp](labs/mcp)
+尚未进入正式研究计划的选题保存在 [drafts/backlog](drafts/backlog)。每个正式专题只在自己的 README 中维护一次研究状态，根 README 不重复展开文章清单。
 
 ## 如何运行
 
-本仓库使用 uv 管理 Python 环境，Python 版本要求为 3.13 或更高。
+本仓库要求 Python 3.13 或更高版本，并使用 uv 管理环境：
 
 ```bash
 uv sync
@@ -86,17 +37,19 @@ uv sync
 uv run jupyter notebook
 ```
 
-运行某个示例时，优先使用：
+运行 Python 示例：
 
 ```bash
 uv run python path/to/example.py
 ```
 
-在 Codex 沙箱或不希望修改全局缓存时，可使用：
+在 Codex 沙箱或不希望使用用户级 uv 缓存时：
 
 ```bash
 UV_CACHE_DIR=.uv-cache uv run --no-sync python path/to/example.py
 ```
+
+各实验的特殊启动参数放在对应文章、Notebook 或示例目录中。例如 MCP Server 的运行方式见 [MCP 示例代码](labs/mcp/foundations/examples)。
 
 检查公共入口、相对链接和目录约定：
 
@@ -104,66 +57,72 @@ UV_CACHE_DIR=.uv-cache uv run --no-sync python path/to/example.py
 UV_CACHE_DIR=.uv-cache uv run --no-sync python scripts/check_repo.py
 ```
 
-## 公众号与 GitHub 如何配合
-
-AI Forge 的内容会采用“双层发布”方式：
-
-- 公众号文章：讲问题背景、核心概念、工程判断和关键结论。
-- GitHub 仓库：保存完整 Notebook、示例代码、截图、实验数据和运行说明。
-
-这样公众号文章可以更短、更清晰，读者如果想深入复现，就可以回到仓库继续看完整实验。
-
-关注公众号，可以先读更短、更像文章的版本；需要代码、Notebook、截图和可复现实验时，再回到这个仓库继续深入。
-
-<p align="center">
-  <img src="docs/assets/wechat-qr.jpg" width="220" alt="公众号二维码">
-</p>
-
-每篇文章建议在结尾放一个固定入口：
-
-```text
-完整代码、Notebook、截图和运行说明：
-https://github.com/yauld/ai-forge
-```
-
-具体发布规范见 [docs/PUBLISHING.md](docs/PUBLISHING.md)。
-
-后续新文章会优先使用 [docs/ARTICLE_TEMPLATE.md](docs/ARTICLE_TEMPLATE.md) 规划：公众号负责讲清楚一个问题，GitHub 实验页负责完整复现。
-
-## 仓库结构
+## 内容组织
 
 ```text
 .
-├── labs/            # 可复现实验
-│   ├── coding/
-│   ├── langchain/
-│   ├── langgraph/
-│   ├── mcp/
-│   ├── rag/
-│   └── skills/
-├── drafts/          # 未来文章草稿和选题
-├── docs/
-│   ├── assets/      # 仓库门面使用的资源
-│   ├── ARTICLE_TEMPLATE.md
-│   ├── CONTENT_MAP.md
-│   ├── PUBLISHING.md
-│   └── ROADMAP.md
+├── labs/            # 已形成文章、Notebook 或可运行示例的专题
+├── drafts/          # 尚未成熟的草稿和候选选题
+├── assets/          # 根 README 使用的资源
+├── scripts/         # 仓库检查脚本
 ├── pyproject.toml
 └── uv.lock
 ```
 
-## 项目原则
+示例代码、数据和图片跟随所属专题，分别放在就近的 `examples/`、`data/` 和 `assets/` 中；只有根 README 使用的资源放在根目录 `assets/`。
 
-- 用真实项目代码解释概念，不另造一套脱离上下文的演示。
-- 每个主题尽量回答一个清晰问题，而不是堆砌材料。
-- 公众号负责传播，GitHub 负责复现和长期沉淀。
-- 优先保留可运行代码、Notebook、截图和实验数据。
-- 对已发布内容保持克制，只在确有必要时更新正文。
+## 研究与写作约定
 
-## Roadmap
+### 研究状态
 
-- 持续完善 README、内容地图和专题入口。
-- 将长文章拆成“公众号短文 + GitHub 深入实验”。
-- 为核心实验补充稳定运行说明和最小复现命令。
-- 将重点主题逐步整理为 `labs/<topic>/<unit>` 风格的学习单元。
-- 在 `yauld` 账号下建立更统一的 AI Engineering 品牌入口。
+专题 README 使用统一表格：
+
+| 序号 | 文件 | 研究问题 | 状态 |
+| --- | --- | --- | --- |
+| 专题内顺序 | 已有成果链接或计划文件名 | 这项研究要回答的核心问题 | 已完成 / 进行中 / 待研究 |
+
+新增研究内容时直接更新对应专题表格：
+
+- 已完成：已经形成文章、Notebook 或稳定实验。
+- 进行中：当前正在研究并准备形成成果。
+- 待研究：已经明确问题，但尚未开始。
+- 尚未归入专题的想法先放入 `drafts/backlog/`。
+
+### 文章与 GitHub 的分工
+
+- 每篇文章只回答一个清晰问题。
+- 公众号文章讲背景、核心直觉、工程判断和实验结论。
+- GitHub 保存完整代码、Notebook、截图、示例数据和运行说明。
+- 新文章先确定所属专题和成果文件，再开始写作；发布后在专题 README 更新状态与入口。
+- 已发布正文尽量保持稳定，确需大幅重写时单独规划新版内容。
+
+推荐文章骨架：
+
+```text
+标题：用具体问题命名
+
+1. 为什么这个问题值得讲
+2. 用最小例子建立直觉
+3. 工程实现中真正需要注意什么
+4. 实验验证了什么，还有什么没有验证
+5. 完整代码、Notebook 和运行入口
+```
+
+文章专属素材放在对应专题的 `assets/`，独立脚本或服务放在 `examples/`。文章结尾优先链接到具体专题或成果文件，而不是只链接仓库首页。
+
+### 发布前检查
+
+- 标题是否只回答一个问题。
+- 是否使用真实项目代码和配置，而不是另造平行示例。
+- 是否删除重复背景、大段无关代码、长截图和排障过程。
+- 文章中的代码、Notebook 或示例是否能够复现。
+- 是否清理个人路径、无关输出和敏感信息。
+- 相对链接、示例数据和专题 README 状态是否已经更新。
+
+## 公众号
+
+公众号用于发布更短、更聚焦的文章版本；仓库保留完整实验和持续更新的研究记录。
+
+<p align="center">
+  <img src="assets/wechat-qr.jpg" width="220" alt="公众号二维码">
+</p>

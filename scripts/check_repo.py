@@ -10,10 +10,6 @@ from urllib.parse import unquote
 ROOT = Path(__file__).resolve().parents[1]
 ENTRY_FILES = [
     ROOT / "README.md",
-    ROOT / "docs" / "CONTENT_MAP.md",
-    ROOT / "docs" / "ROADMAP.md",
-    ROOT / "docs" / "ARTICLE_TEMPLATE.md",
-    ROOT / "docs" / "PUBLISHING.md",
     ROOT / "labs" / "langchain" / "foundations" / "README.md",
     ROOT / "labs" / "langgraph" / "foundations" / "README.md",
     ROOT / "labs" / "mcp" / "foundations" / "README.md",
@@ -47,9 +43,6 @@ def main() -> int:
 
     if (ROOT / "examples").exists():
         errors.append("根目录不应存在 examples/；示例应跟随所属专题")
-
-    if (ROOT / "assets").exists():
-        errors.append("根目录不应存在 assets/；资源应跟随专题或放在 docs/assets/")
 
     for path in ENTRY_FILES:
         if not path.exists():
