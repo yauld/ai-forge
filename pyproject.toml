@@ -1,0 +1,34 @@
+[project]
+name = "ai-forge"
+version = "0.1.0"
+description = "AI Engineering practice lab for LangChain, LangGraph, RAG, MCP, and Agent engineering."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "chromadb>=1.5.9",
+    "fastapi[standard]>=0.137.0",
+    "grandalf>=0.8",
+    "httpx2>=2.4.0",
+    "httpx[socks]>=0.28.1",
+    "jq>=1.11.0",
+    "langchain>=1.3.0",
+    "langchain-chroma>=1.1.0",
+    "langchain-community>=0.4.2",
+    "langchain-deepseek>=1.0.1",
+    "langchain-ollama>=1.1.0",
+    "langchain-openai>=1.0.3",
+    "langchain-tavily>=0.2.18",
+    "langgraph>=1.2.0",
+    "langgraph-checkpoint-postgres>=3.1.0",
+    "langgraph-checkpoint-sqlite>=3.1.0",
+    "markdown>=3.10.2",
+    "mcp[cli]>=1.2.0,<2",
+    "notebook>=7.5.6",
+    "numpy>=2.4.6",
+    "openai>=2.36.0",
+    "psycopg[binary,pool]>=3.3.4",
+    "pygraphviz>=1.14",
+    "pypdf>=6.12.2",
+    "python-dotenv>=1.2.2",
+    "unstructured>=0.22.31",
+]

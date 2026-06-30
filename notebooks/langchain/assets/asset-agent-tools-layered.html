@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asset Agent Tools Layered</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 1080px;
+        margin: 0;
+        color: #0f172a;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+          sans-serif;
+        background: #f5f7fb;
+      }
+
+      .canvas {
+        width: 1080px;
+        padding: 54px 64px;
+        background: #f5f7fb;
+      }
+
+      .layer {
+        margin-bottom: 26px;
+        padding: 28px;
+        background: #ffffff;
+        border: 1px solid #dbe3ef;
+        border-radius: 28px;
+        box-shadow: 0 12px 34px rgba(33, 64, 120, 0.08);
+      }
+
+      .layer-head {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+
+      .badge {
+        display: grid;
+        width: 44px;
+        height: 44px;
+        place-items: center;
+        color: #ffffff;
+        font-size: 22px;
+        font-weight: 900;
+        background: #2563eb;
+        border-radius: 14px;
+      }
+
+      .layer-title {
+        font-size: 30px;
+        font-weight: 850;
+        line-height: 1.25;
+      }
+
+      .layer-desc {
+        color: #526075;
+        font-size: 22px;
+        line-height: 1.45;
+      }
+
+      .llm-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 26px 30px;
+        color: #ffffff;
+        background: #0f172a;
+        border-radius: 24px;
+      }
+
+      .llm-title {
+        font-size: 34px;
+        font-weight: 900;
+      }
+
+      .llm-desc {
+        margin-top: 8px;
+        color: #dbeafe;
+        font-size: 22px;
+      }
+
+      .pill {
+        padding: 12px 18px;
+        color: #bfdbfe;
+        font-size: 20px;
+        font-weight: 750;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+      }
+
+      .arrow {
+        display: flex;
+        height: 58px;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        color: #2563eb;
+        font-size: 23px;
+        font-weight: 850;
+      }
+
+      .arrow::before,
+      .arrow::after {
+        width: 120px;
+        height: 4px;
+        content: "";
+        background: #bfdbfe;
+        border-radius: 999px;
+      }
+
+      .arrow-mark {
+        display: grid;
+        width: 54px;
+        height: 54px;
+        place-items: center;
+        color: #ffffff;
+        font-size: 34px;
+        font-weight: 950;
+        background: #2563eb;
+        border-radius: 999px;
+        box-shadow: 0 10px 26px rgba(37, 99, 235, 0.28);
+      }
+
+      .arrow-text {
+        min-width: 130px;
+        text-align: center;
+      }
+
+      .tools {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .tool {
+        min-height: 126px;
+        padding: 20px;
+        background: #eff6ff;
+        border: 1px solid #bfdbfe;
+        border-radius: 22px;
+      }
+
+      .tool.important {
+        background: #ecfeff;
+        border-color: #67e8f9;
+      }
+
+      .tool-name {
+        color: #0f172a;
+        font-size: 25px;
+        font-weight: 850;
+        line-height: 1.25;
+        word-break: break-word;
+      }
+
+      .tool-desc {
+        margin-top: 8px;
+        color: #526075;
+        font-size: 20px;
+        line-height: 1.35;
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .service {
+        padding: 22px 18px;
+        text-align: center;
+        background: #ffffff;
+        border: 2px solid #dbe3ef;
+        border-radius: 22px;
+      }
+
+      .service-title {
+        font-size: 25px;
+        font-weight: 850;
+      }
+
+      .service-desc {
+        margin-top: 8px;
+        color: #526075;
+        font-size: 19px;
+        line-height: 1.35;
+      }
+
+      .data-card {
+        padding: 26px 30px;
+        color: #ffffff;
+        background: linear-gradient(135deg, #0891b2, #2563eb);
+        border-radius: 24px;
+      }
+
+      .data-title {
+        font-size: 30px;
+        font-weight: 900;
+      }
+
+      .data-desc {
+        margin-top: 8px;
+        color: #e0f2fe;
+        font-size: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="canvas">
+      <section class="layer">
+        <div class="llm-card">
+          <div>
+            <div class="llm-title">LLM</div>
+            <div class="llm-desc">理解用户问题，选择合适工具，组织最终回答</div>
+          </div>
+          <div class="pill">不直接读数据</div>
+        </div>
+      </section>
+
+      <div class="arrow">
+        <span class="arrow-text">选择工具</span>
+        <span class="arrow-mark">↓</span>
+      </div>
+
+      <section class="layer">
+        <div class="layer-head">
+          <div class="badge">1</div>
+          <div>
+            <div class="layer-title">LangChain Tools：资产能力入口</div>
+            <div class="layer-desc">LLM 只能通过这些工具访问资产中心能力</div>
+          </div>
+        </div>
+
+        <div class="tools">
+          <div class="tool">
+            <div class="tool-name">list_assets</div>
+            <div class="tool-desc">按环境、重要性、公网暴露等条件查询资产</div>
+          </div>
+          <div class="tool">
+            <div class="tool-name">get_asset_detail</div>
+            <div class="tool-desc">根据资产 ID 获取单台资产详情</div>
+          </div>
+          <div class="tool">
+            <div class="tool-name">summarize_asset_inventory</div>
+            <div class="tool-desc">统计资产总量、环境分布、重要性分布</div>
+          </div>
+          <div class="tool important">
+            <div class="tool-name">rank_assets_by_attention</div>
+            <div class="tool-desc">找出最值得关注的资产，并返回分数和原因</div>
+          </div>
+          <div class="tool">
+            <div class="tool-name">draft_asset_report</div>
+            <div class="tool-desc">基于统计和排序结果生成资产报告草稿</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="arrow">
+        <span class="arrow-text">调用服务</span>
+        <span class="arrow-mark">↓</span>
+      </div>
+
+      <section class="layer">
+        <div class="layer-head">
+          <div class="badge">2</div>
+          <div>
+            <div class="layer-title">确定性服务：事实与计算</div>
+            <div class="layer-desc">资产读取、统计、排序由代码完成，不交给模型猜</div>
+          </div>
+        </div>
+
+        <div class="services">
+          <div class="service">
+            <div class="service-title">AssetReader</div>
+            <div class="service-desc">读取最新资产文件，提供查询能力</div>
+          </div>
+          <div class="service">
+            <div class="service-title">AssetSummarizer</div>
+            <div class="service-desc">计算资产盘点统计摘要</div>
+          </div>
+          <div class="service">
+            <div class="service-title">AssetRanker</div>
+            <div class="service-desc">按固定规则计算关注分数</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="arrow">
+        <span class="arrow-text">读取数据</span>
+        <span class="arrow-mark">↓</span>
+      </div>
+
+      <section class="layer">
+        <div class="data-card">
+          <div class="data-title">normalized_assets</div>
+          <div class="data-desc">来自最新 asset-simulation-*.json 的归一化资产数据</div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="430" viewBox="0 0 1320 430" role="img" aria-labelledby="title desc">
+  <title id="title">LangGraph Studio 连接本地 Graph 的数据流</title>
+  <desc id="desc">LangSmith 云端提供 Studio 页面，本地浏览器根据 baseUrl 连接本地 Agent Server，Agent Server 调用本地 Python Graph。</desc>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#4f6f91"/>
+    </marker>
+    <style>
+      .text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+      .title {
+        font-size: 30px;
+        font-weight: 700;
+        fill: #173b70;
+      }
+      .box-title {
+        font-size: 22px;
+        font-weight: 700;
+        fill: #173b70;
+      }
+      .box-body {
+        font-size: 17px;
+        fill: #526b84;
+      }
+      .label {
+        font-size: 16px;
+        font-weight: 600;
+        fill: #4f6f91;
+      }
+      .mono {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 16px;
+        fill: #315c85;
+      }
+    </style>
+  </defs>
+
+  <rect width="1320" height="430" rx="20" fill="#f7faff"/>
+  <text x="60" y="62" class="text title">Studio 如何连接本地 Graph</text>
+
+  <!-- LangSmith -->
+  <rect x="60" y="130" width="250" height="170" rx="14" fill="#ffffff" stroke="#9bb5d0" stroke-width="2"/>
+  <text x="185" y="177" text-anchor="middle" class="text box-title">LangSmith</text>
+  <text x="185" y="211" text-anchor="middle" class="text box-body">云端网站</text>
+  <text x="185" y="244" text-anchor="middle" class="text box-body">提供 Studio 页面</text>
+
+  <!-- Browser -->
+  <rect x="390" y="130" width="250" height="170" rx="14" fill="#ffffff" stroke="#9bb5d0" stroke-width="2"/>
+  <text x="515" y="177" text-anchor="middle" class="text box-title">本地浏览器</text>
+  <text x="515" y="211" text-anchor="middle" class="text box-body">运行 Studio 界面</text>
+  <text x="515" y="248" text-anchor="middle" class="mono">读取 baseUrl</text>
+
+  <!-- Agent Server -->
+  <rect x="720" y="130" width="250" height="170" rx="14" fill="#eef8f8" stroke="#4f9a9e" stroke-width="2"/>
+  <text x="845" y="177" text-anchor="middle" class="text box-title">Agent Server</text>
+  <text x="845" y="211" text-anchor="middle" class="text box-body">本地服务</text>
+  <text x="845" y="248" text-anchor="middle" class="mono">127.0.0.1:2024</text>
+
+  <!-- Graph -->
+  <rect x="1050" y="130" width="210" height="170" rx="14" fill="#ffffff" stroke="#9bb5d0" stroke-width="2"/>
+  <text x="1155" y="177" text-anchor="middle" class="text box-title">Graph</text>
+  <text x="1155" y="211" text-anchor="middle" class="text box-body">本地 Python 进程</text>
+  <text x="1155" y="244" text-anchor="middle" class="text box-body">执行节点与边</text>
+
+  <!-- Page delivery -->
+  <line x1="310" y1="215" x2="380" y2="215" stroke="#4f6f91" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="345" y="192" text-anchor="middle" class="text label">加载页面</text>
+
+  <!-- Browser and server -->
+  <line x1="650" y1="198" x2="710" y2="198" stroke="#4f6f91" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="680" y="181" text-anchor="middle" class="text label">请求</text>
+  <line x1="710" y1="238" x2="650" y2="238" stroke="#4f6f91" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="680" y="270" text-anchor="middle" class="text label">结果</text>
+
+  <!-- Server and graph -->
+  <line x1="980" y1="198" x2="1040" y2="198" stroke="#4f6f91" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="1010" y="181" text-anchor="middle" class="text label">调用</text>
+  <line x1="1040" y1="238" x2="980" y2="238" stroke="#4f6f91" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="1010" y="270" text-anchor="middle" class="text label">返回</text>
+
+  <rect x="250" y="345" width="820" height="52" rx="10" fill="#eaf2fb"/>
+  <text x="660" y="378" text-anchor="middle" class="text box-body">
+    页面来自云端；Graph 与 Agent Server 仍在本机运行
+  </text>
+</svg>

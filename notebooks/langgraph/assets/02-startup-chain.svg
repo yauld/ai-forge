@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1410" height="600" viewBox="0 0 1410 600" role="img" aria-labelledby="title desc">
+  <title id="title">LangGraph 本地启动链路</title>
+  <desc id="desc">langgraph dev 读取 langgraph.json，定位 graph.py 中的 graph 变量，加载编译后的 Graph，并启动本地 Agent Server。</desc>
+
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="1" stop-color="#eef6ff"/>
+    </linearGradient>
+    <linearGradient id="primaryCard" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173b70"/>
+      <stop offset="1" stop-color="#245a9b"/>
+    </linearGradient>
+    <linearGradient id="serverCard" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#087f8c"/>
+      <stop offset="1" stop-color="#10a1aa"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#173b70" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#7da3cc"/>
+    </marker>
+    <style>
+      .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+      .mono { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+      .heading { font-size: 32px; font-weight: 700; fill: #16365f; }
+      .eyebrow { font-size: 16px; font-weight: 700; letter-spacing: 2px; fill: #5780ad; }
+      .card-title { font-size: 22px; font-weight: 700; fill: #173b70; }
+      .card-body { font-size: 18px; fill: #55708f; }
+      .step { font-size: 15px; font-weight: 700; fill: #7895b4; }
+      .step-light { font-size: 15px; font-weight: 700; fill: #bcd8f8; }
+    </style>
+  </defs>
+
+  <rect width="1410" height="600" rx="30" fill="url(#background)"/>
+  <circle cx="1320" cy="70" r="130" fill="#dcecff" opacity="0.65"/>
+  <circle cx="70" cy="550" r="150" fill="#dff4f3" opacity="0.55"/>
+
+  <text x="70" y="74" class="sans eyebrow">LANGGRAPH LOCAL DEVELOPMENT</text>
+  <text x="70" y="120" class="sans heading">一条命令，如何找到并启动本地 Graph？</text>
+
+  <!-- Step 1 -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="190" width="250" height="170" rx="22" fill="url(#primaryCard)"/>
+  </g>
+  <text x="95" y="225" class="sans step-light">STEP 1</text>
+  <text x="95" y="276" class="mono" font-size="24" font-weight="700" fill="#ffffff">langgraph dev</text>
+  <text x="95" y="316" class="sans" font-size="18" fill="#dbeaff">启动本地开发模式</text>
+
+  <!-- Arrow 1 -->
+  <path d="M320 275 H375" fill="none" stroke="#7da3cc" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Step 2 -->
+  <g filter="url(#shadow)">
+    <rect x="395" y="190" width="250" height="170" rx="22" fill="#ffffff"/>
+  </g>
+  <text x="420" y="225" class="sans step">STEP 2</text>
+  <rect x="420" y="246" width="200" height="45" rx="9" fill="#edf5ff"/>
+  <text x="520" y="276" text-anchor="middle" class="mono card-title">langgraph.json</text>
+  <text x="420" y="322" class="sans card-body">读取 graphs 配置</text>
+
+  <!-- Arrow 2 -->
+  <path d="M645 275 H700" fill="none" stroke="#7da3cc" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Step 3 -->
+  <g filter="url(#shadow)">
+    <rect x="720" y="190" width="280" height="170" rx="22" fill="#ffffff"/>
+  </g>
+  <text x="745" y="225" class="sans step">STEP 3</text>
+  <text x="745" y="270" class="mono card-title">graph.py : graph</text>
+  <line x1="745" y1="286" x2="968" y2="286" stroke="#d7e6f5" stroke-width="2"/>
+  <text x="745" y="322" class="sans card-body">定位文件与变量</text>
+
+  <!-- Arrow 3 -->
+  <path d="M1000 275 H1055" fill="none" stroke="#7da3cc" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Step 4 -->
+  <g filter="url(#shadow)">
+    <rect x="1075" y="190" width="265" height="170" rx="22" fill="#ffffff"/>
+  </g>
+  <text x="1100" y="225" class="sans step">STEP 4</text>
+  <text x="1100" y="270" class="mono card-title">CompiledGraph</text>
+  <text x="1100" y="310" class="sans card-body">加载 compile()</text>
+  <text x="1100" y="338" class="sans card-body">生成的可运行对象</text>
+
+  <!-- Downward connection -->
+  <path d="M1208 360 V410 H705 V438" fill="none" stroke="#7da3cc" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <!-- Server -->
+  <g filter="url(#shadow)">
+    <rect x="405" y="455" width="600" height="105" rx="24" fill="url(#serverCard)"/>
+  </g>
+  <circle cx="462" cy="507" r="25" fill="#ffffff" opacity="0.18"/>
+  <circle cx="462" cy="499" r="4" fill="#ffffff"/>
+  <circle cx="462" cy="511" r="4" fill="#ffffff"/>
+  <circle cx="462" cy="523" r="4" fill="#ffffff"/>
+  <text x="510" y="500" class="sans" font-size="24" font-weight="700" fill="#ffffff">本地 Agent Server</text>
+  <text x="510" y="535" class="mono" font-size="18" fill="#d9ffff">http://127.0.0.1:2024</text>
+  <text x="965" y="512" text-anchor="end" class="sans" font-size="17" fill="#d9ffff">通过 HTTP 提供 Graph 能力</text>
+</svg>

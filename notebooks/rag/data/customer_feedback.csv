@@ -1,0 +1,6 @@
+ticket_id,product,channel,priority,feedback
+T-1001,蓝牙耳机,电商客服,high,用户说耳机还没发货，想立刻退款
+T-1002,智能手表,App反馈,medium,用户找不到睡眠数据导出入口
+T-1003,无线键盘,电话客服,low,用户咨询键盘是否支持 Mac 快捷键
+T-1004,蓝牙耳机,电商客服,high,用户收到商品后发现左耳没有声音
+T-1005,会员服务,App反馈,medium,用户不理解自动续费规则

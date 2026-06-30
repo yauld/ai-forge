@@ -1,0 +1,125 @@
+<svg width="1080" height="1760" viewBox="0 0 1080 1760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1080" y2="1760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#F6FBF8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#475569"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#0F766E"/>
+    </marker>
+    <style>
+      .title { font: 700 44px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #0F172A; }
+      .subtitle { font: 500 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #475569; }
+      .stepTitle { font: 700 26px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .stepBody { font: 500 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #334155; }
+      .num { font: 700 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: white; }
+      .section { font: 700 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #166534; }
+      .noteTitle { font: 700 21px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #166534; }
+      .noteText { font: 500 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #334155; }
+      .caption { font: 700 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #0F766E; }
+    </style>
+  </defs>
+
+  <rect width="1080" height="1760" fill="url(#bg)"/>
+
+  <text x="72" y="92" class="title">LangChain Tools 工作流程图</text>
+  <text x="72" y="136" class="subtitle">公众号简版：模型决定，Agent 执行，工具返回结果，模型生成答案。</text>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="210" width="936" height="180" rx="28" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="2"/>
+    <circle cx="124" cy="264" r="24" fill="#0F9F6E"/>
+    <text x="115" y="273" class="num">1</text>
+    <text x="292" y="274" class="stepTitle" fill="#166534">用户提问</text>
+    <path d="M160 325C160 301 179 282 203 282H219C243 282 262 301 262 325C262 349 243 368 219 368H212L192 388V368C174 359 160 343 160 325Z" fill="#ECFDF5" stroke="#0F9F6E" stroke-width="5"/>
+    <circle cx="189" cy="325" r="6" fill="#0F9F6E"/>
+    <circle cx="208" cy="325" r="6" fill="#0F9F6E"/>
+    <circle cx="227" cy="325" r="6" fill="#0F9F6E"/>
+    <text x="342" y="322" class="stepBody">用户提出问题，例如查询信息、</text>
+    <text x="342" y="354" class="stepBody">要求调用外部能力或执行某个任务。</text>
+  </g>
+
+  <line x1="540" y1="390" x2="540" y2="432" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="432" width="936" height="180" rx="28" fill="#FFFFFF" stroke="#A7F3D0" stroke-width="2"/>
+    <circle cx="124" cy="486" r="24" fill="#0F9F6E"/>
+    <text x="115" y="495" class="num">2</text>
+    <text x="292" y="496" class="stepTitle" fill="#166534">Agent 注册工具</text>
+    <rect x="162" y="525" width="106" height="74" rx="24" fill="#ECFDF5" stroke="#0F9F6E" stroke-width="5"/>
+    <circle cx="215" cy="548" r="10" fill="#0F9F6E"/>
+    <rect x="192" y="562" width="46" height="20" rx="10" fill="#0F9F6E"/>
+    <rect x="149" y="553" width="12" height="26" rx="6" fill="#0F9F6E"/>
+    <rect x="269" y="553" width="12" height="26" rx="6" fill="#0F9F6E"/>
+    <text x="342" y="544" class="stepBody">Agent 维护上下文，把可用工具</text>
+    <text x="342" y="576" class="stepBody">和参数 schema 交给模型参考。</text>
+  </g>
+
+  <line x1="540" y1="612" x2="540" y2="654" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="654" width="936" height="180" rx="28" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2"/>
+    <circle cx="124" cy="708" r="24" fill="#2563EB"/>
+    <text x="115" y="717" class="num">3</text>
+    <text x="292" y="718" class="stepTitle" fill="#1D4ED8">模型决定是否调用</text>
+    <path d="M213 676C180 676 154 702 154 735C154 768 180 794 213 794C246 794 272 768 272 735C272 702 246 676 213 676Z" fill="#EFF6FF" stroke="#2563EB" stroke-width="5"/>
+    <path d="M213 688V782M177 735H249M188 711C200 719 226 719 238 711M188 759C200 751 226 751 238 759" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
+    <text x="342" y="754" class="stepBody">模型根据问题和工具描述生成</text>
+    <text x="342" y="786" class="stepBody">tool call，或者直接给出回答。</text>
+  </g>
+
+  <line x1="540" y1="834" x2="540" y2="876" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="876" width="936" height="180" rx="28" fill="#FFFFFF" stroke="#FCD34D" stroke-width="2"/>
+    <circle cx="124" cy="930" r="24" fill="#D97706"/>
+    <text x="115" y="939" class="num">4</text>
+    <text x="292" y="940" class="stepTitle" fill="#B45309">Agent 执行工具</text>
+    <rect x="166" y="969" width="96" height="74" rx="22" fill="#FFF7ED" stroke="#D97706" stroke-width="5"/>
+    <path d="M190 1004L208 1021L237 991" stroke="#D97706" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M188 1031H232" stroke="#D97706" stroke-width="6" stroke-linecap="round"/>
+    <text x="342" y="976" class="stepBody">Agent 根据 tool call 执行工具，</text>
+    <text x="342" y="1008" class="stepBody">访问搜索、API、数据库等外部能力。</text>
+  </g>
+
+  <line x1="540" y1="1056" x2="540" y2="1098" stroke="#475569" stroke-width="4" marker-end="url(#arrow)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="1098" width="936" height="180" rx="28" fill="#FFFFFF" stroke="#C4B5FD" stroke-width="2"/>
+    <circle cx="124" cy="1152" r="24" fill="#7C3AED"/>
+    <text x="115" y="1161" class="num">5</text>
+    <text x="292" y="1162" class="stepTitle" fill="#6D28D9">结果回模型，生成答案</text>
+    <rect x="174" y="1190" width="82" height="100" rx="14" fill="#F5F3FF" stroke="#7C3AED" stroke-width="5"/>
+    <path d="M192 1222H236M192 1248H236M192 1274H224" stroke="#7C3AED" stroke-width="5" stroke-linecap="round"/>
+    <text x="342" y="1192" class="stepBody">工具结果通常先回到执行上下文，</text>
+    <text x="342" y="1224" class="stepBody">再交给模型整理成最终回答。</text>
+  </g>
+
+  <path d="M882 1280V1340H540V1098" stroke="#0F766E" stroke-width="3" stroke-dasharray="10 10" marker-end="url(#arrowGreen)"/>
+  <text x="386" y="1388" class="caption">结果先回上下文，再由模型组织答案</text>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="1450" width="936" height="238" rx="28" fill="#FFFFFF" stroke="#BBF7D0" stroke-width="2"/>
+    <text x="108" y="1510" class="section">关键提醒</text>
+
+    <circle cx="314" cy="1498" r="14" fill="#0F9F6E"/>
+    <path d="M307 1498L312 1504L321 1492" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="340" y="1504" class="noteTitle">模型负责“选工具”</text>
+    <text x="340" y="1536" class="noteText">模型生成 tool call，执行由 Agent 完成。</text>
+
+    <circle cx="314" cy="1568" r="14" fill="#0F9F6E"/>
+    <path d="M307 1568L312 1574L321 1562" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="340" y="1574" class="noteTitle">结果默认回模型</text>
+    <text x="340" y="1606" class="noteText">通常先回上下文，再由模型组织答案。</text>
+
+    <circle cx="314" cy="1638" r="14" fill="#0F9F6E"/>
+    <path d="M307 1638L312 1644L321 1632" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="340" y="1644" class="noteTitle">工具边界越清晰越好</text>
+    <text x="340" y="1676" class="noteText">命名、描述、参数越清晰，模型越容易用对。</text>
+  </g>
+</svg>

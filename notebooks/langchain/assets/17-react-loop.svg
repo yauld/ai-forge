@@ -1,0 +1,42 @@
+<svg width="1100" height="1180" viewBox="0 0 1100 1180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1100" height="1180" fill="#FFFFFF"/>
+
+  <defs>
+    <marker id="arrow" markerWidth="16" markerHeight="16" refX="12" refY="8" orient="auto">
+      <path d="M2 2 L14 8 L2 14 Z" fill="#111111"/>
+    </marker>
+    <marker id="arrow-dashed" markerWidth="16" markerHeight="16" refX="12" refY="8" orient="auto">
+      <path d="M2 2 L14 8 L2 14 Z" fill="#111111"/>
+    </marker>
+  </defs>
+
+  <!-- Query -->
+  <rect x="390" y="40" width="320" height="150" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="6"/>
+  <text x="550" y="132" text-anchor="middle" font-family="Arial, sans-serif" font-size="58" font-weight="700" fill="#111111">Query</text>
+
+  <!-- Query -> Thought -->
+  <path d="M550 190 L550 310" stroke="#111111" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+  <!-- Thought diamond -->
+  <path d="M550 315 L880 585 L550 855 L220 585 Z" fill="#FFFFFF" stroke="#111111" stroke-width="6" stroke-linejoin="round"/>
+  <text x="550" y="612" text-anchor="middle" font-family="Arial, sans-serif" font-size="58" font-weight="700" fill="#111111">Thought</text>
+
+  <!-- Thought -> Tool action line -->
+  <path d="M330 765 C230 820 155 885 120 980" stroke="#111111" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <text x="150" y="832" text-anchor="middle" font-family="Arial, sans-serif" font-size="52" font-weight="700" fill="#111111">Action</text>
+
+  <!-- Tool -->
+  <rect x="150" y="980" width="240" height="135" rx="34" fill="#FFFFFF" stroke="#111111" stroke-width="6"/>
+  <text x="270" y="1068" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#111111">Tool</text>
+
+  <!-- Tool -> Thought observation line -->
+  <path d="M360 980 C430 910 500 880 550 855" stroke="#111111" stroke-width="6" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <text x="485" y="945" text-anchor="middle" font-family="Arial, sans-serif" font-size="52" font-weight="700" fill="#111111">Observation</text>
+
+  <!-- Thought -> Answer dashed line -->
+  <path d="M720 725 C835 805 920 880 965 975" stroke="#111111" stroke-width="6" stroke-linecap="round" stroke-dasharray="28 24" marker-end="url(#arrow-dashed)"/>
+
+  <!-- Answer -->
+  <rect x="795" y="980" width="290" height="135" rx="8" fill="#FFFFFF" stroke="#111111" stroke-width="6"/>
+  <text x="940" y="1068" text-anchor="middle" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#111111">Answer</text>
+</svg>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asset Agent Flow Only</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 1080px;
+        margin: 0;
+        color: #0f172a;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+          sans-serif;
+        background: #f5f7fb;
+      }
+
+      .canvas {
+        width: 1080px;
+        min-height: 1520px;
+        padding: 54px 72px;
+        background: #f5f7fb;
+      }
+
+      .question {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 24px;
+        align-items: center;
+        margin-bottom: 30px;
+        padding: 28px 32px;
+        background: #ffffff;
+        border: 2px solid #d8e4ff;
+        border-radius: 28px;
+        box-shadow: 0 16px 42px rgba(33, 64, 120, 0.1);
+      }
+
+      .question-icon {
+        display: grid;
+        width: 92px;
+        height: 92px;
+        place-items: center;
+        color: #ffffff;
+        font-size: 42px;
+        font-weight: 850;
+        background: #2563eb;
+        border-radius: 26px;
+      }
+
+      .question-label {
+        color: #64748b;
+        font-size: 24px;
+        font-weight: 750;
+      }
+
+      .question-text {
+        margin-top: 6px;
+        color: #0f172a;
+        font-size: 34px;
+        font-weight: 850;
+        line-height: 1.35;
+      }
+
+      .flow {
+        display: grid;
+        gap: 18px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 22px;
+        align-items: center;
+        padding: 24px 28px;
+        background: #ffffff;
+        border: 1px solid #dbe3ef;
+        border-radius: 24px;
+        box-shadow: 0 10px 28px rgba(33, 64, 120, 0.07);
+      }
+
+      .num {
+        display: grid;
+        width: 72px;
+        height: 72px;
+        place-items: center;
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 900;
+        background: #0f172a;
+        border-radius: 22px;
+      }
+
+      .step:nth-of-type(5) .num,
+      .step:nth-of-type(7) .num,
+      .step:nth-of-type(9) .num {
+        background: #2563eb;
+      }
+
+      .step:nth-of-type(11) .num,
+      .step:nth-of-type(13) .num {
+        background: #0891b2;
+      }
+
+      .step-title {
+        color: #0f172a;
+        font-size: 30px;
+        font-weight: 850;
+        line-height: 1.25;
+      }
+
+      .step-desc {
+        margin-top: 8px;
+        color: #526075;
+        font-size: 23px;
+        line-height: 1.45;
+      }
+
+      .arrow {
+        display: grid;
+        height: 18px;
+        place-items: center;
+        color: #94a3b8;
+        font-size: 24px;
+        font-weight: 900;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="canvas">
+      <section class="question">
+        <div class="question-icon">?</div>
+        <div>
+          <div class="question-label">用户提问</div>
+          <div class="question-text">列出最值得关注的 3 台资产，并说明原因</div>
+        </div>
+      </section>
+
+      <section class="flow">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <div class="step-title">前端携带页面上下文</div>
+            <div class="step-desc">模块、路由、筛选条件、选中资产、thread_id</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <div class="step-title">AI Chat API 接收统一请求</div>
+            <div class="step-desc">前端只调用统一接口，API 层不绑定具体 Agent</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <div class="step-title">Orchestrator 路由到 asset-agent</div>
+            <div class="step-desc">根据资产关键词、当前模块和选中对象选择专业 Agent</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">4</div>
+          <div>
+            <div class="step-title">AssetAgent 组装运行上下文</div>
+            <div class="step-desc">模型、Prompt、Tools、Memory、页面上下文</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">5</div>
+          <div>
+            <div class="step-title">LLM 选择资产工具</div>
+            <div class="step-desc">调用 rank_assets_by_attention 等结构化工具</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">6</div>
+          <div>
+            <div class="step-title">代码读取数据并计算排序</div>
+            <div class="step-desc">AssetReader 读取资产，AssetRanker 生成分数和原因</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">7</div>
+          <div>
+            <div class="step-title">LLM 基于工具结果组织答案</div>
+            <div class="step-desc">模型负责表达，不负责猜数据或直接计算风险</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

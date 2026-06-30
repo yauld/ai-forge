@@ -1,0 +1,2 @@
+policy_id,category,content
+FIN-005,审批规则,报销单金额超过 3000 元，需要财务经理复核。

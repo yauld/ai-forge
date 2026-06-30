@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="840" viewBox="0 0 1400 840">
+  <rect width="1400" height="840" fill="#f7f3ec"/>
+
+  <text x="700" y="72" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="34" font-weight="700" fill="#1f2933">
+    JSON-RPC 消息怎么读：request / response / notification
+  </text>
+  <text x="700" y="112" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#52606d">
+    MCP 的通信先看方向、类型和 id；不要一上来就逐行读完整 JSON
+  </text>
+
+  <rect x="90" y="160" width="1220" height="300" rx="18" fill="#ffffff" stroke="#d7c9b5" stroke-width="2"/>
+  <text x="130" y="212" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="26" font-weight="700" fill="#1f2933">
+    1. Request / Response：有 id，要配对
+  </text>
+
+  <text x="250" y="270" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="700" fill="#243b53">Client</text>
+  <text x="1150" y="270" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="700" fill="#243b53">Server</text>
+
+  <line x1="250" y1="292" x2="250" y2="416" stroke="#bcccdc" stroke-width="3"/>
+  <line x1="1150" y1="292" x2="1150" y2="416" stroke="#bcccdc" stroke-width="3"/>
+
+  <line x1="285" y1="322" x2="1110" y2="322" stroke="#2f80ed" stroke-width="4"/>
+  <polygon points="1110,322 1088,310 1088,334" fill="#2f80ed"/>
+  <rect x="430" y="286" width="540" height="54" rx="10" fill="#e8f1ff" stroke="#b6d3ff"/>
+  <text x="700" y="320" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="21" fill="#102a43">
+    request: id=1, method="initialize"
+  </text>
+
+  <line x1="1115" y1="382" x2="290" y2="382" stroke="#2f80ed" stroke-width="4"/>
+  <polygon points="290,382 312,370 312,394" fill="#2f80ed"/>
+  <rect x="430" y="346" width="540" height="54" rx="10" fill="#e8f1ff" stroke="#b6d3ff"/>
+  <text x="700" y="380" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="21" fill="#102a43">
+    response: id=1, result={...}
+  </text>
+
+  <rect x="130" y="420" width="1140" height="1" fill="#efe7da"/>
+  <text x="700" y="444" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#486581">
+    重点：request 和 response 使用同一个 id，才能知道“这是谁的回复”
+  </text>
+
+  <rect x="90" y="500" width="1220" height="250" rx="18" fill="#ffffff" stroke="#d7c9b5" stroke-width="2"/>
+  <text x="130" y="552" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="26" font-weight="700" fill="#1f2933">
+    2. Notification：没有 id，不等响应
+  </text>
+
+  <text x="250" y="610" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="700" fill="#243b53">Client</text>
+  <text x="1150" y="610" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="700" fill="#243b53">Server</text>
+
+  <line x1="250" y1="632" x2="250" y2="708" stroke="#bcccdc" stroke-width="3"/>
+  <line x1="1150" y1="632" x2="1150" y2="708" stroke="#bcccdc" stroke-width="3"/>
+
+  <line x1="285" y1="668" x2="1110" y2="668" stroke="#f2994a" stroke-width="4"/>
+  <polygon points="1110,668 1088,656 1088,680" fill="#f2994a"/>
+  <rect x="392" y="632" width="616" height="54" rx="10" fill="#fff3df" stroke="#ffd79b"/>
+  <text x="700" y="666" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="21" fill="#513c06">
+    notification: method="notifications/initialized"
+  </text>
+
+  <text x="700" y="724" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="19" fill="#486581">
+    重点：notification 没有 id，也没有 response；发出去就是通知对方状态变化
+  </text>
+
+  <rect x="180" y="778" width="1040" height="34" rx="17" fill="#e9ded0"/>
+  <text x="700" y="801" text-anchor="middle" font-family="Arial, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="18" fill="#334e68">
+    读 MCP 输出时，先看标题里的方向和类型，再看 id 是否需要配对
+  </text>
+</svg>

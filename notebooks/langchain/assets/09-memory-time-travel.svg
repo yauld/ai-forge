@@ -1,0 +1,100 @@
+<svg width="1280" height="980" viewBox="0 0 1280 980" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1280" y2="980" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FBFF"/>
+      <stop offset="1" stop-color="#F7FDF9"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#2563EB"/>
+    </marker>
+    <style>
+      .title { font: 700 40px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #0F172A; }
+      .subtitle { font: 500 20px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #475569; }
+      .section { font: 700 24px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #166534; }
+      .boxTitle { font: 700 22px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #0F172A; }
+      .boxBody { font: 500 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #334155; }
+      .tiny { font: 600 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #475569; }
+      .label { font: 700 18px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: #1D4ED8; }
+      .chip { font: 700 16px -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; fill: white; }
+      .codeChip { font: 700 13px Menlo, Monaco, Consolas, monospace; fill: white; }
+    </style>
+  </defs>
+
+  <rect width="1280" height="980" fill="url(#bg)"/>
+
+  <text x="72" y="82" class="title">短期记忆与时间回溯示意图</text>
+  <text x="72" y="118" class="subtitle">基于当前示例：同一个 thread_id 下会累积多个 checkpoint，get_state_history 返回时“最新在前，最早在后”。</text>
+
+  <g filter="url(#shadow)">
+    <rect x="72" y="170" width="770" height="670" rx="28" fill="#FFFFFF" stroke="#BBF7D0" stroke-width="2"/>
+    <text x="108" y="220" class="section">同一个会话线</text>
+    <rect x="250" y="190" width="336" height="36" rx="18" fill="#0F766E"/>
+    <text x="274" y="214" class="chip">thread_id = demo-thread-001</text>
+
+    <line x1="200" y1="280" x2="200" y2="760" stroke="#94A3B8" stroke-width="4" stroke-dasharray="10 10"/>
+    <text x="112" y="282" class="tiny">更晚</text>
+    <text x="112" y="758" class="tiny">更早</text>
+
+    <circle cx="200" cy="300" r="16" fill="#2563EB"/>
+    <rect x="250" y="262" width="500" height="76" rx="20" fill="#EFF6FF" stroke="#93C5FD" stroke-width="2"/>
+    <text x="276" y="292" class="boxTitle">history[0]：最新 checkpoint</text>
+    <text x="276" y="320" class="boxBody">AI 已经记住“Bob 喜欢蓝色”</text>
+
+    <circle cx="200" cy="390" r="16" fill="#3B82F6"/>
+    <rect x="250" y="352" width="500" height="76" rx="20" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+    <text x="276" y="382" class="boxTitle">history[1]</text>
+    <text x="276" y="410" class="boxBody">用户刚说：我喜欢的颜色是蓝色</text>
+
+    <circle cx="200" cy="480" r="16" fill="#0F766E"/>
+    <rect x="250" y="442" width="500" height="84" rx="20" fill="#ECFDF5" stroke="#86EFAC" stroke-width="2"/>
+    <text x="276" y="472" class="boxTitle">history[2]：适合回溯的点</text>
+    <text x="276" y="500" class="boxBody">还记得名字 Bob，但还不知道“喜欢蓝色”</text>
+
+    <circle cx="200" cy="586" r="16" fill="#64748B"/>
+    <rect x="250" y="548" width="500" height="76" rx="20" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+    <text x="276" y="578" class="boxTitle">history[4] 附近</text>
+    <text x="276" y="606" class="boxBody">用户在问：你还记得我叫什么吗？</text>
+
+    <circle cx="200" cy="690" r="16" fill="#64748B"/>
+    <rect x="250" y="652" width="500" height="76" rx="20" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2"/>
+    <text x="276" y="682" class="boxTitle">history[7]：最早 checkpoint</text>
+    <text x="276" y="710" class="boxBody">用户最开始说：你好，我叫 Bob</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="876" y="168" width="332" height="312" rx="28" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2"/>
+    <text x="912" y="218" class="section" fill="#1D4ED8">顺序怎么理解</text>
+    <text x="912" y="268" class="boxBody">1. `history[0]` 是最新快照</text>
+    <text x="912" y="302" class="boxBody">2. 索引越大，快照越早</text>
+    <text x="912" y="336" class="boxBody">3. 不要把索引当成会话轮次</text>
+    <text x="912" y="370" class="boxBody">4. 一次 invoke 可能会产生</text>
+    <text x="912" y="400" class="boxBody">多个 checkpoint</text>
+    <rect x="912" y="420" width="252" height="42" rx="21" fill="#DBEAFE"/>
+    <text x="958" y="447" class="label">最新 → 更早</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="876" y="512" width="332" height="326" rx="28" fill="#FFFFFF" stroke="#93C5FD" stroke-width="2"/>
+    <text x="912" y="562" class="section" fill="#1D4ED8">时间回缩怎么选</text>
+    <text x="912" y="612" class="boxBody">选择“目标信息还没出现，</text>
+    <text x="912" y="642" class="boxBody">且离现在最近”的 checkpoint。</text>
+    <text x="912" y="694" class="boxBody">在当前示例里，可回到：</text>
+    <rect x="912" y="716" width="260" height="44" rx="22" fill="#2563EB"/>
+    <text x="934" y="743" class="codeChip">old_checkpoint_id = history[2]</text>
+    <rect x="912" y="778" width="260" height="34" rx="17" fill="#EFF6FF"/>
+    <text x="951" y="800" class="tiny">回到这个点后再问颜色</text>
+  </g>
+
+  <path d="M750 484C836 484 854 514 876 592" stroke="#2563EB" stroke-width="4" stroke-dasharray="10 10" marker-end="url(#arrowBlue)"/>
+  <text x="734" y="452" class="label">time travel</text>
+
+  <g filter="url(#shadow)">
+    <rect x="876" y="866" width="332" height="92" rx="24" fill="#FFFFFF" stroke="#BFDBFE" stroke-width="2"/>
+    <text x="912" y="902" class="tiny">回到 history[2] 后再问：</text>
+    <text x="912" y="928" class="boxBody">“我喜欢什么颜色？” 模型通常答：</text>
+    <text x="912" y="954" class="boxBody">还不知道</text>
+  </g>
+</svg>

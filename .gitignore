@@ -1,0 +1,31 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.uv-cache/
+
+# Local secrets and machine-specific config
+.env
+
+# Tool caches
+.ruff_cache/
+
+# SQLite runtime sidecar files
+*.sqlite-wal
+*.sqlite-shm
+
+# Generated vector-store artifacts
+notebooks/rag/data/chroma_finance_policy/
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Local Codex collaboration context
+AGENTS.md
+MEMORY.md

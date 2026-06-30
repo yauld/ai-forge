@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="620" viewBox="0 0 1180 620">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#334155"/>
+    </marker>
+    <style>
+      .title { font: 700 30px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 16px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .label { font: 700 17px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #0f172a; }
+      .small { font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #475569; }
+      .code { font: 600 15px ui-monospace, SFMono-Regular, Menlo, monospace; fill: #1e293b; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 8; }
+      .model { fill: #eef2ff; stroke: #818cf8; }
+      .parser { fill: #ecfeff; stroke: #22d3ee; }
+      .rule { fill: #f0fdf4; stroke: #4ade80; }
+      .action { fill: #fff7ed; stroke: #fb923c; }
+      .reply { fill: #fdf2f8; stroke: #f472b6; }
+      .arrow { stroke: #334155; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1180" height="620" fill="#f8fafc"/>
+  <text x="44" y="56" class="title">从模型输出到业务动作：LCEL 数据流</text>
+
+  <rect x="44" y="130" width="160" height="96" class="box"/>
+  <text x="66" y="165" class="label">用户消息</text>
+  <text x="66" y="194" class="small">“还没发货，</text>
+  <text x="66" y="215" class="small">帮我退款”</text>
+
+  <path d="M204 178 L252 178" class="arrow"/>
+
+  <rect x="252" y="130" width="160" height="96" class="box model"/>
+  <text x="274" y="165" class="label">Prompt + LLM</text>
+  <text x="274" y="194" class="small">理解用户意图</text>
+  <text x="274" y="215" class="small">生成 JSON 文本</text>
+
+  <path d="M412 178 L460 178" class="arrow"/>
+
+  <rect x="460" y="130" width="180" height="96" class="box parser"/>
+  <text x="482" y="165" class="label">JsonOutputParser</text>
+  <text x="482" y="194" class="small">AIMessage -> dict</text>
+  <text x="482" y="215" class="small">结构化工单</text>
+
+  <path d="M640 178 L688 178" class="arrow"/>
+
+  <rect x="688" y="130" width="200" height="96" class="box rule"/>
+  <text x="710" y="165" class="label">RunnableLambda</text>
+  <text x="710" y="194" class="small">normalize_ticket</text>
+  <text x="710" y="215" class="small">标准化字段，判断 route</text>
+
+  <path d="M888 178 L936 178" class="arrow"/>
+
+  <rect x="936" y="130" width="200" height="96" class="box rule"/>
+  <text x="958" y="165" class="label">RunnableLambda</text>
+  <text x="958" y="194" class="small">build_next_actions</text>
+  <text x="958" y="215" class="small">生成后续动作清单</text>
+
+  <path d="M1036 226 L1036 282" class="arrow"/>
+
+  <rect x="936" y="282" width="200" height="96" class="box action"/>
+  <text x="958" y="317" class="label">RunnableLambda</text>
+  <text x="958" y="346" class="small">execute_actions</text>
+  <text x="958" y="367" class="small">模拟执行业务动作</text>
+
+  <path d="M936 330 L860 330" class="arrow"/>
+
+  <rect x="660" y="282" width="200" height="96" class="box model"/>
+  <text x="682" y="317" class="label">Prompt + LLM</text>
+  <text x="682" y="346" class="small">根据工单与动作</text>
+  <text x="682" y="367" class="small">生成客服回复</text>
+
+  <path d="M660 330 L612 330" class="arrow"/>
+
+  <rect x="432" y="282" width="180" height="96" class="box reply"/>
+  <text x="454" y="317" class="label">StrOutputParser</text>
+  <text x="454" y="346" class="small">AIMessage -> str</text>
+  <text x="454" y="367" class="small">输出可展示文本</text>
+
+  <path d="M432 330 L384 330" class="arrow"/>
+
+  <rect x="204" y="282" width="180" height="96" class="box"/>
+  <text x="226" y="317" class="label">用户回复</text>
+  <text x="226" y="346" class="small">“退款请求已进入</text>
+  <text x="226" y="367" class="small">优先处理流程”</text>
+
+  <rect x="44" y="432" width="1088" height="132" class="box"/>
+  <text x="72" y="468" class="code">JsonOutputParser：让模型输出变成结构化对象，供后续链路继续使用</text>
+  <text x="72" y="502" class="code">RunnableLambda：把确定性业务规则放进 LCEL 链，比如标准化、路由和执行动作</text>
+  <text x="72" y="536" class="code">StrOutputParser：把最终模型输出变成可展示的普通字符串</text>
+</svg>

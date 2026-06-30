@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">余弦相似度公式拆解</title>
+  <desc id="desc">把余弦相似度公式拆成点积、模长、相除三步。</desc>
+  <defs>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#1f2937" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M1.5 1.5 L8.5 5 L1.5 8.5 Z" fill="#2563eb"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="#f6f8fb"/>
+  <rect x="70" y="58" width="1460" height="784" rx="34" fill="#ffffff" filter="url(#shadow)"/>
+  <g font-family="Inter, PingFang SC, Microsoft YaHei, Arial, sans-serif">
+    <text x="120" y="140" font-size="44" font-weight="800" fill="#172033">余弦相似度公式，其实就三件事</text>
+    <text x="122" y="196" font-size="26" fill="#667085">用一个分数衡量两个向量方向有多接近。</text>
+
+    <rect x="256" y="248" width="1088" height="104" rx="22" fill="#eef4ff" stroke="#bfd7ff" stroke-width="3"/>
+    <text x="800" y="296" text-anchor="middle" font-size="34" font-weight="800" fill="#175cd3">cosine_similarity(A, B) = (A · B) / (||A|| × ||B||)</text>
+    <text x="800" y="334" text-anchor="middle" font-size="22" font-weight="700" fill="#175cd3">A·B = a1×b1 + a2×b2 + ... + an×bn</text>
+    <text x="800" y="362" text-anchor="middle" font-size="20" font-weight="700" fill="#175cd3">||A|| = √(a1² + a2² + ... + an²)</text>
+
+    <rect x="124" y="456" width="394" height="238" rx="28" fill="#fbfcff" stroke="#d7dee8" stroke-width="3"/>
+    <text x="166" y="516" font-size="30" font-weight="800" fill="#344054">1. 点积</text>
+    <text x="166" y="568" font-size="25" fill="#172033">同位置数字相乘，再加起来。</text>
+    <text x="166" y="624" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="26" fill="#175cd3">A·B = a1*b1 + a2*b2</text>
+    <text x="166" y="668" font-size="24" fill="#667085">可以粗略理解成：两个方向有多“顺路”。</text>
+
+    <path d="M544 575 H638" stroke="#2563eb" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+    <rect x="666" y="456" width="394" height="238" rx="28" fill="#fbfcff" stroke="#d7dee8" stroke-width="3"/>
+    <text x="708" y="516" font-size="30" font-weight="800" fill="#344054">2. 模长</text>
+    <text x="708" y="568" font-size="25" fill="#172033">每个数字平方，相加，再开根号。</text>
+    <text x="708" y="624" font-family="SFMono-Regular, Menlo, Consolas, monospace" font-size="26" fill="#079455">|A| = √(a1² + a2²)</text>
+    <text x="708" y="668" font-size="24" fill="#667085">它表示这个向量本身有多长。</text>
+
+    <path d="M1086 575 H1180" stroke="#2563eb" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+
+    <rect x="1208" y="456" width="268" height="238" rx="28" fill="#ecfdf3" stroke="#abefc6" stroke-width="3"/>
+    <text x="1250" y="516" font-size="30" font-weight="800" fill="#027a48">3. 相除</text>
+    <text x="1250" y="568" font-size="25" fill="#172033">用点积除以两个模长。</text>
+    <text x="1250" y="624" font-size="25" fill="#172033">模长影响被削弱，</text>
+    <text x="1250" y="664" font-size="25" fill="#172033">剩下主要是方向。</text>
+
+    <rect x="124" y="740" width="1352" height="56" rx="18" fill="#fff7ed" stroke="#fed7aa" stroke-width="3"/>
+    <text x="800" y="778" text-anchor="middle" font-size="25" font-weight="800" fill="#b54708">所以：余弦相似度不是直接比数字大小，而是把两个向量“拉回到方向比较”。</text>
+  </g>
+</svg>

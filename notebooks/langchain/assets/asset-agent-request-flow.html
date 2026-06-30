@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asset Agent Request Flow</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 1080px;
+        margin: 0;
+        color: #172033;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei",
+          sans-serif;
+        background: #f5f7fb;
+      }
+
+      .canvas {
+        width: 1080px;
+        min-height: 1920px;
+        padding: 64px 72px;
+        background:
+          linear-gradient(180deg, rgba(10, 96, 255, 0.08), rgba(255, 255, 255, 0) 34%),
+          #f5f7fb;
+      }
+
+      .eyebrow {
+        color: #2563eb;
+        font-size: 26px;
+        font-weight: 750;
+        letter-spacing: 0;
+      }
+
+      h1 {
+        margin: 16px 0 12px;
+        color: #0f172a;
+        font-size: 54px;
+        line-height: 1.16;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        margin: 0 0 42px;
+        color: #536176;
+        font-size: 27px;
+        line-height: 1.55;
+      }
+
+      .question {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+        gap: 24px;
+        align-items: center;
+        margin-bottom: 34px;
+        padding: 28px 32px;
+        background: #ffffff;
+        border: 2px solid #d8e4ff;
+        border-radius: 28px;
+        box-shadow: 0 18px 48px rgba(33, 64, 120, 0.1);
+      }
+
+      .question-icon {
+        display: grid;
+        width: 96px;
+        height: 96px;
+        place-items: center;
+        color: #ffffff;
+        font-size: 44px;
+        font-weight: 850;
+        background: #2563eb;
+        border-radius: 28px;
+      }
+
+      .question-label {
+        color: #64748b;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .question-text {
+        margin-top: 6px;
+        color: #0f172a;
+        font-size: 34px;
+        font-weight: 850;
+        line-height: 1.35;
+      }
+
+      .flow {
+        position: relative;
+        display: grid;
+        gap: 18px;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 22px;
+        align-items: start;
+        padding: 24px 28px;
+        background: #ffffff;
+        border: 1px solid #dbe3ef;
+        border-radius: 24px;
+        box-shadow: 0 10px 28px rgba(33, 64, 120, 0.07);
+      }
+
+      .num {
+        display: grid;
+        width: 72px;
+        height: 72px;
+        place-items: center;
+        color: #ffffff;
+        font-size: 28px;
+        font-weight: 900;
+        background: #0f172a;
+        border-radius: 22px;
+      }
+
+      .step:nth-child(3) .num,
+      .step:nth-child(4) .num,
+      .step:nth-child(5) .num {
+        background: #2563eb;
+      }
+
+      .step:nth-child(6) .num,
+      .step:nth-child(7) .num,
+      .step:nth-child(8) .num {
+        background: #0891b2;
+      }
+
+      .step-title {
+        color: #0f172a;
+        font-size: 30px;
+        font-weight: 850;
+        line-height: 1.25;
+      }
+
+      .step-desc {
+        margin-top: 8px;
+        color: #526075;
+        font-size: 23px;
+        line-height: 1.48;
+      }
+
+      .arrow {
+        display: grid;
+        height: 22px;
+        place-items: center;
+        color: #94a3b8;
+        font-size: 24px;
+        font-weight: 900;
+      }
+
+      .principle {
+        display: none;
+        margin-top: 34px;
+        padding: 28px 32px;
+        color: #ffffff;
+        background: #0f172a;
+        border-radius: 28px;
+      }
+
+      .principle-title {
+        font-size: 28px;
+        font-weight: 850;
+      }
+
+      .principle-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .principle-item {
+        padding: 14px 16px;
+        color: #dbeafe;
+        font-size: 22px;
+        line-height: 1.35;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+      }
+
+      .footer {
+        display: none;
+        margin-top: 24px;
+        color: #64748b;
+        font-size: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="canvas">
+      <div class="eyebrow">Asset Agent 最小闭环</div>
+      <h1>一次资产运营提问<br />背后的 Agent 链路</h1>
+      <p class="subtitle">
+        从用户在资产中心提问开始，系统把页面上下文、Agent 路由、工具调用、确定性计算和大模型表达串成一个可控闭环。
+      </p>
+
+      <section class="question">
+        <div class="question-icon">?</div>
+        <div>
+          <div class="question-label">用户在 Argus Copilot 中提问</div>
+          <div class="question-text">列出最值得关注的 3 台资产，并说明原因</div>
+        </div>
+      </section>
+
+      <section class="flow">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <div class="step-title">前端携带页面上下文</div>
+            <div class="step-desc">当前模块、路由、筛选条件、选中资产和 thread_id 一起提交。</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <div class="step-title">AI Chat API 接收统一请求</div>
+            <div class="step-desc">前端只调用统一接口，API 层不绑定具体专业 Agent。</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <div class="step-title">Orchestrator 路由到 asset-agent</div>
+            <div class="step-desc">根据资产关键词、当前模块和选中对象选择资产中心专业 Agent。</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">4</div>
+          <div>
+            <div class="step-title">AssetAgent 组装模型、Prompt、Tools、Memory</div>
+            <div class="step-desc">使用 LangChain create_agent，并通过 LangGraph InMemorySaver 保留会话上下文。</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">5</div>
+          <div>
+            <div class="step-title">LLM 选择资产工具</div>
+            <div class="step-desc">“最值得关注”会落到 rank_assets_by_attention 这种结构化工具调用。</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">6</div>
+          <div>
+            <div class="step-title">代码读取数据并计算排序</div>
+            <div class="step-desc">AssetReader 读取 normalized_assets，AssetRanker 按固定规则生成分数和原因。</div>
+          </div>
+        </div>
+        <div class="arrow">↓</div>
+
+        <div class="step">
+          <div class="num">7</div>
+          <div>
+            <div class="step-title">LLM 基于工具结果组织答案</div>
+            <div class="step-desc">模型负责表达，不负责猜数据、不负责直接计算资产风险。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="principle">
+        <div class="principle-title">核心原则</div>
+        <div class="principle-grid">
+          <div class="principle-item">上下文由前端提供</div>
+          <div class="principle-item">路由由 Orchestrator 负责</div>
+          <div class="principle-item">事实由 Tool 获取</div>
+          <div class="principle-item">计算由代码完成</div>
+          <div class="principle-item">表达由模型生成</div>
+          <div class="principle-item">记忆由 LangGraph 维护</div>
+        </div>
+      </section>
+
+      <div class="footer">ASCC Argus Copilot · Asset Agent</div>
+    </main>
+  </body>
+</html>

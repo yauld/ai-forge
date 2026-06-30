@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2100" height="1220" viewBox="0 0 2100 1220">
+  <defs>
+    <style>
+      .font { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", Arial, sans-serif; }
+      .title { font-size: 48px; font-weight: 800; fill: #111; }
+      .label { font-size: 38px; font-weight: 800; fill: #2f5cf6; }
+      .labelSmall { font-size: 30px; font-weight: 800; fill: #2f5cf6; }
+      .muted { font-size: 42px; font-weight: 800; fill: #8d8d8d; }
+      .body { font-size: 29px; font-weight: 600; fill: #6f86df; }
+      .bodyStrong { font-size: 30px; font-weight: 800; fill: #2f5cf6; }
+      .grayBody { font-size: 27px; font-weight: 700; fill: #888; }
+      .orange { font-size: 28px; font-weight: 800; fill: #f7a326; }
+      .panel { filter: url(#shadow); }
+      .box { fill: #fff; stroke: #2f5cf6; stroke-width: 4; }
+      .dashBlue { fill: #fff; stroke: #2f5cf6; stroke-width: 3; stroke-dasharray: 10 10; }
+      .dashGray { fill: #fff; stroke: #bdbdbd; stroke-width: 3; stroke-dasharray: 10 10; }
+      .dashOrange { fill: #fff; stroke: #f7a326; stroke-width: 3; stroke-dasharray: 10 10; }
+      .flow { fill: none; stroke: #2f5cf6; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrow); }
+      .flowGray { fill: none; stroke: #b8b8b8; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrowGray); }
+    </style>
+    <filter id="shadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="12" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#2f5cf6"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="12" markerHeight="12" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#b8b8b8"/>
+    </marker>
+  </defs>
+
+  <rect width="2100" height="1220" fill="#fff"/>
+  <rect x="65" y="40" width="1970" height="1140" fill="#fff" stroke="#d5d5d5" stroke-width="2" filter="url(#shadow)"/>
+
+  <!-- Main areas -->
+  <rect class="panel" x="775" y="90" width="600" height="520" rx="26" fill="#fbf3e5"/>
+  <rect class="panel" x="1425" y="90" width="550" height="275" rx="26" fill="#f0eafa"/>
+  <rect class="panel" x="1425" y="462" width="550" height="688" rx="26" fill="#fde8f0"/>
+  <rect class="panel" x="125" y="462" width="1250" height="688" rx="22" fill="#eff3fa"/>
+
+  <!-- User -->
+  <rect class="box" x="340" y="245" width="205" height="82" rx="18"/>
+  <text class="font label" x="392" y="300">用户</text>
+  <path class="flow" d="M545 286 H812"/>
+  <path class="flow" d="M440 328 V535"/>
+
+  <!-- Input / query -->
+  <text class="font muted" x="800" y="150">输入</text>
+  <rect class="box" x="970" y="150" width="210" height="82" rx="18"/>
+  <text class="font label" x="1022" y="204">问题</text>
+  <rect class="dashBlue" x="820" y="205" width="500" height="350" rx="20"/>
+  <text class="font body" x="870" y="270">如何看待 OpenAI CEO</text>
+  <text class="font body" x="870" y="315">Sam Altman 在三天内</text>
+  <text class="font body" x="870" y="360">被董事会突然解雇，</text>
+  <text class="font body" x="870" y="405">随后又重新回归公司？</text>
+  <text class="font body" x="870" y="450">这背后反映了怎样的</text>
+  <text class="font body" x="870" y="495">权力博弈和治理问题？</text>
+
+  <!-- Indexing -->
+  <text class="font title" x="1785" y="132">建索引</text>
+  <g transform="translate(1495 150)">
+    <rect x="0" y="8" width="70" height="70" rx="15" fill="#f8fbff" stroke="#222" stroke-width="3"/>
+    <rect x="14" y="0" width="70" height="70" rx="15" fill="#f8fbff" stroke="#222" stroke-width="3" opacity="0.85"/>
+    <rect x="28" y="18" width="70" height="70" rx="15" fill="#f8fbff" stroke="#222" stroke-width="3" opacity="0.65"/>
+  </g>
+  <text class="font labelSmall" x="1473" y="265">文档</text>
+  <g transform="translate(1760 150)" fill="none" stroke="#333" stroke-width="3">
+    <rect x="0" y="0" width="105" height="18" rx="5"/>
+    <rect x="0" y="28" width="105" height="18" rx="5"/>
+    <rect x="0" y="56" width="105" height="18" rx="5"/>
+    <rect x="0" y="84" width="105" height="18" rx="5"/>
+    <rect x="0" y="112" width="105" height="18" rx="5"/>
+    <rect x="0" y="140" width="105" height="18" rx="5"/>
+  </g>
+  <text class="font labelSmall" x="1712" y="330">切块 / 向量</text>
+  <path class="flow" d="M1320 286 H1482"/>
+  <path class="flow" d="M1590 210 H1732"/>
+  <path class="flow" d="M1815 310 V382"/>
+
+  <!-- Embeddings / retrieval -->
+  <rect class="box" x="1675" y="385" width="210" height="58" rx="16"/>
+  <text class="font labelSmall" x="1710" y="425">向量化</text>
+  <path class="flow" d="M1815 443 V532"/>
+  <text class="font title" x="1788" y="512">检索</text>
+
+  <path class="flow" d="M1320 286 H1628 C1670 286 1700 320 1700 370 V532"/>
+  <rect class="box" x="1460" y="542" width="480" height="80" rx="18"/>
+  <text class="font label" x="1495" y="596">相关资料片段</text>
+  <path class="flow" d="M1700 622 V707"/>
+  <rect class="dashBlue" x="1460" y="715" width="480" height="410" rx="20"/>
+  <text class="font body" x="1490" y="770">片段 1：Sam Altman 回归</text>
+  <text class="font body" x="1490" y="812">OpenAI CEO，硅谷风波</text>
+  <text class="font body" x="1490" y="854">像一场权力剧。</text>
+  <text class="font body" x="1490" y="928">片段 2：董事会将重组，</text>
+  <text class="font body" x="1490" y="970">Sam Altman 重返 OpenAI。</text>
+  <text class="font body" x="1490" y="1044">片段 3：OpenAI 内部动荡</text>
+  <text class="font body" x="1490" y="1086">告一段落，谁赢谁输？</text>
+
+  <!-- Generation -->
+  <text class="font title" x="1138" y="692">生成回答</text>
+  <path class="flowGray" d="M1075 555 V642"/>
+  <text class="font labelSmall" x="882" y="695">✳  LLM</text>
+  <rect class="dashBlue" x="825" y="708" width="495" height="325" rx="18"/>
+  <text class="font body" x="850" y="760">问题：</text>
+  <text class="font body" x="850" y="804">如何看待 OpenAI CEO</text>
+  <text class="font body" x="850" y="846">被解雇又回归这件事？</text>
+  <text class="font bodyStrong" x="850" y="906">请根据下面资料回答：</text>
+  <text class="font body" x="850" y="954">片段 1：</text>
+  <text class="font body" x="850" y="996">片段 2：</text>
+  <text class="font body" x="850" y="1038">片段 3：</text>
+  <rect class="box" x="875" y="998" width="390" height="130" rx="18"/>
+  <text class="font labelSmall" x="944" y="1055">合并资料</text>
+  <text class="font labelSmall" x="944" y="1100">和提示词</text>
+  <path class="flow" d="M1700 1125 H1274"/>
+  <path class="flow" d="M875 1065 H692"/>
+
+  <!-- Output -->
+  <text class="font muted" x="465" y="405">输出</text>
+  <rect class="dashBlue" x="180" y="535" width="520" height="525" rx="18"/>
+
+  <rect class="dashGray" x="200" y="565" width="480" height="170" rx="16"/>
+  <circle cx="210" cy="562" r="28" fill="#fff" stroke="#c6c6c6" stroke-width="3"/>
+  <text class="font grayBody" x="196" y="574">☹</text>
+  <rect x="245" y="550" width="195" height="42" rx="14" fill="#fff" stroke="#c6c6c6" stroke-width="3"/>
+  <text class="font grayBody" x="270" y="581">没有 RAG</text>
+  <circle cx="670" cy="562" r="28" fill="#fff" stroke="#c6c6c6" stroke-width="3"/>
+  <text class="font grayBody" x="658" y="575">×</text>
+  <text class="font grayBody" x="220" y="640">我无法评论未来事件，</text>
+  <text class="font grayBody" x="220" y="680">目前没有关于 CEO 被解雇</text>
+  <text class="font grayBody" x="220" y="720">和重新任职的相关信息……</text>
+
+  <rect class="dashOrange" x="200" y="790" width="480" height="250" rx="16"/>
+  <circle cx="210" cy="785" r="28" fill="#fff" stroke="#f7a326" stroke-width="3"/>
+  <text class="font orange" x="195" y="798">☺</text>
+  <rect x="245" y="770" width="195" height="42" rx="14" fill="#fff" stroke="#f7a326" stroke-width="3"/>
+  <text class="font orange" x="270" y="801">使用 RAG</text>
+  <circle cx="670" cy="785" r="28" fill="#fff" stroke="#f7a326" stroke-width="3"/>
+  <text class="font orange" x="657" y="798">✓</text>
+  <text class="font body" x="220" y="850">这说明 OpenAI 内部在</text>
+  <text class="font body" x="220" y="892">未来方向、战略决策和</text>
+  <text class="font body" x="220" y="934">公司治理上存在明显分歧。</text>
+  <text class="font body" x="220" y="976">整个事件反映了高层权力</text>
+  <text class="font body" x="220" y="1018">博弈和治理结构问题……</text>
+
+  <rect class="box" x="340" y="1048" width="205" height="82" rx="18"/>
+  <text class="font label" x="392" y="1103">答案</text>
+  <path class="flowGray" d="M825 668 C760 668 735 650 690 650"/>
+</svg>

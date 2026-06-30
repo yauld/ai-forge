@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">余弦相似度 A B C D 示例</title>
+  <desc id="desc">用 A、B、C、D 四个二维向量展示余弦相似度结果。</desc>
+  <defs>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#1f2937" flood-opacity="0.12"/>
+    </filter>
+    <marker id="blue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M1.5 1.5 L8.5 5 L1.5 8.5 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="green" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M1.5 1.5 L8.5 5 L1.5 8.5 Z" fill="#079455"/>
+    </marker>
+    <marker id="orange" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M1.5 1.5 L8.5 5 L1.5 8.5 Z" fill="#dc6803"/>
+    </marker>
+    <marker id="red" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto">
+      <path d="M1.5 1.5 L8.5 5 L1.5 8.5 Z" fill="#d92d20"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="900" fill="#f6f8fb"/>
+  <rect x="70" y="58" width="1460" height="784" rx="34" fill="#ffffff" filter="url(#shadow)"/>
+  <g font-family="Inter, PingFang SC, Microsoft YaHei, Arial, sans-serif">
+    <text x="120" y="140" font-size="44" font-weight="800" fill="#172033">同一个 A，分别和 B / C / D 比方向</text>
+    <text x="122" y="194" font-size="26" fill="#667085">分数越接近 1，方向越像；越接近 -1，方向越相反。</text>
+
+    <rect x="120" y="246" width="780" height="496" rx="30" fill="#fbfcff" stroke="#d7dee8" stroke-width="3"/>
+    <line x1="238" y1="642" x2="812" y2="642" stroke="#c6d0dd" stroke-width="3"/>
+    <line x1="512" y1="706" x2="512" y2="314" stroke="#c6d0dd" stroke-width="3"/>
+    <text x="818" y="670" font-size="22" fill="#667085">X</text>
+    <text x="490" y="306" font-size="22" fill="#667085">Y</text>
+
+    <circle cx="512" cy="642" r="5" fill="#344054"/>
+    <path d="M512 642 L650 504" stroke="#2563eb" stroke-width="8" stroke-linecap="round" marker-end="url(#blue)"/>
+    <path d="M512 642 L704 450" stroke="#079455" stroke-width="8" stroke-linecap="round" marker-end="url(#green)"/>
+    <path d="M512 642 L704 504" stroke="#dc6803" stroke-width="8" stroke-linecap="round" marker-end="url(#orange)"/>
+    <path d="M512 642 L338 496" stroke="#d92d20" stroke-width="8" stroke-linecap="round" marker-end="url(#red)"/>
+
+    <text x="562" y="518" font-size="25" font-weight="800" fill="#2563eb">A [0.5, 0.5]</text>
+    <text x="714" y="450" font-size="25" font-weight="800" fill="#079455">B [0.7, 0.7]</text>
+    <text x="724" y="536" font-size="25" font-weight="800" fill="#dc6803">C [0.7, 0.5]</text>
+    <text x="186" y="492" font-size="25" font-weight="800" fill="#d92d20">D [-0.6, -0.5]</text>
+
+    <rect x="964" y="246" width="456" height="496" rx="30" fill="#fbfcff" stroke="#d7dee8" stroke-width="3"/>
+    <text x="1010" y="304" font-size="30" font-weight="800" fill="#344054">计算结果</text>
+    <rect x="1010" y="352" width="364" height="74" rx="18" fill="#ecfdf3"/>
+    <text x="1040" y="399" font-size="29" font-weight="800" fill="#027a48">A 和 B：1.000</text>
+    <text x="1040" y="456" font-size="24" fill="#667085">方向完全一致，最相似。</text>
+
+    <rect x="1010" y="492" width="364" height="74" rx="18" fill="#fff7ed"/>
+    <text x="1040" y="539" font-size="29" font-weight="800" fill="#b54708">A 和 C：0.986</text>
+    <text x="1040" y="596" font-size="24" fill="#667085">方向很接近，也很相似。</text>
+
+    <rect x="1010" y="632" width="364" height="74" rx="18" fill="#fef3f2"/>
+    <text x="1040" y="679" font-size="29" font-weight="800" fill="#b42318">A 和 D：-0.996</text>
+    <text x="1040" y="736" font-size="24" fill="#667085">方向几乎相反，语义不相似。</text>
+
+    <rect x="120" y="780" width="1300" height="46" rx="16" fill="#eef4ff"/>
+    <text x="770" y="811" text-anchor="middle" font-size="23" font-weight="800" fill="#175cd3">余弦相似度的取值通常在 -1 到 1 之间：1 最像，0 关系弱，-1 方向相反。</text>
+  </g>
+</svg>
