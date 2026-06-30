@@ -8,6 +8,9 @@
 | --- | --- |
 | [shop_order_analysis_server.py](shop_order_analysis_server.py) | 第二篇文章使用的订单分析 MCP Server。 |
 | [shop_order_primitives_server.py](shop_order_primitives_server.py) | 第三篇文章使用的 Tool、Resource、Prompt primitives 对照示例。 |
+| [shop_order_transport_server.py](shop_order_transport_server.py) | 第五篇文章使用的 stdio 与 Streamable HTTP Server。 |
+| [transport_client.py](transport_client.py) | 通过两种 transport 执行相同 MCP 调用的 Client。 |
+| [broken_stdout_server.py](broken_stdout_server.py) | 故意污染 stdout 的 stdio 反例。 |
 | [data/shop_orders.sqlite](data/shop_orders.sqlite) | 示例 SQLite 数据库。Server 启动时会自动创建并刷新数据。 |
 
 ## 准备环境
@@ -26,7 +29,7 @@ MCP Inspector 通过 `npx` 启动，因此本机还需要可用的 Node.js / npm
 
 ```bash
 npx -y @modelcontextprotocol/inspector \
-  uv run --no-sync --script labs/mcp/foundations/examples/shop_order_analysis_server.py
+  uv run --script labs/mcp/foundations/examples/shop_order_analysis_server.py
 ```
 
 这个 Server 提供：
@@ -64,7 +67,7 @@ npx -y @modelcontextprotocol/inspector \
 
 ```bash
 npx -y @modelcontextprotocol/inspector \
-  uv run --no-sync python labs/mcp/foundations/examples/shop_order_primitives_server.py
+  uv run labs/mcp/foundations/examples/shop_order_primitives_server.py
 ```
 
 这个 Server 提供：
@@ -102,11 +105,41 @@ npx -y @modelcontextprotocol/inspector \
 - `daily_order_analysis_report` 和 `analyze_one_order` 把常见分析任务沉淀成 Prompt。
 - 示例数据库每次启动都会刷新，保证实验结果稳定。
 
+## 对比 stdio 与 Streamable HTTP
+
+运行 stdio 实验：
+
+```bash
+uv run labs/mcp/foundations/examples/transport_client.py stdio
+```
+
+运行 Streamable HTTP Server：
+
+```bash
+uv run \
+  labs/mcp/foundations/examples/shop_order_transport_server.py \
+  --transport streamable-http
+```
+
+在另一个终端运行 Client：
+
+```bash
+uv run labs/mcp/foundations/examples/transport_client.py streamable-http
+```
+
+观察 stdout 污染：
+
+```bash
+uv run \
+  labs/mcp/foundations/examples/transport_client.py stdio \
+  --server labs/mcp/foundations/examples/broken_stdout_server.py
+```
+
 ## 常见问题
 
 如果 Inspector 启动后看不到能力列表，先确认命令是在仓库根目录执行。
 
-如果 `uv run --no-sync` 报缺少依赖，先运行：
+如果 `uv run` 报缺少依赖，先运行：
 
 ```bash
 uv sync

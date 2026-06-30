@@ -16,9 +16,6 @@ wheels/
 !.env.example
 !.env.*.example
 
-# Personal drafts
-drafts/
-
 # Editor and operating-system files
 .DS_Store
 .vscode/

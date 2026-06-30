@@ -310,10 +310,10 @@ if __name__ == "__main__":
 
 ```bash
 npx -y @modelcontextprotocol/inspector \
-  uv run --no-sync --script examples/shop_order_analysis_server.py
+  uv run --script examples/shop_order_analysis_server.py
 ```
 
-前半段 `npx -y @modelcontextprotocol/inspector` 表示按需运行 MCP 官方 Inspector；后半段 `uv run --no-sync --script examples/shop_order_analysis_server.py` 是传给 Inspector 的 Server 启动命令。也就是说，Inspector 会用这条 Python 命令启动订单分析 MCP Server，并通过 stdio 和它通信。
+前半段 `npx -y @modelcontextprotocol/inspector` 表示按需运行 MCP 官方 Inspector；后半段 `uv run --script examples/shop_order_analysis_server.py` 是传给 Inspector 的 Server 启动命令。也就是说，Inspector 会用这条 Python 命令启动订单分析 MCP Server，并通过 stdio 和它通信。
 
 命令执行后，浏览器会自动打开 MCP Inspector 页面：
 

@@ -1,12 +1,12 @@
-"""第三阶段：比较 Resource Template 与 Tool 的订单查询示例。
+"""比较 Resource Template 与 Tool 的订单查询示例。
 
 这个 Server 复用 ``shop_order_analysis_server.py`` 中的样例数据库，
-但拥有独立的 MCP Server 实例，不会改变第二阶段脚本注册的能力。
+但拥有独立的 MCP Server 实例，不会改变其他脚本注册的能力。
 
 通过 MCP Inspector 启动：
 
     npx -y @modelcontextprotocol/inspector \
-      uv run --no-sync python labs/mcp/foundations/examples/shop_order_primitives_server.py
+      uv run labs/mcp/foundations/examples/shop_order_primitives_server.py
 """
 
 from __future__ import annotations
@@ -169,7 +169,7 @@ def analyze_one_order(order_id: str = "O-1001") -> str:
 
 
 def main() -> None:
-    """通过 stdio 启动第三阶段专用 MCP Server。"""
+    """通过 stdio 启动这个 MCP Server。"""
     ensure_database()
     mcp.run(transport="stdio")
 

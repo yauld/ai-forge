@@ -38,7 +38,7 @@ examples/shop_order_primitives_server.py
 
 ```bash
 npx -y @modelcontextprotocol/inspector \
-  uv run --no-sync python examples/shop_order_primitives_server.py
+  uv run examples/shop_order_primitives_server.py
 ```
 
 Server 使用第二篇已经创建的 SQLite 订单数据库：
@@ -451,7 +451,7 @@ def analyze_one_order(order_id: str = "O-1001") -> str:
 
 ## 10. 小结
 
-第三阶段的重点不是再背一遍 Tool、Resource 和 Prompt 的定义，而是理解设计选择会怎样改变 Host 的使用方式。
+这里的重点不是再背一遍 Tool、Resource 和 Prompt 的定义，而是理解设计选择会怎样改变 Host 的使用方式。
 
 经过 Resource 与 Tool 的对照、Schema 校验、失败实验和 Prompt 获取，可以把这一阶段压缩成三句话：
 
