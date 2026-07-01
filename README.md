@@ -98,7 +98,7 @@ AI Engineering 实战锻造场。
 | 04 | [MCP 通信过程：从 initialize 到 tools-call.ipynb](labs/mcp/foundations/04%20%7C%20MCP%20通信过程：从%20initialize%20到%20tools-call.ipynb) | 从 `initialize` 到 `tools/call`，MCP 消息如何流动？ | 已完成 |
 | 05 | [MCP Transport：stdio 与 Streamable HTTP 如何传递消息.md](labs/mcp/foundations/05%20%7C%20MCP%20Transport：stdio%20与%20Streamable%20HTTP%20如何传递消息.md) | 同一组消息如何通过 stdio 和 Streamable HTTP 传递？ | 已完成 |
 | 06 | [MCP Client：Host 如何发现并调用 Server 能力.md](labs/mcp/foundations/06%20%7C%20MCP%20Client：Host%20如何发现并调用%20Server%20能力.md) | Host 如何发现多个 Server 的能力并正确路由调用？ | 已完成 |
-| 07 | `MCP 调试：从 Server 启动失败到 Tool 调用异常.md` | 如何按进程、Transport、生命周期、能力发现和执行逐层定位失败？ | 待研究 |
+| 07 | [MCP 调试：从 Server 启动失败到 Tool 调用异常.md](labs/mcp/foundations/07%20%7C%20MCP%20调试：从%20Server%20启动失败到%20Tool%20调用异常.md) | 如何按进程、Transport、生命周期、能力发现和执行逐层定位失败？ | 已完成 |
 | 08 | `MCP 安全：权限、授权与危险 Tool 的确认边界.md` | 谁可以访问什么能力，高风险 Tool 应如何确认和审计？ | 待研究 |
 | 09 | `MCP Registry、Extensions 与生态.md` | 如何区分核心协议、扩展、实验能力和特定 Client 行为？ | 待研究 |
 

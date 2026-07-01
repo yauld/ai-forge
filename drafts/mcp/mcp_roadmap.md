@@ -239,13 +239,14 @@ initialize
 - https://modelcontextprotocol.io/docs/develop/build-client
 - https://modelcontextprotocol.io/docs/develop/clients/client-best-practices
 
-### 阶段 7：错误处理与调试
+### 阶段 7：错误处理与调试（已完成）
 
 核心问题：一次 MCP 调用失败时，如何快速判断问题发生在哪一层？
 
-建议文章：
+对应材料：
 
-- `07 | MCP 调试：从 Server 启动失败到 Tool 调用异常.md`
+- `labs/mcp/foundations/07 | MCP 调试：从 Server 启动失败到 Tool 调用异常.md`
+- `drafts/mcp/07 | MCP 调试指南：调用失败，到底该从哪一层查？.md`
 
 学习内容：
 
@@ -369,6 +370,6 @@ initialize
 5. 写成文章，并删除与前文重复的背景说明。
 6. 用检查点确认自己能否脱离代码复述关键机制。
 
-下一步从阶段 5 开始：
+下一步进入阶段 8：
 
-> 比较同一组 JSON-RPC 消息如何通过 stdio 和 Streamable HTTP 传递，理解协议层与 transport 层的边界。
+> 在接入真实文件、账户或服务前，明确权限、授权、危险 Tool 的确认与审计边界。
