@@ -10,6 +10,7 @@
 | [shop_order_primitives_server.py](shop_order_primitives_server.py) | 第三篇文章使用的 Tool、Resource、Prompt primitives 对照示例。 |
 | [shop_order_transport_server.py](shop_order_transport_server.py) | 第五篇文章使用的 stdio 与 Streamable HTTP Server。 |
 | [transport_client.py](transport_client.py) | 通过两种 transport 执行相同 MCP 调用的 Client。 |
+| [multi_server_client.py](multi_server_client.py) | 第六篇文章使用的多 Server Client，演示能力发现和路由。 |
 | [broken_stdout_server.py](broken_stdout_server.py) | 故意污染 stdout 的 stdio 反例。 |
 | [data/shop_orders.sqlite](data/shop_orders.sqlite) | 示例 SQLite 数据库。Server 启动时会自动创建并刷新数据。 |
 
@@ -134,6 +135,22 @@ uv run \
   labs/mcp/foundations/examples/transport_client.py stdio \
   --server labs/mcp/foundations/examples/broken_stdout_server.py
 ```
+
+## 运行多 Server Client
+
+运行阶段 6 的 Host 侧 Client 实验：
+
+```bash
+uv run labs/mcp/foundations/examples/multi_server_client.py
+```
+
+这个 Client 会：
+
+- 启动并连接 `shop_order_analysis_server.py`。
+- 启动并连接 `shop_order_primitives_server.py`。
+- 发现两个 Server 各自提供的 tools、resources、resource templates 和 prompts。
+- 调用订单汇总 Tool，读取数据库 schema Resource，获取日报 Prompt。
+- 根据带 `server` 来源的调用意图，把 `get_order` 路由到正确 Server。
 
 ## 常见问题
 
