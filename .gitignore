@@ -39,6 +39,7 @@ node_modules/
 # SQLite runtime sidecar files
 *.sqlite-wal
 *.sqlite-shm
+labs/mcp/foundations/examples/data/shop_order_security.sqlite
 
 # Generated vector-store artifacts
 labs/rag/foundations/data/chroma_finance_policy/

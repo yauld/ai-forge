@@ -279,46 +279,150 @@ initialize
 - https://modelcontextprotocol.io/docs/tools/inspector
 - https://modelcontextprotocol.io/docs/tools/debugging
 
-### 阶段 8：安全与授权
+### 阶段 8：Tool 输入安全（已完成）
 
-核心问题：当 Server 能访问真实文件、账户或服务时，谁有权做什么？
+核心问题：MCP Server 如何限制调用者能传入什么，以及能够读走多少数据？
 
-建议文章：
+对应材料：
 
-- `08 | MCP 安全：权限、授权与危险 Tool 的确认边界.md`
-
-学习内容：
-
-- 本地 Server 的代码信任与进程权限。
-- 最小权限、路径限制和敏感操作确认。
-- Prompt injection 对 tool 调用与资源读取的影响。
-- OAuth 与远程 Server authorization flow。
-- token passthrough、confused deputy、SSRF 和 session hijacking。
-- scope minimization、凭据存储、撤销与审计。
+- `labs/mcp/foundations/08 | MCP 输入安全：参数限制、Schema 与数据最小化.md`
+- `drafts/mcp/08 | MCP 输入安全：Tool Schema、SQL 参数绑定与数据最小化.md`
+- `drafts/mcp/assets/08-mcp-input-security-boundaries.svg`
+- `labs/mcp/foundations/examples/input_security_server.py`
+- `labs/mcp/foundations/examples/input_security_client.py`
 
 实践任务：
 
-1. 为订单查询限定可接受的参数和值域。
-2. 如果增加退款 Tool，要求明确确认并设计幂等机制。
-3. 检查日志和错误信息是否泄露订单或凭据。
-4. 为远程 Server 画出用户、Host、Server 与授权服务的信任边界。
+1. 用枚举限制订单状态。
+2. 用上下界限制查询数量。
+3. 提交非法状态、SQL 注入式文本、`limit=0` 和 `limit=10000`。
+4. 用执行计数证明非法参数没有进入查询函数。
+5. 单独验证 SQL 参数绑定不会让注入式文本改变查询结构。
+6. 检查返回数量和字段集合。
 
 检查点：
 
-- 可以列出权限过宽的 MCP Server 带来的风险。
-- 可以解释为什么模型提出调用不等于 Host 应当直接执行。
-- 可以为只读与有副作用的能力设计不同的授权和确认策略。
+- 可以区分合法边界值与越界输入。
+- 可以解释 schema 校验、SQL 参数绑定和数据最小化各自解决什么问题。
+- 可以用可观察证据证明输入边界实际生效。
+
+### 阶段 9：Host 权限与危险操作确认（已完成）
+
+核心问题：模型提出 Tool 调用后，Host 在什么条件下才允许 MCP Client 发送请求？
+
+对应材料：
+
+- `labs/mcp/foundations/09 | MCP Host 权限：Tool 白名单与危险操作确认.md`
+- `labs/mcp/foundations/examples/host_permission_server.py`
+- `labs/mcp/foundations/examples/host_permission_host.py`
+
+实践任务：
+
+1. 发现 Tool 和风险 annotations。
+2. 拒绝 Host 未审核的 Tool。
+3. 拒绝未获得用户确认的退款建议。
+4. 拒绝模型伪造的 `user_confirmed` 参数。
+
+检查点：
+
+- 可以解释模型、Host、MCP Client、Server 和 Tool 的职责关系。
+- 可以证明 `blocked_before_call` 发生在请求离开 Host 之前。
+- 可以解释为什么 annotations 和模型参数不能代替用户授权。
+
+推荐官方页面：
+
+- https://modelcontextprotocol.io/specification/2025-11-25/server/tools
+
+### 阶段 10：Server 执行安全（已完成）
+
+核心问题：请求到达 Server 后，业务系统根据什么规则执行或拒绝危险操作？
+
+对应材料：
+
+- `labs/mcp/foundations/10 | MCP 执行安全：业务边界、幂等与重复调用.md`
+- `labs/mcp/foundations/examples/execution_security_server.py`
+- `labs/mcp/foundations/examples/execution_security_client.py`
+
+实践任务：
+
+1. 拒绝不存在、状态不允许和金额超限的订单。
+2. 用相同幂等键模拟网络重试。
+3. 尝试把已使用的幂等键换绑到另一笔订单。
+4. 每次拒绝后回查订单最终状态，并检查重试只写入一条退款记录。
+
+检查点：
+
+- 可以区分 Host 确认与 Server 业务授权。
+- 可以为有副作用 Tool 设计对象、状态、金额和幂等边界。
+
+### 阶段 11：内容与审计安全（已完成）
+
+核心问题：外部内容中的恶意指令能否影响 Tool 调用，审计又应保留哪些信息？
+
+对应材料：
+
+- `labs/mcp/foundations/11 | MCP 内容安全：Prompt Injection、审计与敏感信息.md`
+- `labs/mcp/foundations/examples/content_security_server.py`
+- `labs/mcp/foundations/examples/content_security_host.py`
+
+实践任务：
+
+1. 在订单备注中放入诱导退款的恶意指令。
+2. 模拟模型受到诱导后提出 Tool 调用。
+3. 用执行计数和订单状态验证 Host 权限不受外部内容影响。
+4. 检查审计包含必要证据但不泄露原始幂等键。
+
+检查点：
+
+- 可以解释为什么 Tool 返回内容是数据而不是用户授权。
+- 可以同时满足可审计性与敏感信息最小化。
+
+推荐官方页面：
+
+- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
+
+### 阶段 12：远程 Server 的授权与攻击面
+
+核心问题：远程 MCP Server 接入真实账户和服务时，用户、Host、Server 与授权服务之间如何建立可信的授权关系？
+
+建议文章：
+
+- `12 | MCP 远程授权：OAuth、Token 与信任边界.md`
+
+学习内容：
+
+- OAuth 与远程 Server authorization flow。
+- 用户、Host、Server 与授权服务的信任边界。
+- scope minimization、凭据存储、刷新与撤销。
+- token passthrough 与 confused deputy 风险。
+- SSRF 与 session hijacking 等远程攻击面。
+- 授权事件的审计与异常追踪。
+
+实践任务：
+
+1. 画出用户、Host、远程 Server、授权服务和业务系统之间的信任边界。
+2. 标注授权码、access token 与业务请求在各角色之间的流向。
+3. 为订单查询设计最小 scope，并区分只读查询与退款权限。
+4. 分析 token passthrough、confused deputy、SSRF 和 session hijacking 的触发条件与防护位置。
+5. 先完成授权流程和威胁分析，再决定是否实现完整 OAuth 实验。
+
+检查点：
+
+- 可以解释远程 MCP 授权中各角色的职责和信任关系。
+- 可以说明为什么不能把上游 token 不加约束地透传给 MCP Server。
+- 可以为不同能力设计最小 scope、凭据生命周期和撤销策略。
+- 可以指出常见远程攻击分别应由 Host、Server 还是授权服务防护。
 
 推荐官方页面：
 
 - https://modelcontextprotocol.io/docs/tutorials/security/authorization
 - https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
 
-## 可选进阶：Registry、Extensions 与生态
+### 阶段 13（可选进阶）：Registry、Extensions 与生态
 
 核心问题：哪些能力属于 MCP 核心协议，哪些属于扩展或特定 Client？
 
-这部分不阻塞主线，可以在掌握 Client 和安全基础后按需学习：
+这部分不阻塞主线，可以在掌握 Client、本地安全和远程授权基础后按需学习：
 
 - 官方 MCP Registry 与 Server 发布。
 - 已发布 Server 的版本管理。
@@ -350,7 +454,11 @@ initialize
 3. Transport 阶段：在 stdio 之外增加 Streamable HTTP 实验。
 4. Client 阶段：编写基础 Client，并连接第二个简单 Server 验证路由。
 5. 调试阶段：构造启动、协议、schema 和业务故障。
-6. 安全阶段：增加只读边界、敏感操作确认和最小权限设计。
+6. 输入安全阶段：限制 Tool 参数和值域，并最小化返回数据。
+7. Host 权限阶段：增加 Tool 白名单和危险操作确认。
+8. 执行安全阶段：增加业务规则、幂等和副作用回查。
+9. 内容安全阶段：验证 Prompt injection 防护和审计脱敏。
+10. 远程授权阶段：梳理 OAuth、最小 scope、token 生命周期和远程攻击面。
 
 完成主线后，再选择一个真实项目：
 
@@ -370,6 +478,6 @@ initialize
 5. 写成文章，并删除与前文重复的背景说明。
 6. 用检查点确认自己能否脱离代码复述关键机制。
 
-下一步进入阶段 8：
+下一步进入阶段 12：
 
-> 在接入真实文件、账户或服务前，明确权限、授权、危险 Tool 的确认与审计边界。
+> 在本地权限和确认边界之上，继续研究远程 Server 的 OAuth、Token 与信任边界。

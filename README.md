@@ -99,8 +99,12 @@ AI Engineering 实战锻造场。
 | 05 | [MCP Transport：stdio 与 Streamable HTTP 如何传递消息.md](labs/mcp/foundations/05%20%7C%20MCP%20Transport：stdio%20与%20Streamable%20HTTP%20如何传递消息.md) | 同一组消息如何通过 stdio 和 Streamable HTTP 传递？ | 已完成 |
 | 06 | [MCP Client：Host 如何发现并调用 Server 能力.md](labs/mcp/foundations/06%20%7C%20MCP%20Client：Host%20如何发现并调用%20Server%20能力.md) | Host 如何发现多个 Server 的能力并正确路由调用？ | 已完成 |
 | 07 | [MCP 调试：从 Server 启动失败到 Tool 调用异常.md](labs/mcp/foundations/07%20%7C%20MCP%20调试：从%20Server%20启动失败到%20Tool%20调用异常.md) | 如何按进程、Transport、生命周期、能力发现和执行逐层定位失败？ | 已完成 |
-| 08 | `MCP 安全：权限、授权与危险 Tool 的确认边界.md` | 谁可以访问什么能力，高风险 Tool 应如何确认和审计？ | 待研究 |
-| 09 | `MCP Registry、Extensions 与生态.md` | 如何区分核心协议、扩展、实验能力和特定 Client 行为？ | 待研究 |
+| 08 | [MCP 输入安全：参数限制、Schema 与数据最小化.md](labs/mcp/foundations/08%20%7C%20MCP%20输入安全：参数限制、Schema%20与数据最小化.md) | Tool 如何限制输入范围和返回数据？ | 已完成 |
+| 09 | [MCP Host 权限：Tool 白名单与危险操作确认.md](labs/mcp/foundations/09%20%7C%20MCP%20Host%20权限：Tool%20白名单与危险操作确认.md) | Host 何时允许 MCP Client 发送 Tool 调用？ | 已完成 |
+| 10 | [MCP 执行安全：业务边界、幂等与重复调用.md](labs/mcp/foundations/10%20%7C%20MCP%20执行安全：业务边界、幂等与重复调用.md) | Server 如何约束危险操作的真实副作用？ | 已完成 |
+| 11 | [MCP 内容安全：Prompt Injection、审计与敏感信息.md](labs/mcp/foundations/11%20%7C%20MCP%20内容安全：Prompt%20Injection、审计与敏感信息.md) | 如何防止不可信内容越权并保留脱敏审计？ | 已完成 |
+| 12 | `MCP 远程授权：OAuth、Token 与信任边界.md` | 远程 Server 如何建立授权关系并防范常见攻击？ | 待研究 |
+| 13 | `MCP Registry、Extensions 与生态.md` | 如何区分核心协议、扩展、实验能力和特定 Client 行为？ | 待研究 |
 
 [查看 MCP 完整研究路线](labs/mcp/foundations)
 
