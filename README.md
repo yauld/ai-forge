@@ -125,6 +125,8 @@ uv run jupyter notebook
 
 公众号用于发布更短、更聚焦的文章版本；仓库保留完整实验和持续更新的研究记录。
 
+[查看 MCP 内容路线与公众号发布稿](drafts/mcp/mcp_roadmap.md)
+
 <p align="center">
   <img src="assets/wechat-qr.jpg" width="220" alt="公众号二维码">
 </p>

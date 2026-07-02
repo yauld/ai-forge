@@ -313,6 +313,8 @@ initialize
 对应材料：
 
 - `labs/mcp/foundations/09 | MCP Host 权限：Tool 白名单与危险操作确认.md`
+- `drafts/mcp/09 | MCP Host 权限：模型提出 Tool 调用，不等于获得执行权.md`
+- `drafts/mcp/assets/09-mcp-host-permission-gates.svg`
 - `labs/mcp/foundations/examples/host_permission_server.py`
 - `labs/mcp/foundations/examples/host_permission_host.py`
 
