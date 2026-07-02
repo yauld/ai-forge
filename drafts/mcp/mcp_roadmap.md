@@ -342,6 +342,8 @@ initialize
 对应材料：
 
 - `labs/mcp/foundations/10 | MCP 执行安全：业务边界、幂等与重复调用.md`
+- `drafts/mcp/10 | MCP 执行安全：请求到了 Server，也不等于应该执行.md`
+- `drafts/mcp/assets/10-mcp-server-execution-boundaries.svg`
 - `labs/mcp/foundations/examples/execution_security_server.py`
 - `labs/mcp/foundations/examples/execution_security_client.py`
 

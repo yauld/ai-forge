@@ -127,6 +127,8 @@ uv run jupyter notebook
 
 [查看 MCP 内容路线与公众号发布稿](drafts/mcp/mcp_roadmap.md)
 
+[MCP 执行安全：请求到了 Server，也不等于应该执行](drafts/mcp/10%20%7C%20MCP%20执行安全：请求到了%20Server，也不等于应该执行.md)
+
 <p align="center">
   <img src="assets/wechat-qr.jpg" width="220" alt="公众号二维码">
 </p>
