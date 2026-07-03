@@ -2,7 +2,7 @@
 
 AI Engineering 实战锻造场。
 
-这个仓库通过文章、Notebook 和可运行示例，持续研究 LangChain、LangGraph、RAG、MCP、Agent 工程化、记忆、工具调用与安全控制。每个专题的 README 提供专题介绍、学习路线和内容入口。
+这个仓库通过文章、Notebook 和可运行示例，持续研究 LangChain、LangGraph、RAG、MCP、Sec for AI、Agent 工程化、记忆、工具调用与安全控制。每个专题的 README 提供专题介绍、学习路线和内容入口。
 
 [![Python](https://img.shields.io/badge/Python-3.13+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![uv](https://img.shields.io/badge/package%20manager-uv-261230)](https://docs.astral.sh/uv/)
@@ -18,6 +18,7 @@ AI Engineering 实战锻造场。
 | LangGraph | State、Node、Edge、Checkpoint、Human-in-the-loop、Durable Execution、Memory | [查看专题](labs/langgraph/foundations) |
 | RAG | 文档加载、文本切分、向量库、Retriever、Prompt 与问答链路 | [查看专题](labs/rag/foundations) |
 | MCP | Host、Client、Server、Tool、Resource、Prompt、JSON-RPC 与 Transport | [查看专题](labs/mcp/foundations) |
+| Sec for AI | 模型、数据、Prompt、RAG、Agent、供应链、安全评测与运行治理 | [查看专题](labs/sec-for-ai/foundations) |
 | Skills | Codex Skills、工作流固化与工程自动化 | [查看内容](labs/skills) |
 | Coding | Python、FastAPI 与 AI 工程所需的服务化基础 | [查看内容](labs/coding) |
 
@@ -83,8 +84,6 @@ AI Engineering 实战锻造场。
 | 08 | [RAG向量库的增删查与持久化.ipynb](labs/rag/foundations/08%20%7C%20RAG向量库的增删查与持久化.ipynb) | 如何完成向量数据的增删查与持久化？ | 已完成 |
 | 09 | [RAG Retriever 检索器.ipynb](labs/rag/foundations/09%20%7C%20RAG%20Retriever%20检索器.ipynb) | 检索器如何从向量库取回相关上下文？ | 已完成 |
 | 10 | [RAG最小问答链路：Prompt组装与LLM调用.ipynb](labs/rag/foundations/10%20%7C%20RAG最小问答链路：Prompt组装与LLM调用.ipynb) | 如何把检索结果、Prompt 和 LLM 组成最小 RAG？ | 已完成 |
-| 11 | `RAG 评估：如何衡量召回质量与答案忠实度.md` | 如何衡量召回质量、答案质量和忠实度？ | 待研究 |
-| 12 | `RAG 召回优化：查询改写、混合检索与重排.ipynb` | Chunking、查询改写、混合检索和重排如何改善结果？ | 待研究 |
 
 [查看 RAG 完整研究路线](labs/rag/foundations)
 
@@ -102,11 +101,17 @@ AI Engineering 实战锻造场。
 | 08 | [MCP 输入安全：参数限制、Schema 与数据最小化.md](labs/mcp/foundations/08%20%7C%20MCP%20输入安全：参数限制、Schema%20与数据最小化.md) | Tool 如何限制输入范围和返回数据？ | 已完成 |
 | 09 | [MCP Host 权限：Tool 白名单与危险操作确认.md](labs/mcp/foundations/09%20%7C%20MCP%20Host%20权限：Tool%20白名单与危险操作确认.md) | Host 何时允许 MCP Client 发送 Tool 调用？ | 已完成 |
 | 10 | [MCP 执行安全：业务边界、幂等与重复调用.md](labs/mcp/foundations/10%20%7C%20MCP%20执行安全：业务边界、幂等与重复调用.md) | Server 如何约束危险操作的真实副作用？ | 已完成 |
-| 11 | [MCP 内容安全：Prompt Injection、审计与敏感信息.md](labs/mcp/foundations/11%20%7C%20MCP%20内容安全：Prompt%20Injection、审计与敏感信息.md) | 如何防止不可信内容越权并保留脱敏审计？ | 已完成 |
-| 12 | `MCP 远程授权：OAuth、Token 与信任边界.md` | 远程 Server 如何建立授权关系并防范常见攻击？ | 待研究 |
-| 13 | `MCP Registry、Extensions 与生态.md` | 如何区分核心协议、扩展、实验能力和特定 Client 行为？ | 待研究 |
+| 12 | [MCP 审计安全：既要留下证据，也不能泄露秘密.md](labs/mcp/foundations/12%20%7C%20MCP%20审计安全：既要留下证据，也不能泄露秘密.md) | 如何让操作可调查，同时避免审计泄露敏感信息？ | 已完成 |
 
 [查看 MCP 完整研究路线](labs/mcp/foundations)
+
+### Sec for AI
+
+| 序号 | 文件 | 研究问题 | 状态 |
+| --- | --- | --- | --- |
+| 01 | [间接 Prompt Injection：业务数据如何变成指令.md](labs/sec-for-ai/foundations/01%20%7C%20间接%20Prompt%20Injection：业务数据如何变成指令.md) | 外部业务数据如何诱导模型提出危险 Tool 调用并造成真实副作用？ | 已完成 |
+
+[查看 Sec for AI 完整研究路线](labs/sec-for-ai/foundations)
 
 ## 本地复现实验（可选）
 
@@ -128,6 +133,10 @@ uv run jupyter notebook
 [查看 MCP 内容路线与公众号发布稿](drafts/mcp/mcp_roadmap.md)
 
 [MCP 执行安全：请求到了 Server，也不等于应该执行](drafts/mcp/10%20%7C%20MCP%20执行安全：请求到了%20Server，也不等于应该执行.md)
+
+[查看 Sec for AI 内容路线与公众号规划](drafts/sec-for-ai/sfa_roadmap.md)
+
+[间接 Prompt Injection：业务数据也可能变成指令](drafts/sec-for-ai/01%20%7C%20间接%20Prompt%20Injection：业务数据也可能变成指令.md)
 
 <p align="center">
   <img src="assets/wechat-qr.jpg" width="220" alt="公众号二维码">

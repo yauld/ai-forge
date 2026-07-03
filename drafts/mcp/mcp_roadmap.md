@@ -359,39 +359,47 @@ initialize
 - 可以区分 Host 确认与 Server 业务授权。
 - 可以为有副作用 Tool 设计对象、状态、金额和幂等边界。
 
-### 阶段 11：内容与审计安全（已完成）
+### 交叉案例：间接 Prompt Injection（已迁移）
 
-核心问题：外部内容中的恶意指令能否影响 Tool 调用，审计又应保留哪些信息？
+间接 Prompt Injection 的核心问题是 AI 安全威胁建模：外部业务数据如何进入模型上下文，并诱导模型提出危险 Tool 调用。它使用 MCP 作为实验载体，但主线不属于 MCP 协议学习，已迁移到 Sec for AI 专题。
 
 对应材料：
 
-- `labs/mcp/foundations/11 | MCP 内容安全：Prompt Injection、审计与敏感信息.md`
-- `labs/mcp/foundations/examples/content_security_server.py`
-- `labs/mcp/foundations/examples/content_security_host.py`
+- `labs/sec-for-ai/foundations/01 | 间接 Prompt Injection：业务数据如何变成指令.md`
+- `drafts/sec-for-ai/01 | 间接 Prompt Injection：业务数据也可能变成指令.md`
+
+MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权等协议与工程边界内容。
+
+### 阶段 12：审计与敏感信息安全（已完成）
+
+核心问题：操作日志如何保留调查证据，同时避免泄露原始凭据和完整请求？
+
+对应材料：
+
+- `labs/mcp/foundations/12 | MCP 审计安全：既要留下证据，也不能泄露秘密.md`
+- `labs/mcp/foundations/examples/audit_security_server.py`
+- `labs/mcp/foundations/examples/audit_security_client.py`
 
 实践任务：
 
-1. 在订单备注中放入诱导退款的恶意指令。
-2. 模拟模型受到诱导后提出 Tool 调用。
-3. 用执行计数和订单状态验证 Host 权限不受外部内容影响。
-4. 检查审计包含必要证据但不泄露原始幂等键。
+1. 分别执行一笔成功退款和一笔被拒绝的退款。
+2. 检查审计同时保留 `applied` 与 `denied`。
+3. 验证原始幂等键没有进入日志，但短指纹仍可用于关联。
+4. 回查订单最终状态，使审计证据与业务结果互相验证。
 
 检查点：
 
-- 可以解释为什么 Tool 返回内容是数据而不是用户授权。
-- 可以同时满足可审计性与敏感信息最小化。
+- 可以为成功与失败操作选择最小审计字段。
+- 可以解释短指纹的关联价值与隐私边界。
+- 可以避免把完整 Tool 请求直接写入审计。
 
-推荐官方页面：
-
-- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
-
-### 阶段 12：远程 Server 的授权与攻击面
+### 阶段 13：远程 Server 的授权与攻击面
 
 核心问题：远程 MCP Server 接入真实账户和服务时，用户、Host、Server 与授权服务之间如何建立可信的授权关系？
 
 建议文章：
 
-- `12 | MCP 远程授权：OAuth、Token 与信任边界.md`
+- `13 | MCP 远程授权：OAuth、Token 与信任边界.md`
 
 学习内容：
 
@@ -422,7 +430,7 @@ initialize
 - https://modelcontextprotocol.io/docs/tutorials/security/authorization
 - https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
 
-### 阶段 13（可选进阶）：Registry、Extensions 与生态
+### 阶段 14（可选进阶）：Registry、Extensions 与生态
 
 核心问题：哪些能力属于 MCP 核心协议，哪些属于扩展或特定 Client？
 
@@ -461,7 +469,7 @@ initialize
 6. 输入安全阶段：限制 Tool 参数和值域，并最小化返回数据。
 7. Host 权限阶段：增加 Tool 白名单和危险操作确认。
 8. 执行安全阶段：增加业务规则、幂等和副作用回查。
-9. 内容安全阶段：验证 Prompt injection 防护和审计脱敏。
+9. 审计安全阶段：验证成功与拒绝事件的最小化审计和敏感字段脱敏。
 10. 远程授权阶段：梳理 OAuth、最小 scope、token 生命周期和远程攻击面。
 
 完成主线后，再选择一个真实项目：
@@ -482,6 +490,6 @@ initialize
 5. 写成文章，并删除与前文重复的背景说明。
 6. 用检查点确认自己能否脱离代码复述关键机制。
 
-下一步进入阶段 12：
+下一步进入阶段 13：
 
 > 在本地权限和确认边界之上，继续研究远程 Server 的 OAuth、Token 与信任边界。
