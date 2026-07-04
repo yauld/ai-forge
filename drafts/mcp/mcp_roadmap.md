@@ -202,13 +202,15 @@ initialize
 
 - https://modelcontextprotocol.io/specification/2025-11-25/basic/transports
 
-### 阶段 6：构建一个基础 MCP Client
+### 阶段 6：构建一个基础 MCP Client（已完成）
 
 核心问题：Host 如何发现 Server 能力，并把调用路由到正确的连接？
 
-建议文章：
+对应材料：
 
-- `06 | MCP Client：Host 如何发现并调用 Server 能力.md`
+- `labs/mcp/foundations/06 | MCP Client：Host 如何发现并调用 Server 能力.md`
+- `drafts/mcp/06 | 接了多个 MCP Server，Tool 调用到底该发给谁？.md`
+- `labs/mcp/foundations/examples/multi_server_client.py`
 
 构建内容：
 

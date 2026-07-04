@@ -132,6 +132,8 @@ uv run jupyter notebook
 
 [查看 MCP 内容路线与公众号发布稿](drafts/mcp/mcp_roadmap.md)
 
+[接了多个 MCP Server，Tool 调用到底该发给谁？](drafts/mcp/06%20%7C%20接了多个%20MCP%20Server，Tool%20调用到底该发给谁？.md)
+
 [MCP 执行安全：请求到了 Server，也不等于应该执行](drafts/mcp/10%20%7C%20MCP%20执行安全：请求到了%20Server，也不等于应该执行.md)
 
 [查看 Sec for AI 内容路线与公众号规划](drafts/sec-for-ai/sfa_roadmap.md)
