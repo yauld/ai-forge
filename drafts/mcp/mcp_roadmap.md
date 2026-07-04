@@ -372,13 +372,14 @@ initialize
 
 MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权等协议与工程边界内容。
 
-### 阶段 12：审计与敏感信息安全（已完成）
+### 阶段 11：审计与敏感信息安全（已完成）
 
 核心问题：操作日志如何保留调查证据，同时避免泄露原始凭据和完整请求？
 
 对应材料：
 
-- `labs/mcp/foundations/12 | MCP 审计安全：既要留下证据，也不能泄露秘密.md`
+- `labs/mcp/foundations/11 | MCP 审计安全：既要留下证据，也不能泄露秘密.md`
+- `drafts/mcp/11 | MCP 审计安全：日志不是记得越多越好.md`
 - `labs/mcp/foundations/examples/audit_security_server.py`
 - `labs/mcp/foundations/examples/audit_security_client.py`
 
