@@ -102,6 +102,8 @@ AI Engineering 实战锻造场。
 | 09 | [MCP Host 权限：Tool 白名单与危险操作确认.md](labs/mcp/foundations/09%20%7C%20MCP%20Host%20权限：Tool%20白名单与危险操作确认.md) | Host 何时允许 MCP Client 发送 Tool 调用？ | 已完成 |
 | 10 | [MCP 执行安全：业务边界、幂等与重复调用.md](labs/mcp/foundations/10%20%7C%20MCP%20执行安全：业务边界、幂等与重复调用.md) | Server 如何约束危险操作的真实副作用？ | 已完成 |
 | 11 | [MCP 审计安全：既要留下证据，也不能泄露秘密.md](labs/mcp/foundations/11%20%7C%20MCP%20审计安全：既要留下证据，也不能泄露秘密.md) | 如何让操作可调查，同时避免审计泄露敏感信息？ | 已完成 |
+| 12 | [MCP 远程访问基础：通过 Streamable HTTP 连接与调用 Server.md](labs/mcp/foundations/12%20%7C%20MCP%20远程访问基础：通过%20Streamable%20HTTP%20连接与调用%20Server.md) | 独立运行的 MCP Server 如何通过 URL 连接和调用？ | 已完成 |
+| 13 | [MCP 远程授权：从 401 到第一次受保护调用.md](labs/mcp/foundations/13%20%7C%20MCP%20远程授权：从%20401%20到第一次受保护调用.md) | 没有凭据的 Client 如何完成授权并调用远程 Server？ | 已完成 |
 
 [查看 MCP 完整研究路线](labs/mcp/foundations)
 
@@ -135,6 +137,8 @@ uv run jupyter notebook
 [接了多个 MCP Server，Tool 调用到底该发给谁？](drafts/mcp/06%20%7C%20接了多个%20MCP%20Server，Tool%20调用到底该发给谁？.md)
 
 [MCP 执行安全：请求到了 Server，也不等于应该执行](drafts/mcp/10%20%7C%20MCP%20执行安全：请求到了%20Server，也不等于应该执行.md)
+
+[通过 Streamable HTTP 连接远程 MCP Server](drafts/mcp/12%20%7C%20通过%20Streamable%20HTTP%20连接远程%20MCP%20Server.md)
 
 [查看 Sec for AI 内容路线与公众号规划](drafts/sec-for-ai/sfa_roadmap.md)
 

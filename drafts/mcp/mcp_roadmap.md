@@ -396,69 +396,153 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 - 可以解释短指纹的关联价值与隐私边界。
 - 可以避免把完整 Tool 请求直接写入审计。
 
-### 阶段 13：远程 Server 的授权与攻击面
+### 阶段 12：远程 MCP Server 的连接与调用（已完成）
 
-核心问题：远程 MCP Server 接入真实账户和服务时，用户、Host、Server 与授权服务之间如何建立可信的授权关系？
+核心问题：MCP Server 独立运行后，Host 如何通过 URL 建立连接并调用它的能力？
 
-建议文章：
+对应材料：
 
-- `13 | MCP 远程授权：OAuth、Token 与信任边界.md`
+- `labs/mcp/foundations/12 | MCP 远程访问基础：通过 Streamable HTTP 连接与调用 Server.md`
+- `drafts/mcp/12 | 通过 Streamable HTTP 连接远程 MCP Server.md`
+- `labs/mcp/foundations/examples/remote_connection_server.py`
+- `labs/mcp/foundations/examples/remote_connection_client.py`
 
 学习内容：
 
-- OAuth 与远程 Server authorization flow。
+- 本地 stdio Server 与远程 HTTP Server 的运行方式差异。
+- Server 独立启动、监听地址、端口、MCP endpoint 与完整连接 URL。
+- Host、MCP Client、远程 Server 和业务系统之间的连接关系。
+- `streamable_http_client` 如何把 HTTP 通道包装成 `ClientSession` 使用的消息流。
+- `initialize`、`tools/list` 和 `tools/call` 如何通过 Streamable HTTP 完成。
+- Server 未启动、URL 或 endpoint 错误时的基本失败现象。
+
+实践任务：
+
+1. 独立启动一个不带授权的订单查询 MCP Server，并确认 `/mcp` endpoint。
+2. 在另一个进程中使用 Client 按 URL 连接 Server。
+3. 依次执行 `initialize`、`tools/list` 和 `tools/call`。
+4. 对照 stdio 实验，观察谁负责启动 Server、Client 连接的目标是什么。
+5. 分别尝试未启动 Server、错误端口和错误 endpoint，并记录失败位置。
+
+检查点：
+
+- 可以解释“远程”描述的是独立运行并通过网络 URL 访问，而不等于一定部署在公网。
+- 可以说明 stdio 与 Streamable HTTP 模式下分别由谁启动 Server。
+- 可以从 Server 地址、端口和 endpoint 组成正确的 MCP URL。
+- 可以使用基础 Client 完成一次远程 Tool 调用。
+- 可以区分连接失败、HTTP endpoint 错误和 MCP Tool 执行失败。
+
+推荐官方页面：
+
+- https://modelcontextprotocol.io/specification/2025-11-25/basic/transports
+- https://github.com/modelcontextprotocol/python-sdk#streamable-http-transport
+
+### 阶段 13：远程 Server 如何完成授权（已完成）
+
+核心问题：没有凭据的 MCP Client，如何获得远程 MCP Server 接受的访问凭据？
+
+对应材料：
+
+- `labs/mcp/foundations/13 | MCP 远程授权：从 401 到第一次受保护调用.md`
+- `labs/mcp/foundations/examples/remote_auth_server.py`
+- `labs/mcp/foundations/examples/remote_auth_provider.py`
+- `labs/mcp/foundations/examples/remote_auth_resource_server.py`
+- `labs/mcp/foundations/examples/remote_auth_client.py`
+
+学习内容：
+
 - 用户、Host、Server 与授权服务的信任边界。
-- scope minimization、凭据存储、刷新与撤销。
-- token passthrough 与 confused deputy 风险。
-- SSRF 与 session hijacking 等远程攻击面。
-- 授权事件的审计与异常追踪。
+- 远程 MCP Server 的 OAuth authorization flow。
+- `401 Unauthorized`、授权服务发现与 Protected Resource Metadata。
+- Authorization Code、PKCE、access token 与受保护的 MCP 请求。
+- access token 的基本存储、过期与刷新。
 
 实践任务：
 
 1. 画出用户、Host、远程 Server、授权服务和业务系统之间的信任边界。
 2. 标注授权码、access token 与业务请求在各角色之间的流向。
-3. 为订单查询设计最小 scope，并区分只读查询与退款权限。
-4. 分析 token passthrough、confused deputy、SSRF 和 session hijacking 的触发条件与防护位置。
-5. 先完成授权流程和威胁分析，再决定是否实现完整 OAuth 实验。
+3. 从没有凭据的请求开始，观察 `401` 和授权服务发现过程。
+4. 完成用户授权并取得 access token。
+5. 携带 access token 调用受保护的订单查询 Tool。
 
 检查点：
 
 - 可以解释远程 MCP 授权中各角色的职责和信任关系。
-- 可以说明为什么不能把上游 token 不加约束地透传给 MCP Server。
-- 可以为不同能力设计最小 scope、凭据生命周期和撤销策略。
-- 可以指出常见远程攻击分别应由 Host、Server 还是授权服务防护。
+- 可以复述从 `401` 到受保护 Tool 调用的完整流程。
+- 可以说明授权码与 access token 分别在什么阶段出现、发给谁。
+- 可以解释为什么授权是在已有远程连接方式上增加访问边界。
 
 推荐官方页面：
 
 - https://modelcontextprotocol.io/docs/tutorials/security/authorization
-- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
 
-### 阶段 14（可选进阶）：Registry、Extensions 与生态
+### 阶段 14：权限与 Token 边界
 
-核心问题：哪些能力属于 MCP 核心协议，哪些属于扩展或特定 Client？
+核心问题：Client 拿到 access token 后，远程 MCP Server 应如何限制它能调用的能力？
 
-这部分不阻塞主线，可以在掌握 Client、本地安全和远程授权基础后按需学习：
+建议文章：
 
-- 官方 MCP Registry 与 Server 发布。
-- 已发布 Server 的版本管理。
-- MCP Apps。
-- Tasks 等 extensions。
-- Client extension support matrix。
-- Specification Enhancement Proposals（SEPs）。
-- 如何判断旧文章中的能力是否仍然有效。
+- `14 | MCP 权限与 Token 边界：Scope、Audience 与安全调用.md`
+
+学习内容：
+
+- 订单查询、明细读取与退款能力的最小 scope。
+- access token 的有效期、issuer、audience 与 scope 校验。
+- scope 不足时的拒绝与增量授权。
+- token passthrough 为什么会破坏 MCP Server 与下游业务系统的信任边界。
+- OAuth 权限、Host 确认与 Server 业务授权之间的区别。
+
+实践任务：
+
+1. 使用正确 token 调用订单查询 Tool。
+2. 使用缺少退款 scope 的 token 调用退款 Tool，并验证请求被拒绝。
+3. 使用 audience 不属于当前 MCP Server 的 token 发起调用，并验证请求被拒绝。
+4. 获得退款 scope 后再次调用，并验证请求仍需通过 Host 确认和 Server 业务规则。
 
 检查点：
 
-- 可以判断一个能力属于核心协议、extension、experimental、deprecated，还是某个 Client 的特定行为。
-- 可以根据协议版本和官方资料评估旧教程。
+- 可以为只读查询与危险操作设计不同 scope。
+- 可以解释 Server 为什么必须校验 token 的有效期、audience 和 scope。
+- 可以说明为什么 MCP Server 不能把收到的 token 原样透传给下游 API。
+- 可以区分 OAuth 授权、Host 权限与业务执行边界。
 
 推荐官方页面：
 
-- https://modelcontextprotocol.io/registry/about
-- https://modelcontextprotocol.io/extensions/overview
-- https://modelcontextprotocol.io/extensions/client-matrix
-- https://modelcontextprotocol.io/seps/index
-- https://modelcontextprotocol.io/docs/learn/versioning
+- https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization
+- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
+
+### 阶段 15：远程 Server 的常见攻击面
+
+核心问题：Token 校验正确以后，远程 MCP 连接还面临哪些 HTTP、授权发现与 Session 风险？
+
+建议文章：
+
+- `15 | MCP 远程攻击面：Confused Deputy、SSRF 与 Session Hijacking.md`
+
+学习内容：
+
+- confused deputy 的触发条件与授权边界。
+- OAuth 元数据发现过程中的 SSRF。
+- 重定向、私网地址与网络出口限制。
+- MCP Session ID 泄露、冒用与用户绑定。
+- 授权事件的审计与异常追踪。
+
+实践任务：
+
+1. 分析 confused deputy 的触发条件和用户授权被绕过的位置。
+2. 构造指向 localhost 或私网地址的 OAuth 元数据 URL，观察 Client 的拒绝位置。
+3. 尝试使用另一用户的 Session ID 发起请求，并验证 Server 仍会校验 token。
+4. 标注每类攻击主要应由 Client、Server、授权服务还是网络层防护。
+
+检查点：
+
+- 可以识别 confused deputy、SSRF 和 session hijacking 的基本触发条件。
+- 可以说明 Session ID 为什么不能代替身份凭据。
+- 可以指出常见远程攻击的主要防护位置。
+
+推荐官方页面：
+
+- https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
 
 ## 贯穿路线的实践项目
 
@@ -473,7 +557,10 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 7. Host 权限阶段：增加 Tool 白名单和危险操作确认。
 8. 执行安全阶段：增加业务规则、幂等和副作用回查。
 9. 审计安全阶段：验证成功与拒绝事件的最小化审计和敏感字段脱敏。
-10. 远程授权阶段：梳理 OAuth、最小 scope、token 生命周期和远程攻击面。
+10. 远程访问阶段：独立启动 HTTP Server，并通过 URL 完成初始化、能力发现和 Tool 调用。
+11. 远程授权阶段：跑通从 `401`、授权服务发现到受保护 Tool 调用的完整流程。
+12. 权限与 Token 阶段：验证最小 scope、token audience 和下游凭据边界。
+13. 远程攻击面阶段：验证 confused deputy、SSRF 和 session hijacking 的触发条件与防护位置。
 
 完成主线后，再选择一个真实项目：
 
@@ -493,6 +580,6 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 5. 写成文章，并删除与前文重复的背景说明。
 6. 用检查点确认自己能否脱离代码复述关键机制。
 
-下一步进入阶段 13：
+下一步进入阶段 14：
 
-> 在本地权限和确认边界之上，继续研究远程 Server 的 OAuth、Token 与信任边界。
+> 在已经跑通远程连接和授权流程的基础上，继续验证最小 scope、token audience 和下游凭据边界。
