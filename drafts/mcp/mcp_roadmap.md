@@ -439,38 +439,36 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 
 ### 阶段 13：远程 Server 如何完成授权（已完成）
 
-核心问题：没有凭据的 MCP Client，如何获得远程 MCP Server 接受的访问凭据？
+核心问题：Bearer Token 如何决定 MCP Client 能否调用远程 Server？
 
 对应材料：
 
 - `labs/mcp/foundations/13 | MCP 远程授权：从 401 到第一次受保护调用.md`
+- `drafts/mcp/13 | MCP 远程授权：Token 从哪里来，又在哪里被验证.md`
 - `labs/mcp/foundations/examples/remote_auth_server.py`
-- `labs/mcp/foundations/examples/remote_auth_provider.py`
 - `labs/mcp/foundations/examples/remote_auth_resource_server.py`
 - `labs/mcp/foundations/examples/remote_auth_client.py`
 
 学习内容：
 
-- 用户、Host、Server 与授权服务的信任边界。
-- 远程 MCP Server 的 OAuth authorization flow。
-- `401 Unauthorized`、授权服务发现与 Protected Resource Metadata。
-- Authorization Code、PKCE、access token 与受保护的 MCP 请求。
-- access token 的基本存储、过期与刷新。
+- 远程 MCP Server 如何验证 Bearer Token。
+- 无 Token 请求为什么在 MCP 初始化前得到 `401 Unauthorized`。
+- Client 如何通过登录、同意和授权码交换取得 access token。
+- Resource Server 如何通过 introspection 检查 issuer、audience、有效期和 scope。
 
 实践任务：
 
-1. 画出用户、Host、远程 Server、授权服务和业务系统之间的信任边界。
-2. 标注授权码、access token 与业务请求在各角色之间的流向。
-3. 从没有凭据的请求开始，观察 `401` 和授权服务发现过程。
-4. 完成用户授权并取得 access token。
-5. 携带 access token 调用受保护的订单查询 Tool。
+1. 启动一个演示 Authorization Server 和一个受保护的远程 MCP Server。
+2. 不带 Token 请求 `/mcp`，观察 `401`。
+3. 用演示账号登录并同意授权，取得一次性授权码和短期 access token。
+4. 携带正确 Token 完成初始化并调用订单查询 Tool。
+5. 换成错误 Token，确认请求仍然被拒绝。
 
 检查点：
 
-- 可以解释远程 MCP 授权中各角色的职责和信任关系。
-- 可以复述从 `401` 到受保护 Tool 调用的完整流程。
-- 可以说明授权码与 access token 分别在什么阶段出现、发给谁。
-- 可以解释为什么授权是在已有远程连接方式上增加访问边界。
+- 可以解释认证为什么发生在 MCP 初始化和 Tool 执行之前。
+- 可以用无 Token 和授权服务签发的正确 Token 证明授权门槛生效。
+- 可以说明本实验保留了授权码与 introspection 主线，但不是完整生产 OAuth。
 
 推荐官方页面：
 
@@ -558,7 +556,7 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 8. 执行安全阶段：增加业务规则、幂等和副作用回查。
 9. 审计安全阶段：验证成功与拒绝事件的最小化审计和敏感字段脱敏。
 10. 远程访问阶段：独立启动 HTTP Server，并通过 URL 完成初始化、能力发现和 Tool 调用。
-11. 远程授权阶段：跑通从 `401`、授权服务发现到受保护 Tool 调用的完整流程。
+11. 远程授权阶段：对比无 Token 的 `401` 与携带正确 Token 后的受保护 Tool 调用。
 12. 权限与 Token 阶段：验证最小 scope、token audience 和下游凭据边界。
 13. 远程攻击面阶段：验证 confused deputy、SSRF 和 session hijacking 的触发条件与防护位置。
 
@@ -582,4 +580,4 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 
 下一步进入阶段 14：
 
-> 在已经跑通远程连接和授权流程的基础上，继续验证最小 scope、token audience 和下游凭据边界。
+> 在看清 Bearer Token 授权效果的基础上，继续验证最小 scope、token audience 和下游凭据边界。

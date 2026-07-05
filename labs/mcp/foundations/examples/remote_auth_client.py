@@ -1,135 +1,130 @@
-"""阶段 12 的 OAuth MCP Client。
+"""对比无 Token 与登录授权后访问远程 MCP Server 的结果。
 
-运行前先启动 remote_auth_server.py 和 remote_auth_resource_server.py，然后执行：
+先启动 remote_auth_server.py 和 remote_auth_resource_server.py，再运行：
     uv run labs/mcp/foundations/examples/remote_auth_client.py
 """
 
 from __future__ import annotations
 
 import asyncio
-from urllib.parse import parse_qs, urljoin, urlparse
 
 import httpx
-from pydantic import AnyUrl
 
 from mcp import ClientSession
-from mcp.client.auth import OAuthClientProvider, TokenStorage
 from mcp.client.streamable_http import streamable_http_client
-from mcp.shared.auth import OAuthClientInformationFull, OAuthClientMetadata, OAuthToken
 
 
 MCP_URL = "http://127.0.0.1:8001/mcp"
-CALLBACK_URL = "http://127.0.0.1:3030/callback"
+AUTH_SERVER_URL = "http://127.0.0.1:9000"
+CLIENT_ACCESS_KEY = "ai-forge-demo-client"
+CLIENT_SECRET_KEY = "ai-forge-demo-secret"
+REDIRECT_URI = "http://127.0.0.1:8765/callback"
+SCOPE = "orders:read"
+DEMO_USER = "reader@example.com"
+DEMO_PASSWORD = "letmein"
 
 
-class InMemoryTokenStorage(TokenStorage):
-    """保存本次运行取得的客户端注册信息和 token。"""
-
-    def __init__(self) -> None:
-        self.tokens: OAuthToken | None = None
-        self.client_info: OAuthClientInformationFull | None = None
-
-    async def get_tokens(self) -> OAuthToken | None:
-        return self.tokens
-
-    async def set_tokens(self, tokens: OAuthToken) -> None:
-        self.tokens = tokens
-
-    async def get_client_info(self) -> OAuthClientInformationFull | None:
-        return self.client_info
-
-    async def set_client_info(self, client_info: OAuthClientInformationFull) -> None:
-        self.client_info = client_info
-
-
-async def observe_unauthorized_request() -> None:
-    """先不带 token 请求 MCP endpoint，保留授权发现的第一段证据。"""
-    async with httpx.AsyncClient() as http_client:
-        response = await http_client.post(MCP_URL, json={})
-        challenge = response.headers.get("www-authenticate")
-        print(f"1. no token -> HTTP {response.status_code}")
-        print(f"   WWW-Authenticate: {challenge}")
-
-        if challenge is None or "resource_metadata=" not in challenge:
-            raise AssertionError("401 响应没有提供 resource_metadata")
-
-        metadata_url = challenge.split('resource_metadata="', 1)[1].split('"', 1)[0]
-        metadata = (await http_client.get(metadata_url)).json()
-        print(f"2. protected resource: {metadata['resource']}")
-        print(f"   authorization servers: {metadata['authorization_servers']}")
-
-
-def create_automated_user_agent() -> tuple:
-    """返回 OAuthClientProvider 需要的重定向与回调处理器。
-
-    正常桌面 Client 会打开浏览器让用户登录和确认。本实验用 HTTP 请求自动访问
-    本地批准页，再把 callback 中的 code 和 state 交还给 SDK。
-    """
-    callback_queue: asyncio.Queue[tuple[str, str | None]] = asyncio.Queue(maxsize=1)
-
-    async def handle_redirect(authorization_url: str) -> None:
-        print("3. authorization request includes PKCE and resource")
-        parsed_authorization = urlparse(authorization_url)
-        authorization_query = parse_qs(parsed_authorization.query)
-        assert authorization_query["code_challenge_method"] == ["S256"]
-        assert authorization_query["resource"] == [MCP_URL]
-
-        async with httpx.AsyncClient(follow_redirects=False) as client:
-            authorize_response = await client.get(authorization_url)
-            approval_url = urljoin(authorization_url, authorize_response.headers["location"])
-            approval_response = await client.get(approval_url)
-            callback_url = approval_response.headers["location"]
-
-        callback_query = parse_qs(urlparse(callback_url).query)
-        await callback_queue.put(
-            (
-                callback_query["code"][0],
-                callback_query.get("state", [None])[0],
-            )
+async def request_access_token() -> str:
+    """用演示账号完成登录和同意，再用授权码换取 access token。"""
+    async with httpx.AsyncClient() as client:
+        # 1. 发起授权请求。
+        #
+        # 真实 OAuth 中，这一步通常会打开浏览器，让用户看到登录页和授权页。
+        # 本实验不渲染页面，所以 /authorize 只做两件事：
+        # - 让 Authorization Server 先检查 client_id 和 scope 是否可接受；
+        # - 返回一段提示，说明下一步需要用户登录并同意授权。
+        #
+        # 注意：这里还不会产生 access token，也不会调用 MCP Server。
+        hint = await client.get(
+            f"{AUTH_SERVER_URL}/authorize",
+            params={
+                "client_id": CLIENT_ACCESS_KEY,
+                "redirect_uri": REDIRECT_URI,
+                "scope": SCOPE,
+                "state": "ai-forge-demo",
+            },
         )
+        hint.raise_for_status()
+        hint_payload = hint.json()
+        print("1. 发起授权请求")
+        print(f"   授权服务：{hint_payload['message']}")
+        print(f"   申请权限：{hint_payload['requested_scope']}")
 
-    async def handle_callback() -> tuple[str, str | None]:
-        return await callback_queue.get()
+        # 2. 模拟用户登录并同意授权。
+        #
+        # 真实系统会在授权页面里完成这一步；本实验用 POST /authorize/approve
+        # 表示用户已经输入账号密码，并点击“同意授权 orders:read”。
+        #
+        # Authorization Server 返回的是 authorization code。code 不是访问凭据，
+        # 不能拿去调用 MCP Server；它只表示“这个用户刚刚同意过这次授权请求”。
+        approve = await client.post(
+            f"{AUTH_SERVER_URL}/authorize/approve",
+            data={
+                "client_id": CLIENT_ACCESS_KEY,
+                "redirect_uri": REDIRECT_URI,
+                "scope": SCOPE,
+                "state": "ai-forge-demo",
+                "username": DEMO_USER,
+                "password": DEMO_PASSWORD,
+                "consent": "yes",
+            },
+        )
+        approve.raise_for_status()
+        code = approve.json()["code"]
+        print("2. 用户登录并同意")
+        print("   已取得一次性 authorization code")
 
-    return handle_redirect, handle_callback
+        # 3. 用 authorization code 换 access token。
+        #
+        # 这一步会同时提交：
+        # - code：证明用户刚刚同意过；
+        # - redirect_uri：证明这次换票和前面的授权请求是同一条链路；
+        # - client_id/client_secret：证明是这个 Client 在换票。
+        #
+        # 换出来的 access_token 才会被放进 Authorization: Bearer ...，
+        # 也才是 Resource Server 接受的访问凭据。
+        token = await client.post(
+            f"{AUTH_SERVER_URL}/token",
+            data={
+                "grant_type": "authorization_code",
+                "code": code,
+                "redirect_uri": REDIRECT_URI,
+                "client_id": CLIENT_ACCESS_KEY,
+                "client_secret": CLIENT_SECRET_KEY,
+            },
+        )
+        token.raise_for_status()
+        print("3. 授权码换 Token")
+        print("   Token 端点已签发短期 access token")
+        return token.json()["access_token"]
 
 
-async def run() -> None:
-    await observe_unauthorized_request()
+async def main() -> None:
+    # 第一次请求故意不带 Token：认证中间件应在 MCP 初始化前返回 401。
+    async with httpx.AsyncClient() as client:
+        response = await client.post(MCP_URL, json={})
+    print(f"无 Token：HTTP {response.status_code}")
 
-    storage = InMemoryTokenStorage()
-    redirect_handler, callback_handler = create_automated_user_agent()
-    oauth = OAuthClientProvider(
-        server_url=MCP_URL,
-        client_metadata=OAuthClientMetadata(
-            client_name="AI Forge Stage 12 Client",
-            redirect_uris=[AnyUrl(CALLBACK_URL)],
-            # SDK 的动态注册端点要求同时声明 refresh_token；本阶段只执行
-            # authorization_code，Provider 不会实际签发 refresh token。
-            grant_types=["authorization_code", "refresh_token"],
-            response_types=["code"],
-            scope="orders:read",
-        ),
-        storage=storage,
-        redirect_handler=redirect_handler,
-        callback_handler=callback_handler,
-    )
+    access_token = await request_access_token()
 
-    async with httpx.AsyncClient(auth=oauth, follow_redirects=True) as http_client:
-        async with streamable_http_client(MCP_URL, http_client=http_client) as (read, write, _):
+    # 第二次请求携带授权服务签发的 Token，再建立标准 MCP Session。
+    async with httpx.AsyncClient(
+        headers={"Authorization": f"Bearer {access_token}"}
+    ) as authenticated_client:
+        async with streamable_http_client(
+            MCP_URL,
+            http_client=authenticated_client,
+        ) as (read, write, _):
             async with ClientSession(read, write) as session:
                 initialized = await session.initialize()
-                result = await session.call_tool("get_order", {"order_id": "O-1001"})
+                result = await session.call_tool(
+                    "get_order",
+                    {"order_id": "O-1001"},
+                )
 
-    if storage.tokens is None:
-        raise AssertionError("OAuth 流程结束后没有保存 access token")
-    if result.isError:
-        raise AssertionError("携带 access token 的 Tool 调用不应失败")
-
-    print(f"4. access token: {storage.tokens.access_token[:12]}... (redacted)")
-    print(f"5. protocol: {initialized.protocolVersion}")
-    print(f"   protected tool result: {result.structuredContent}")
+    print(f"正确 Token：协议版本 {initialized.protocolVersion}")
+    print(f"受保护 Tool：{result.structuredContent}")
 
 
 if __name__ == "__main__":
-    asyncio.run(run())
+    asyncio.run(main())

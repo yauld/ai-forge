@@ -24,7 +24,7 @@ AI Engineering 实战锻造场。
 
 ## 研究内容一览
 
-下面展示各专题的前 15 项内容，帮助你快速了解仓库目前覆盖的问题。完整路线和后续计划请进入对应专题。
+下面展示各专题的前 10 项内容，帮助你快速了解仓库目前覆盖的问题。完整路线和后续计划请进入对应专题。
 
 ### LangChain
 
@@ -40,11 +40,6 @@ AI Engineering 实战锻造场。
 | 08 | [LangChain中的工具（Tools）.ipynb](labs/langchain/foundations/08%20%7C%20LangChain中的工具（Tools）.ipynb) | 模型如何发现并调用外部工具？ | 已完成 |
 | 09 | [LangChain中的短期记忆（InMemorySaver）.ipynb](labs/langchain/foundations/09%20%7C%20LangChain中的短期记忆（InMemorySaver）.ipynb) | `InMemorySaver` 如何保存对话状态？ | 已完成 |
 | 10 | [LangChain中的短期记忆（SqliteSaver与PostgresSaver）.ipynb](labs/langchain/foundations/10%20%7C%20LangChain中的短期记忆（SqliteSaver与PostgresSaver）.ipynb) | SQLite 与 Postgres Saver 如何持久化状态？ | 已完成 |
-| 11 | [LangChain中的长期记忆（Store与Cross-Thread）.ipynb](labs/langchain/foundations/11%20%7C%20LangChain中的长期记忆（Store与Cross-Thread）.ipynb) | Store 与 Cross-Thread Memory 如何支持跨会话记忆？ | 已完成 |
-| 12 | [把资产中心接入大模型：一个安全Agent的最小闭环.md](labs/langchain/foundations/12%20%7C%20把资产中心接入大模型：一个安全Agent的最小闭环.md) | 如何把资产中心安全地接入大模型？ | 已完成 |
-| 13 | [LangChain Embeddings：从文本向量化到语义检索.ipynb](labs/langchain/foundations/13%20%7C%20LangChain%20Embeddings：从文本向量化到语义检索.ipynb) | 如何从文本向量化走到语义检索？ | 已完成 |
-| 14 | [LangChain LCEL：从模型输出到业务动作.ipynb](labs/langchain/foundations/14%20%7C%20LangChain%20LCEL：从模型输出到业务动作.ipynb) | 如何把模型输出连接到后续业务动作？ | 已完成 |
-| 15 | [LangChain中的短期记忆（RunnableWithMessageHistory）.ipynb](labs/langchain/foundations/15%20%7C%20LangChain中的短期记忆（RunnableWithMessageHistory）.ipynb) | `RunnableWithMessageHistory` 如何管理短期记忆？ | 已完成 |
 
 [查看 LangChain 完整研究路线](labs/langchain/foundations)
 
@@ -63,10 +58,6 @@ AI Engineering 实战锻造场。
 | 08 | [LangGraph 工具节点：tools、ToolNode、Runnable 是什么.ipynb](labs/langgraph/foundations/08%20%7C%20LangGraph%20工具节点：tools、ToolNode、Runnable%20是什么.ipynb) | Tools、ToolNode 与 Runnable 如何协作？ | 已完成 |
 | 09 | [LangGraph 状态更新与 Reducer.ipynb](labs/langgraph/foundations/09%20%7C%20LangGraph%20状态更新与%20Reducer.ipynb) | 并发或连续更新时如何合并 State？ | 已完成 |
 | 10 | [Graphviz 与 LangGraph：安装、绘图与导出.ipynb](labs/langgraph/foundations/10%20%7C%20Graphviz%20与%20LangGraph：安装、绘图与导出.ipynb) | 如何绘制和导出 Graph 结构？ | 已完成 |
-| 11 | [LangGraph checkpoint：状态快照到底是什么.ipynb](labs/langgraph/foundations/11%20%7C%20LangGraph%20checkpoint：状态快照到底是什么.ipynb) | 状态快照保存了什么？ | 已完成 |
-| 12 | [LangGraph 多轮对话：checkpoint 和 thread_id.ipynb](labs/langgraph/foundations/12%20%7C%20LangGraph%20多轮对话：checkpoint%20和%20thread_id.ipynb) | Checkpoint 与 `thread_id` 如何支撑多轮会话？ | 已完成 |
-| 13 | [用 checkpoint 查看、回退和修正 LangGraph 状态.ipynb](labs/langgraph/foundations/13%20%7C%20用%20checkpoint%20查看、回退和修正%20LangGraph%20状态.ipynb) | 如何查看、回退和修改历史状态？ | 已完成 |
-| 14 | [LangGraph checkpoint 如何持久化到 Postgres.ipynb](labs/langgraph/foundations/14%20%7C%20LangGraph%20checkpoint%20如何持久化到%20Postgres.ipynb) | 如何把 Checkpoint 持久化到 Postgres？ | 已完成 |
 
 [查看 LangGraph 完整研究路线](labs/langgraph/foundations)
 
@@ -101,9 +92,6 @@ AI Engineering 实战锻造场。
 | 08 | [MCP 输入安全：参数限制、Schema 与数据最小化.md](labs/mcp/foundations/08%20%7C%20MCP%20输入安全：参数限制、Schema%20与数据最小化.md) | Tool 如何限制输入范围和返回数据？ | 已完成 |
 | 09 | [MCP Host 权限：Tool 白名单与危险操作确认.md](labs/mcp/foundations/09%20%7C%20MCP%20Host%20权限：Tool%20白名单与危险操作确认.md) | Host 何时允许 MCP Client 发送 Tool 调用？ | 已完成 |
 | 10 | [MCP 执行安全：业务边界、幂等与重复调用.md](labs/mcp/foundations/10%20%7C%20MCP%20执行安全：业务边界、幂等与重复调用.md) | Server 如何约束危险操作的真实副作用？ | 已完成 |
-| 11 | [MCP 审计安全：既要留下证据，也不能泄露秘密.md](labs/mcp/foundations/11%20%7C%20MCP%20审计安全：既要留下证据，也不能泄露秘密.md) | 如何让操作可调查，同时避免审计泄露敏感信息？ | 已完成 |
-| 12 | [MCP 远程访问基础：通过 Streamable HTTP 连接与调用 Server.md](labs/mcp/foundations/12%20%7C%20MCP%20远程访问基础：通过%20Streamable%20HTTP%20连接与调用%20Server.md) | 独立运行的 MCP Server 如何通过 URL 连接和调用？ | 已完成 |
-| 13 | [MCP 远程授权：从 401 到第一次受保护调用.md](labs/mcp/foundations/13%20%7C%20MCP%20远程授权：从%20401%20到第一次受保护调用.md) | 没有凭据的 Client 如何完成授权并调用远程 Server？ | 已完成 |
 
 [查看 MCP 完整研究路线](labs/mcp/foundations)
 
@@ -131,18 +119,6 @@ uv run jupyter notebook
 ## 公众号
 
 公众号用于发布更短、更聚焦的文章版本；仓库保留完整实验和持续更新的研究记录。
-
-[查看 MCP 内容路线与公众号发布稿](drafts/mcp/mcp_roadmap.md)
-
-[接了多个 MCP Server，Tool 调用到底该发给谁？](drafts/mcp/06%20%7C%20接了多个%20MCP%20Server，Tool%20调用到底该发给谁？.md)
-
-[MCP 执行安全：请求到了 Server，也不等于应该执行](drafts/mcp/10%20%7C%20MCP%20执行安全：请求到了%20Server，也不等于应该执行.md)
-
-[通过 Streamable HTTP 连接远程 MCP Server](drafts/mcp/12%20%7C%20通过%20Streamable%20HTTP%20连接远程%20MCP%20Server.md)
-
-[查看 Sec for AI 内容路线与公众号规划](drafts/sec-for-ai/sfa_roadmap.md)
-
-[间接 Prompt Injection：业务数据也可能变成指令](drafts/sec-for-ai/01%20%7C%20间接%20Prompt%20Injection：业务数据也可能变成指令.md)
 
 <p align="center">
   <img src="assets/wechat-qr.jpg" width="220" alt="公众号二维码">
