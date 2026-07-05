@@ -474,13 +474,35 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 
 - https://modelcontextprotocol.io/docs/tutorials/security/authorization
 
-### 阶段 14：权限与 Token 边界
+### 独立理论短文：工具数量与上下文预算（已完成）
+
+对应文章：
+
+- `drafts/mcp/14 | MCP 工具太多，会不会撑爆模型上下文.md`
+
+核心问题：MCP Server 暴露很多 Tool 时，是否必然把所有工具定义塞进模型上下文？
+
+已经覆盖：
+
+- `tools/list` 的接收方是 MCP Client，不是模型本身。
+- 模型上下文成本发生在 Host 把工具定义放入 LLM 请求时。
+- 全量暴露、静态过滤和动态工具检索三种常见处理方式。
+- Tool、Resource、Prompt 是并列 primitive，Resource 和 Prompt 内容不会自动嵌入 Tool。
+- 设计大量 MCP Tool 时，需要控制工具粒度、描述长度和上下文预算。
+
+检查点：
+
+- 可以区分工具发现成本和模型上下文成本。
+- 可以解释为什么 MCP Server 有 100 个工具，不等于模型每轮都看到 100 个工具。
+- 可以说明 Host / Agent Runtime 在工具过滤和工具检索中的责任。
+
+### 阶段 15：权限与 Token 边界
 
 核心问题：Client 拿到 access token 后，远程 MCP Server 应如何限制它能调用的能力？
 
 建议文章：
 
-- `14 | MCP 权限与 Token 边界：Scope、Audience 与安全调用.md`
+- `15 | MCP 权限与 Token 边界：Scope、Audience 与安全调用.md`
 
 学习内容：
 
@@ -509,13 +531,13 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 - https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization
 - https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices
 
-### 阶段 15：远程 Server 的常见攻击面
+### 阶段 16：远程 Server 的常见攻击面
 
 核心问题：Token 校验正确以后，远程 MCP 连接还面临哪些 HTTP、授权发现与 Session 风险？
 
 建议文章：
 
-- `15 | MCP 远程攻击面：Confused Deputy、SSRF 与 Session Hijacking.md`
+- `16 | MCP 远程攻击面：Confused Deputy、SSRF 与 Session Hijacking.md`
 
 学习内容：
 
@@ -557,8 +579,9 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 9. 审计安全阶段：验证成功与拒绝事件的最小化审计和敏感字段脱敏。
 10. 远程访问阶段：独立启动 HTTP Server，并通过 URL 完成初始化、能力发现和 Tool 调用。
 11. 远程授权阶段：对比无 Token 的 `401` 与携带正确 Token 后的受保护 Tool 调用。
-12. 权限与 Token 阶段：验证最小 scope、token audience 和下游凭据边界。
-13. 远程攻击面阶段：验证 confused deputy、SSRF 和 session hijacking 的触发条件与防护位置。
+12. 工具上下文短文：厘清工具发现成本与模型上下文成本。
+13. 权限与 Token 阶段：验证最小 scope、token audience 和下游凭据边界。
+14. 远程攻击面阶段：验证 confused deputy、SSRF 和 session hijacking 的触发条件与防护位置。
 
 完成主线后，再选择一个真实项目：
 
@@ -578,6 +601,6 @@ MCP 专题继续保留 Host 权限、Server 执行安全、审计和远程授权
 5. 写成文章，并删除与前文重复的背景说明。
 6. 用检查点确认自己能否脱离代码复述关键机制。
 
-下一步进入阶段 14：
+下一步进入阶段 15：
 
 > 在看清 Bearer Token 授权效果的基础上，继续验证最小 scope、token audience 和下游凭据边界。
