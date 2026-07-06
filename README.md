@@ -19,7 +19,7 @@ AI Engineering 实战锻造场。
 | RAG | 文档加载、文本切分、向量库、Retriever、Prompt 与问答链路 | [查看专题](labs/rag/foundations) |
 | MCP | Host、Client、Server、Tool、Resource、Prompt、JSON-RPC 与 Transport | [查看专题](labs/mcp/foundations) |
 | Sec for AI | 模型、数据、Prompt、RAG、Agent、供应链、安全评测与运行治理 | [查看专题](labs/sec-for-ai/foundations) |
-| Skills | Codex Skills、工作流固化与工程自动化 | [查看内容](labs/skills) |
+| Skills | Codex Skills、工作流固化与工程自动化 | [查看专题](labs/skills/foundations) |
 | Coding | Python、FastAPI 与 AI 工程所需的服务化基础 | [查看内容](labs/coding) |
 
 ## 研究内容一览
@@ -102,6 +102,14 @@ AI Engineering 实战锻造场。
 | 01 | [间接 Prompt Injection：业务数据如何变成指令.md](labs/sec-for-ai/foundations/01%20%7C%20间接%20Prompt%20Injection：业务数据如何变成指令.md) | 外部业务数据如何诱导模型提出危险 Tool 调用并造成真实副作用？ | 已完成 |
 
 [查看 Sec for AI 完整研究路线](labs/sec-for-ai/foundations)
+
+### Skills
+
+| 序号 | 文件 | 研究问题 | 状态 |
+| --- | --- | --- | --- |
+| 01 | [Skills 的定位：它在 Agent 架构中解决什么问题.md](labs/skills/foundations/01%20%7C%20Skills%20的定位：它在%20Agent%20架构中解决什么问题.md) | Skills 到底应该放在 Agent 架构的哪一层？ | 已完成 |
+
+[查看 Skills 完整研究路线](labs/skills/foundations)
 
 ## 本地复现实验（可选）
 
