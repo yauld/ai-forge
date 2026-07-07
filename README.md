@@ -108,6 +108,7 @@ AI Engineering 实战锻造场。
 | 序号 | 文件 | 研究问题 | 状态 |
 | --- | --- | --- | --- |
 | 01 | [Skills 的定位：它在 Agent 架构中解决什么问题.md](labs/skills/foundations/01%20%7C%20Skills%20的定位：它在%20Agent%20架构中解决什么问题.md) | Skills 到底应该放在 Agent 架构的哪一层？ | 已完成 |
+| 02 | [最小 SKILL.md：一个 Skill 如何被发现和使用.md](labs/skills/foundations/02%20%7C%20最小%20SKILL.md：一个%20Skill%20如何被发现和使用.md) | 一个最小 `SKILL.md` 至少要写清哪些内容，才能被发现和使用？ | 已完成 |
 
 [查看 Skills 完整研究路线](labs/skills/foundations)
 
@@ -127,6 +128,8 @@ uv run jupyter notebook
 ## 公众号
 
 公众号用于发布更短、更聚焦的文章版本；仓库保留完整实验和持续更新的研究记录。
+
+已整理的公众号稿按专题收录，例如 [Skills 公众号稿](drafts/skills)。
 
 <p align="center">
   <img src="assets/wechat-qr.jpg" width="220" alt="公众号二维码">

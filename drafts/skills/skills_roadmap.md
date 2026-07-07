@@ -51,7 +51,7 @@
 | 阶段 | 主题 | 难度 | 复用旧知识 |
 |---|---|---|---|
 | 1 | Skills 的定位：它在 Agent 架构中解决什么问题（已完成） | ★ | Prompt / Tools / MCP / RAG |
-| 2 | 最小 SKILL.md：一个 Skill 如何被发现和使用 | ★ | — |
+| 2 | 最小 SKILL.md：一个 Skill 如何被发现和使用（已完成） | ★ | — |
 | 3 | Skill 类型判断：Reference、Action 与组合方式 | ★★ | — |
 | 4 | 渐进式披露：如何分层加载 metadata、正文和资源 | ★★ | RAG |
 | 5 | 教学用 runtime 架构：扫描、路由、加载、执行如何分工 | ★★ | LangChain Tools |
@@ -111,6 +111,14 @@
 
 ## 阶段 2：`SKILL.md` 最小规范与第一个 Skill
 
+**状态**：已完成
+
+对应成果：
+
+- `labs/skills/foundations/02 | 最小 SKILL.md：一个 Skill 如何被发现和使用.md`
+- `drafts/skills/02 | 让 Agent 找到正确 Skill：最小 SKILL.md 的两个关键字段.md`
+- `labs/skills/foundations/examples/stage2-minimal-skills/`
+
 **员工比喻**：交给新员工第一本 SOP，并教他什么样的 SOP 能被正确检索和执行。
 
 **学习目标**
@@ -133,11 +141,12 @@
   2. `formatting-commit-message`：commit message 格式化。
   3. `reviewing-roadmap`：学习路线图审查。
 - 为每个 Skill 写出触发场景、输入、输出和执行步骤。
+- 使用本地 Ollama `qwen3-coder:30b` 根据 `name` / `description` 做最小路由验证。
 
 **产出物**
 
 - 3 个 `SKILL.md` 文件。
-- 一份最小 Skill 写作清单。
+- `skill_router_with_ollama.py`：本地模型路由验证脚本。
 
 **预计用时**：1 天
 
