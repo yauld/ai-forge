@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1080" viewBox="0 0 1400 1080" role="img" aria-labelledby="title desc">
+  <title id="title">MCP Host 的三道执行门</title>
+  <desc id="desc">模型提出 Tool 名称和参数后，Host 依次检查 Tool 白名单、参数名集合和用户明确确认。任一检查失败都由 Host 本地拒绝；全部通过后，MCP Client 才发送 tools/call，MCP Server 才接收并执行 Tool。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#64748b"/>
+    </marker>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 38px -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 500 20px -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .node-title { font: 700 26px -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .node-text { font: 500 20px -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .edge-text { font: 700 18px -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .number { font: 700 25px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; }
+      .start { fill: #4f46e5; stroke: #4338ca; stroke-width: 3; }
+      .gate-blue { fill: #eff6ff; stroke: #3b82f6; stroke-width: 3; }
+      .gate-green { fill: #ecfdf5; stroke: #10b981; stroke-width: 3; }
+      .gate-cyan { fill: #ecfeff; stroke: #0891b2; stroke-width: 3; }
+      .blocked { fill: #fff7ed; stroke: #f97316; stroke-width: 3; }
+      .client { fill: #0f766e; stroke: #115e59; stroke-width: 3; }
+      .server { fill: #ffffff; stroke: #94a3b8; stroke-width: 3; }
+      .line { fill: none; stroke: #64748b; stroke-width: 4; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1400" height="1080"/>
+
+  <text class="title" x="700" y="58" text-anchor="middle">MCP Host 的三道执行门</text>
+  <text class="subtitle" x="700" y="94" text-anchor="middle">模型只能提出调用；三项检查全部通过，MCP Client 才会发送请求</text>
+
+  <rect class="start" x="80" y="126" width="1240" height="78" rx="20"/>
+  <text x="700" y="175" text-anchor="middle" style="font:700 25px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#ffffff">模型提出 Tool 名称和参数</text>
+
+  <path class="line" d="M700 204 V246"/>
+
+  <rect class="gate-blue" x="80" y="252" width="1240" height="132" rx="24"/>
+  <circle cx="140" cy="318" r="29" fill="#2563eb"/>
+  <text class="number" x="140" y="327" text-anchor="middle">1</text>
+  <text class="node-title" x="195" y="306">Tool 是否经过 Host 审核？</text>
+  <text class="node-text" x="195" y="344">默认拒绝白名单之外的能力</text>
+  <rect class="blocked" x="1000" y="270" width="290" height="96" rx="18"/>
+  <text class="node-title" x="1145" y="310" text-anchor="middle">检查失败</text>
+  <text class="node-text" x="1145" y="344" text-anchor="middle">Host 本地拒绝</text>
+
+  <path class="line" d="M700 384 V426"/>
+  <text class="edge-text" x="730" y="412">通过</text>
+
+  <rect class="gate-green" x="80" y="432" width="1240" height="132" rx="24"/>
+  <circle cx="140" cy="498" r="29" fill="#059669"/>
+  <text class="number" x="140" y="507" text-anchor="middle">2</text>
+  <text class="node-title" x="195" y="486">参数名是否都在允许集合中？</text>
+  <text class="node-text" x="195" y="524">阻止模型夹带 user_confirmed 等控制字段</text>
+  <rect class="blocked" x="1000" y="450" width="290" height="96" rx="18"/>
+  <text class="node-title" x="1145" y="490" text-anchor="middle">检查失败</text>
+  <text class="node-text" x="1145" y="524" text-anchor="middle">Host 本地拒绝</text>
+
+  <path class="line" d="M700 564 V606"/>
+  <text class="edge-text" x="730" y="592">通过</text>
+
+  <rect class="gate-cyan" x="80" y="612" width="1240" height="132" rx="24"/>
+  <circle cx="140" cy="678" r="29" fill="#0891b2"/>
+  <text class="number" x="140" y="687" text-anchor="middle">3</text>
+  <text class="node-title" x="195" y="666">危险操作是否得到用户明确确认？</text>
+  <text class="node-text" x="195" y="704">确认状态来自 Host，而不是模型参数</text>
+  <rect class="blocked" x="1000" y="630" width="290" height="96" rx="18"/>
+  <text class="node-title" x="1145" y="670" text-anchor="middle">检查失败</text>
+  <text class="node-text" x="1145" y="704" text-anchor="middle">Host 本地拒绝</text>
+
+  <path class="line" d="M700 744 V798"/>
+  <text class="edge-text" x="730" y="778">全部通过</text>
+
+  <rect class="client" x="300" y="804" width="800" height="92" rx="22"/>
+  <text x="700" y="844" text-anchor="middle" style="font:700 25px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#ffffff">MCP Client 执行 session.call_tool()</text>
+  <text x="700" y="876" text-anchor="middle" style="font:500 19px -apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;fill:#d1fae5">此时 tools/call 才真正离开 Host</text>
+
+  <path class="line" d="M700 896 V950"/>
+
+  <rect class="server" x="300" y="956" width="800" height="88" rx="22"/>
+  <text class="node-title" x="700" y="994" text-anchor="middle">MCP Server 接收请求并执行 Tool</text>
+  <text class="node-text" x="700" y="1026" text-anchor="middle">Host 放行不代替 Server 自己的输入校验和业务检查</text>
+</svg>
