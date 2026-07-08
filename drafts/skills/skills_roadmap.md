@@ -52,7 +52,7 @@
 |---|---|---|---|
 | 1 | Skills 的定位：它在 Agent 架构中解决什么问题（已完成） | ★ | Prompt / Tools / MCP / RAG |
 | 2 | 最小 SKILL.md：一个 Skill 如何被发现和使用（已完成） | ★ | — |
-| 3 | Skill 类型判断：Reference、Action 与组合方式 | ★★ | — |
+| 3 | Skill 类型判断：Reference、Action 与组合方式（已完成） | ★★ | — |
 | 4 | 渐进式披露：如何分层加载 metadata、正文和资源 | ★★ | RAG |
 | 5 | 教学用 runtime 架构：扫描、路由、加载、执行如何分工 | ★★ | LangChain Tools |
 | 6 | Skill Registry：如何扫描 frontmatter 并校验目录结构 | ★★ | Python 文件处理 |
@@ -154,6 +154,13 @@
 
 ## 阶段 3：Reference Skill 与 Action Skill
 
+**状态**：已完成
+
+对应成果：
+
+- `drafts/skills/03 | Skill 的两种常见设计形态：Action 与 Reference.md`
+- `labs/skills/foundations/examples/stage3-skill-types/`
+
 **员工比喻**：区分“查资料用的手册”和“照着执行的流程卡”。
 
 **学习目标**
@@ -170,14 +177,14 @@
 
 **实验内容**
 
-- 把阶段 2 的 3 个 Skill 重新分类。
-- 新增 1 个 Reference Skill：例如“AI Forge 文章写作规范摘要”。
-- 新增 1 个 Action Skill：例如“实验文章完稿检查流程”。
+- 用 2 个最小 `SKILL.md` 样本对照 Reference 与引用 Reference 的 Action。
+- 新增 1 个 Reference Skill：“RedBean 安全规则摘要”。
+- 新增 1 个 Action Skill：“RedBean 新能力安全审查流程”，其中每个关键步骤都引用安全规则中的对应标准。
 
 **产出物**
 
-- 2 个新 Skill。
-- 1 份分类说明文档。
+- Reference / Action 两个配合使用的 Skill 样本。
+- 1 篇公众号发布稿。
 
 **预计用时**：1 天
 

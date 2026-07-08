@@ -109,6 +109,7 @@ AI Engineering 实战锻造场。
 | --- | --- | --- | --- |
 | 01 | [Skills 的定位：它在 Agent 架构中解决什么问题.md](labs/skills/foundations/01%20%7C%20Skills%20的定位：它在%20Agent%20架构中解决什么问题.md) | Skills 到底应该放在 Agent 架构的哪一层？ | 已完成 |
 | 02 | [最小 SKILL.md：一个 Skill 如何被发现和使用.md](labs/skills/foundations/02%20%7C%20最小%20SKILL.md：一个%20Skill%20如何被发现和使用.md) | 一个最小 `SKILL.md` 至少要写清哪些内容，才能被发现和使用？ | 已完成 |
+| 03 | [Skill 的两种常见设计形态：Action 与 Reference.md](drafts/skills/03%20%7C%20Skill%20的两种常见设计形态：Action%20与%20Reference.md) | Action 与 Reference 分别适合承载什么内容，如何组合？ | 已完成 |
 
 [查看 Skills 完整研究路线](labs/skills/foundations)
 
