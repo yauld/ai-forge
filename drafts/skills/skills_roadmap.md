@@ -192,6 +192,8 @@
 
 ## 阶段 4：渐进式披露：metadata、正文、资源三层加载
 
+**状态**：与阶段2重叠，无视这个阶段。
+
 **员工比喻**：新员工先看手册目录，确认相关后再读正文，最后才查附录。
 
 **学习目标**
@@ -224,6 +226,14 @@
 
 ## 阶段 5：设计教学用 Skills runtime 的最小架构
 
+**状态**：已完成
+
+对应成果：
+
+- `labs/skills/foundations/05 | 教学用 Skills runtime：扫描、路由、加载、执行如何分工.md`
+- `drafts/skills/05 | Agent 能力要跑起来，Skill Runtime 应至少得有这五层.md`
+- `labs/skills/foundations/examples/stage5-runtime-architecture/`
+
 **员工比喻**：给新员工搭一个工作台：手册库、调度员、工具箱和操作记录都要有位置。
 
 **学习目标**
@@ -248,8 +258,8 @@
 
 **产出物**
 
-- `stage5_architecture.md`：教学用 runtime 架构说明。
-- `stage5_model_probe.py`：可选的本地模型基础能力探测脚本。
+- 教学用 runtime 架构说明文章。
+- `stage5-runtime-architecture/`：模块化 runtime demo，包含 Registry、Ollama Router、Loader、Executor、Trace 和本地 `text_stats` 工具。
 
 **预计用时**：1 天
 
