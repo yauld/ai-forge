@@ -11,6 +11,7 @@
 ## 已完成发布稿
 
 - [间接 Prompt Injection：业务数据也可能变成指令](01%20%7C%20间接%20Prompt%20Injection：业务数据也可能变成指令.md)
+- [Skill 权限绕过：Reference 的路径穿越风险](02%20%7C%20Skill%20权限绕过：Reference%20的路径穿越风险.md)
 
 ## 成果形式
 
