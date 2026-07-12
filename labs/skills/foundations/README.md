@@ -28,3 +28,4 @@
 | 02 | [最小 SKILL.md：一个 Skill 如何被发现和使用.md](02%20%7C%20最小%20SKILL.md：一个%20Skill%20如何被发现和使用.md) | 一个最小 `SKILL.md` 至少要写清哪些内容，才能被发现和使用？ | 已完成 |
 | 03 | [Skill 的两种常见设计形态：Action 与 Reference.md](../../../drafts/skills/03%20%7C%20Skill%20的两种常见设计形态：Action%20与%20Reference.md)<br>[配套实验样本](examples/stage3-skill-types/) | Action 与 Reference 分别适合承载什么内容，如何组合？ | 已完成 |
 | 05 | [教学用 Skills runtime：扫描、路由、加载、执行如何分工.md](05%20%7C%20教学用%20Skills%20runtime：扫描、路由、加载、执行如何分工.md)<br>[配套实验样本](examples/stage5-runtime-architecture/) | 一个支持 Skills 的最小 runtime 应该如何拆分扫描、路由、加载、执行和记录？ | 已完成 |
+| 10 | [Skills + MCP：如何让 Skill 指导 MCP 工具调用.md](10%20%7C%20Skills%20+%20MCP：如何让%20Skill%20指导%20MCP%20工具调用.md)<br>[配套实验样本](examples/stage10-mcp-skill/) | Skill 如何说明并指导模型使用 MCP Server 暴露的工具？ | 已完成 |
