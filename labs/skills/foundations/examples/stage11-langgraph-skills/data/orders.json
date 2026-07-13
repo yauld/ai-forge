@@ -1,0 +1,23 @@
+{
+  "O-1001": {
+    "order_id": "O-1001",
+    "status": "paid",
+    "amount": 199,
+    "currency": "CNY",
+    "product": "耳机"
+  },
+  "O-1002": {
+    "order_id": "O-1002",
+    "status": "shipped",
+    "amount": 88,
+    "currency": "CNY",
+    "product": "数据线"
+  },
+  "O-1003": {
+    "order_id": "O-1003",
+    "status": "pending",
+    "amount": 459,
+    "currency": "CNY",
+    "product": "机械键盘"
+  }
+}
