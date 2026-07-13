@@ -99,7 +99,9 @@ AI Engineering 实战锻造场。
 
 | 序号 | 文件 | 研究问题 | 状态 |
 | --- | --- | --- | --- |
-| 01 | [间接 Prompt Injection：业务数据如何变成指令.md](labs/sec-for-ai/foundations/01%20%7C%20间接%20Prompt%20Injection：业务数据如何变成指令.md) | 外部业务数据如何诱导模型提出危险 Tool 调用并造成真实副作用？ | 已完成 |
+| 01 | [间接 Prompt Injection：业务数据也可能变成指令.md](drafts/sec-for-ai/01%20%7C%20间接%20Prompt%20Injection：业务数据也可能变成指令.md) | 外部业务数据如何诱导模型提出危险 Tool 调用并造成真实副作用？ | 已完成 |
+| 02 | [Skill 权限绕过：Reference 的路径穿越风险.md](drafts/sec-for-ai/02%20%7C%20Skill%20权限绕过：Reference%20的路径穿越风险.md) | 只控制 Skill 可见性时，内部 reference 读取如何绕过权限边界？ | 已完成 |
+| 03 | [工具描述投毒：Agent 也会被“自我介绍”带偏.md](drafts/sec-for-ai/03%20%7C%20工具描述投毒：Agent%20也会被“自我介绍”带偏.md) | 工具描述如何影响 Agent 工具选择，并把调用引向错误能力？ | 已完成 |
 
 [查看 Sec for AI 完整研究路线](labs/sec-for-ai/foundations)
 
@@ -112,7 +114,6 @@ AI Engineering 实战锻造场。
 | 03 | [Skill 的两种常见设计形态：Action 与 Reference.md](drafts/skills/03%20%7C%20Skill%20的两种常见设计形态：Action%20与%20Reference.md) | Action 与 Reference 分别适合承载什么内容，如何组合？ | 已完成 |
 | 05 | [教学用 Skills runtime：扫描、路由、加载、执行如何分工.md](labs/skills/foundations/05%20%7C%20教学用%20Skills%20runtime：扫描、路由、加载、执行如何分工.md) | 一个支持 Skills 的最小 runtime 应该如何拆分扫描、路由、加载、执行和记录？ | 已完成 |
 | 10 | [Skills + MCP：如何让 Skill 指导 MCP 工具调用.md](labs/skills/foundations/10%20%7C%20Skills%20+%20MCP：如何让%20Skill%20指导%20MCP%20工具调用.md) | Skill 如何说明并指导模型使用 MCP Server 暴露的工具？ | 已完成 |
-| 11 | [Skills + LangGraph：如何把路由、执行和人工确认放进状态图.md](labs/skills/foundations/11%20%7C%20Skills%20+%20LangGraph：如何把路由、执行和人工确认放进状态图.md)<br>[公众号稿](drafts/skills/11%20%7C%20Skill、MCP和LangGraph放在一起如何协作.md) | Skill 路由、MCP 工具调用和人工确认如何进入 LangGraph 状态图？ | 已完成 |
 
 [查看 Skills 完整研究路线](labs/skills/foundations)
 
