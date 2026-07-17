@@ -44,6 +44,13 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 16B | [LangGraph 内容安全混合方案：Workflow 与 Agent 的 MVP 实现.md](16%20%7C%20LangGraph%20内容安全混合方案：Workflow%20与%20Agent%20的%20MVP%20实现.md) | Workflow 与 Agent 如何组合成内容安全 MVP？ | 已完成 |
 | 17 | [LangGraph 记忆系统：让个人助理跨会话记住用户.ipynb](17%20%7C%20LangGraph%20记忆系统：让个人助理跨会话记住用户.ipynb) | 如何让个人助理跨会话记住用户？ | 已完成 |
 | 18 | `LangGraph 生产工程实践：测试、观测与部署.md` | 如何测试、观测并部署可恢复的 LangGraph 工作流？ | 待研究 |
+| 20 | [用模型驱动tool loop实现一个最小CityWalk Agent.md](20%20%7C%20用模型驱动tool%20loop实现一个最小CityWalk%20Agent.md) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
+
+## 配套实验
+
+| 文件 | 实验问题 | 状态 |
+| --- | --- | --- |
+| [experiments/amap_citywalk_tool_loop](experiments/amap_citywalk_tool_loop) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
 
 ## 下一步
 
