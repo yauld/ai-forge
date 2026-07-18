@@ -1,13 +1,13 @@
 # LangGraph 实战专题
 
-这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Checkpoint、人工审批和跨会话记忆。
+这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Checkpoint、人工审批和跨会话记忆。
 
 LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用具备明确的状态转移、暂停恢复和人工介入边界。
 
 ## 你会学到什么
 
 - State、Node、Edge 和 Graph 如何构成工作流。
-- 条件边、ToolNode 与 Reducer 如何控制流程和状态。
+- 条件边、ToolNode、Reducer 与 Send 如何控制流程、状态合并和并行分发。
 - Checkpoint 如何支持多轮对话、回退与持久化。
 - Human-in-the-loop 如何介入高风险操作。
 - Durable Execution 与长期记忆如何支撑可靠 Agent。
@@ -45,12 +45,14 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 17 | [LangGraph 记忆系统：让个人助理跨会话记住用户.ipynb](17%20%7C%20LangGraph%20记忆系统：让个人助理跨会话记住用户.ipynb) | 如何让个人助理跨会话记住用户？ | 已完成 |
 | 18 | `LangGraph 生产工程实践：测试、观测与部署.md` | 如何测试、观测并部署可恢复的 LangGraph 工作流？ | 待研究 |
 | 20 | [用模型驱动tool loop实现一个最小CityWalk Agent.md](20%20%7C%20用模型驱动tool%20loop实现一个最小CityWalk%20Agent.md) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
+| 21 | [LangGraph Send：并行分发与 Map-Reduce.md](21%20%7C%20LangGraph%20Send：并行分发与%20Map-Reduce.md) | 如何用 Send 动态分发多个任务，并用 Map-Reduce 汇总结果？ | 已完成 |
 
 ## 配套实验
 
 | 文件 | 实验问题 | 状态 |
 | --- | --- | --- |
-| [experiments/amap_citywalk_tool_loop](experiments/amap_citywalk_tool_loop) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
+| [experiments/19_amap_citywalk_tool_loop](experiments/19_amap_citywalk_tool_loop) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
+| [experiments/20_asset_risk_map_reduce](experiments/20_asset_risk_map_reduce) | 如何用 Send 把资产风险检查动态分发出去，并用 Map-Reduce 汇总结果？ | 已完成 |
 
 ## 下一步
 
