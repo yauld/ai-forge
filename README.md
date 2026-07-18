@@ -15,7 +15,7 @@ AI Engineering 实战锻造场。
 | 专题 | 研究范围 | 入口 |
 | --- | --- | --- |
 | LangChain | 模型、Messages、Prompt、Tools、Memory、Agent、Middleware、LCEL、Embeddings | [查看专题](labs/langchain/foundations) |
-| LangGraph | State、Node、Edge、Reducer、Send、Checkpoint、Human-in-the-loop、Durable Execution、Memory | [查看专题](labs/langgraph/foundations) |
+| LangGraph | State、Node、Edge、Reducer、Send、Command、Checkpoint、Human-in-the-loop、Durable Execution、Memory | [查看专题](labs/langgraph/foundations) |
 | RAG | 文档加载、文本切分、向量库、Retriever、Prompt 与问答链路 | [查看专题](labs/rag/foundations) |
 | MCP | Host、Client、Server、Tool、Resource、Prompt、JSON-RPC、Transport 与远程服务接入 | [查看专题](labs/mcp/foundations) |
 | Sec for AI | 模型、数据、Prompt、RAG、Agent、供应链、安全评测与运行治理 | [查看专题](labs/sec-for-ai/foundations) |

@@ -1,6 +1,6 @@
 # LangGraph 实战专题
 
-这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Checkpoint、人工审批和跨会话记忆。
+这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Command 跳转、Checkpoint、人工审批和跨会话记忆。
 
 LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用具备明确的状态转移、暂停恢复和人工介入边界。
 
@@ -46,6 +46,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 18 | `LangGraph 生产工程实践：测试、观测与部署.md` | 如何测试、观测并部署可恢复的 LangGraph 工作流？ | 待研究 |
 | 20 | [用模型驱动tool loop实现一个最小CityWalk Agent.md](20%20%7C%20用模型驱动tool%20loop实现一个最小CityWalk%20Agent.md) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
 | 21 | [LangGraph Send：并行分发与 Map-Reduce.md](21%20%7C%20LangGraph%20Send：并行分发与%20Map-Reduce.md) | 如何用 Send 动态分发多个任务，并用 Map-Reduce 汇总结果？ | 已完成 |
+| 22 | [LangGraph Command：节点里同时更新状态和决定下一步.md](22%20%7C%20LangGraph%20Command：节点里同时更新状态和决定下一步.md) | 如何在节点里同时更新 State 并决定下一步？ | 已完成 |
 
 ## 配套实验
 
@@ -53,6 +54,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | --- | --- | --- |
 | [experiments/19_amap_citywalk_tool_loop](experiments/19_amap_citywalk_tool_loop) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
 | [experiments/20_asset_risk_map_reduce](experiments/20_asset_risk_map_reduce) | 如何用 Send 把资产风险检查动态分发出去，并用 Map-Reduce 汇总结果？ | 已完成 |
+| [experiments/21_command_registration_desk](experiments/21_command_registration_desk) | 如何用 Command 在节点里同时更新 State 并决定下一步？ | 已完成 |
 
 ## 下一步
 

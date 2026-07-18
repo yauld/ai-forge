@@ -210,11 +210,11 @@ classify -> draft -> polish
 
 ---
 
-### 20 | LangGraph Send：并行分发与 Map-Reduce
+### 21 | LangGraph Send：并行分发与 Map-Reduce
 
 **建议文件**
 
-`20 | LangGraph Send：并行分发与 Map-Reduce.ipynb`
+`21 | LangGraph Send：并行分发与 Map-Reduce.md`
 
 **核心问题**
 
@@ -253,11 +253,11 @@ classify -> draft -> polish
 
 ---
 
-### 21 | LangGraph Command：节点里同时更新状态和决定下一步
+### 22 | LangGraph Command：节点里同时更新状态和决定下一步
 
 **建议文件**
 
-`21 | LangGraph Command：节点里同时更新状态和决定下一步.ipynb`
+`22 | LangGraph Command：节点里同时更新状态和决定下一步.md`
 
 **核心问题**
 
@@ -302,11 +302,11 @@ validate_request
 
 ---
 
-### 22 | LangGraph Runtime Context：不要把配置塞进 State
+### 23 | LangGraph Runtime Context：不要把配置塞进 State
 
 **建议文件**
 
-`22 | LangGraph Runtime Context：不要把配置塞进 State.ipynb`
+`23 | LangGraph Runtime Context：不要把配置塞进 State.ipynb`
 
 **核心问题**
 
@@ -763,9 +763,9 @@ Supervisor
 ```text
 18 Streaming v2
 19 循环
-20 Send
-21 Command 节点返回值
-22 Runtime Context
+21 Send
+22 Command 节点返回值
+23 Runtime Context
 ```
 
 这五篇补完之后，再进入工具进阶、RAG、子图和多 Agent。原因很简单：没有 streaming，就看不清复杂图；没有循环、Send 和 Command，就写不出复杂图；没有 runtime context，后续生产配置、租户、模型选择和 store 都会污染 State。
