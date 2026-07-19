@@ -31,7 +31,7 @@ class DeployContext(TypedDict):
 
 def run_tests(state: DeployState) -> DeployState:
     audit_log = state.get("audit_log", [])
-    commit_sha = state["commit_sha"]
+    commit_sha = state["commit_sha"] # type: ignore
 
     print(f"[run_tests] 测试 commit: {commit_sha}")
 
