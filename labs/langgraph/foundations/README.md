@@ -1,6 +1,6 @@
 # LangGraph 实战专题
 
-这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Command 跳转、Checkpoint、人工审批和跨会话记忆。
+这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Command 跳转、Runtime Context、Checkpoint、人工审批和跨会话记忆。
 
 LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用具备明确的状态转移、暂停恢复和人工介入边界。
 
@@ -8,6 +8,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 
 - State、Node、Edge 和 Graph 如何构成工作流。
 - 条件边、ToolNode、Reducer 与 Send 如何控制流程、状态合并和并行分发。
+- Runtime Context 如何注入本次运行的环境、身份和配置。
 - Checkpoint 如何支持多轮对话、回退与持久化。
 - Human-in-the-loop 如何介入高风险操作。
 - Durable Execution 与长期记忆如何支撑可靠 Agent。
@@ -47,6 +48,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 20 | [用模型驱动tool loop实现一个最小CityWalk Agent.md](20%20%7C%20用模型驱动tool%20loop实现一个最小CityWalk%20Agent.md) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
 | 21 | [LangGraph Send：并行分发与 Map-Reduce.md](21%20%7C%20LangGraph%20Send：并行分发与%20Map-Reduce.md) | 如何用 Send 动态分发多个任务，并用 Map-Reduce 汇总结果？ | 已完成 |
 | 22 | [LangGraph Command：节点里同时更新状态和决定下一步.md](22%20%7C%20LangGraph%20Command：节点里同时更新状态和决定下一步.md) | 如何在节点里同时更新 State 并决定下一步？ | 已完成 |
+| 23 | [LangGraph Runtime Context：不要把配置塞进 State.md](23%20%7C%20LangGraph%20Runtime%20Context：不要把配置塞进%20State.md) | 哪些信息属于业务状态，哪些信息应该作为运行时配置注入？ | 已完成 |
 
 ## 配套实验
 
@@ -55,6 +57,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | [experiments/19_amap_citywalk_tool_loop](experiments/19_amap_citywalk_tool_loop) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
 | [experiments/20_asset_risk_map_reduce](experiments/20_asset_risk_map_reduce) | 如何用 Send 把资产风险检查动态分发出去，并用 Map-Reduce 汇总结果？ | 已完成 |
 | [experiments/21_command_registration_desk](experiments/21_command_registration_desk) | 如何用 Command 在节点里同时更新 State 并决定下一步？ | 已完成 |
+| [experiments/22_runtime_context_cicd](experiments/22_runtime_context_cicd) | 如何用 CI/CD 发布流水线区分 State 与 Runtime Context？ | 已完成 |
 
 ## 下一步
 

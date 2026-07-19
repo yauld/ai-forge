@@ -306,7 +306,13 @@ validate_request
 
 **建议文件**
 
-`23 | LangGraph Runtime Context：不要把配置塞进 State.ipynb`
+`23 | LangGraph Runtime Context：不要把配置塞进 State.md`
+
+**状态**
+
+已完成。配套实验位于：
+
+`experiments/22_runtime_context_cicd/`
 
 **核心问题**
 
@@ -326,13 +332,13 @@ validate_request
 
 **建议实验**
 
-改造第 17 篇记忆系统或做一个更小的助手：
+使用 CI/CD 发布流水线做一个最小实验：
 
 ```text
 同一张图
- -> 开发环境使用 fake model
- -> 生产环境使用另一个 provider 配置
- -> 根据 user_id 读取不同用户画像
+ -> staging dry-run 使用测试 registry 和测试集群配置
+ -> prod real deploy 使用生产 registry 和生产集群配置
+ -> 观察 Runtime Context 改变运行行为，但不进入最终 State
 ```
 
 **验收标准**
