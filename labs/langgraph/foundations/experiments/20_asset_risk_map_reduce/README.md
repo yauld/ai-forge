@@ -4,7 +4,7 @@
 
 实验不做真实网络扫描，只使用一组模拟资产。这样可以把注意力放在 LangGraph 的运行机制上：输入里有几个资产，`Send` 就动态发出几个检查任务；每个任务独立完成 Map；最后 Reduce 节点把所有检查结果汇总成一份风险报告。
 
-配套详细文稿：[LangGraph Send：并行分发与 Map-Reduce](../../21%20%7C%20LangGraph%20Send：并行分发与%20Map-Reduce.md)
+配套详细文稿：[LangGraph Send：并行分发与 Map-Reduce](../../20%20%7C%20LangGraph%20Send：并行分发与%20Map-Reduce.md)
 
 ## 流程
 

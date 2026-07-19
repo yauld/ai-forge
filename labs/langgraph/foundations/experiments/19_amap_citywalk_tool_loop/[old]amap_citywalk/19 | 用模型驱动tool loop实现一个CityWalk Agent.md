@@ -14,10 +14,10 @@ agent_llm
         ├─ 未满足要求 -> agent_llm
         └─ 已满足要求 -> END
 ```
-![alt text](assets/19_graphviz_graph.png)
+![alt text](../../../assets/19_graphviz_graph.png)
 
 ## 用到的4个高德MCP tools
-![alt text](assets/4个高德MCP工具.png)
+![alt text](../../../assets/4个高德MCP工具.png)
 
 ## 部分主干代码
 ```
@@ -182,7 +182,7 @@ graph = builder.compile()
 最终给的方案本来应该来自，用关键字搜索出来的结果中的数据，一开始以为本地模型太弱鸡，但连续测试几个不同的模型，都没有使用最终搜索结果里内容，都是在最后一个环节自己幻想补全出一组假的信息...，举个例子类似：模型拿“浙江图书馆”的坐标，最后说成“瑞幸咖啡（浙江图书馆店）”，或者凭空塞一个没从周边搜索返回过的poiId。
 
 不同模型出现的问题：
-![alt text](image.png)
+![alt text](../../../image.png)
 
 解决机制：
 - maps_around_search返回后，Host会提取 id/name/address/typecode，记录成verified_pois白名单。

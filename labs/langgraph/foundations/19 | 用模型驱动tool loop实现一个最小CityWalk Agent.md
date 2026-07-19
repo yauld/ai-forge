@@ -1,4 +1,4 @@
-# 20 | 用模型驱动tool loop实现一个最小CityWalk Agent
+# 19 | 用模型驱动tool loop实现一个最小CityWalk Agent
 
 ## 想要做的事儿
 
@@ -59,7 +59,7 @@ agent_llm
 新实验放在：
 
 ```text
-labs/langgraph/foundations/experiments/amap_citywalk_tool_loop/
+labs/langgraph/foundations/experiments/19_amap_citywalk_tool_loop/
 ```
 
 核心文件：

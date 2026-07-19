@@ -2,7 +2,7 @@
 
 配套实验文稿：
 
-[LangGraph Command：节点里同时更新状态和决定下一步](../../22%20%7C%20LangGraph%20Command：节点里同时更新状态和决定下一步.md)
+[LangGraph Command：节点里同时更新状态和决定下一步](../../21%20%7C%20LangGraph%20Command：节点里同时更新状态和决定下一步.md)
 
 这个实验用“前台接待员检查报名表”说明 `Command(update=..., goto=...)`：
 

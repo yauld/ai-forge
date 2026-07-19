@@ -241,7 +241,7 @@ GitHub 仓库：
 https://github.com/yauld/ai-forge
 
 完整实验文章：
-labs/langgraph/foundations/23 | LangGraph Runtime Context：不要把配置塞进 State.md
+labs/langgraph/foundations/22 | LangGraph Runtime Context：不要把配置塞进 State.md
 ```
 
 实验代码：

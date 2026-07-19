@@ -45,10 +45,10 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 16B | [LangGraph 内容安全混合方案：Workflow 与 Agent 的 MVP 实现.md](16%20%7C%20LangGraph%20内容安全混合方案：Workflow%20与%20Agent%20的%20MVP%20实现.md) | Workflow 与 Agent 如何组合成内容安全 MVP？ | 已完成 |
 | 17 | [LangGraph 记忆系统：让个人助理跨会话记住用户.ipynb](17%20%7C%20LangGraph%20记忆系统：让个人助理跨会话记住用户.ipynb) | 如何让个人助理跨会话记住用户？ | 已完成 |
 | 18 | `LangGraph 生产工程实践：测试、观测与部署.md` | 如何测试、观测并部署可恢复的 LangGraph 工作流？ | 待研究 |
-| 20 | [用模型驱动tool loop实现一个最小CityWalk Agent.md](20%20%7C%20用模型驱动tool%20loop实现一个最小CityWalk%20Agent.md) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
-| 21 | [LangGraph Send：并行分发与 Map-Reduce.md](21%20%7C%20LangGraph%20Send：并行分发与%20Map-Reduce.md) | 如何用 Send 动态分发多个任务，并用 Map-Reduce 汇总结果？ | 已完成 |
-| 22 | [LangGraph Command：节点里同时更新状态和决定下一步.md](22%20%7C%20LangGraph%20Command：节点里同时更新状态和决定下一步.md) | 如何在节点里同时更新 State 并决定下一步？ | 已完成 |
-| 23 | [LangGraph Runtime Context：不要把配置塞进 State.md](23%20%7C%20LangGraph%20Runtime%20Context：不要把配置塞进%20State.md) | 哪些信息属于业务状态，哪些信息应该作为运行时配置注入？ | 已完成 |
+| 19 | [用模型驱动tool loop实现一个最小CityWalk Agent.md](19%20%7C%20用模型驱动tool%20loop实现一个最小CityWalk%20Agent.md) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
+| 20 | [LangGraph Send：并行分发与 Map-Reduce.md](20%20%7C%20LangGraph%20Send：并行分发与%20Map-Reduce.md) | 如何用 Send 动态分发多个任务，并用 Map-Reduce 汇总结果？ | 已完成 |
+| 21 | [LangGraph Command：节点里同时更新状态和决定下一步.md](21%20%7C%20LangGraph%20Command：节点里同时更新状态和决定下一步.md) | 如何在节点里同时更新 State 并决定下一步？ | 已完成 |
+| 22 | [LangGraph Runtime Context：不要把配置塞进 State.md](22%20%7C%20LangGraph%20Runtime%20Context：不要把配置塞进%20State.md) | 哪些信息属于业务状态，哪些信息应该作为运行时配置注入？ | 已完成 |
 
 ## 配套实验
 

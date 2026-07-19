@@ -35,7 +35,7 @@ agent_llm
 新实验放在：
 
 ```text
-labs/langgraph/foundations/experiments/amap_citywalk_tool_loop/
+labs/langgraph/foundations/experiments/19_amap_citywalk_tool_loop/
 ```
 
 核心文件：
@@ -292,8 +292,8 @@ GitHub仓库：
 https://github.com/yauld/ai-forge
 
 完整实验文章：
-labs/langgraph/foundations/20 | 用模型驱动tool loop实现一个最小CityWalk Agent.md
+labs/langgraph/foundations/19 | 用模型驱动tool loop实现一个最小CityWalk Agent.md
 
 实验代码：
-labs/langgraph/foundations/experiments/amap_citywalk_tool_loop/
+labs/langgraph/foundations/experiments/19_amap_citywalk_tool_loop/
 ```

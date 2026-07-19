@@ -176,45 +176,45 @@ classify -> draft -> polish
 
 ---
 
-### 19 | LangGraph 循环：让 Agent 自己观察、行动、修正
+### 19 | 用模型驱动 tool loop 实现一个最小 CityWalk Agent
 
 **建议文件**
 
-`19 | LangGraph 循环：让 Agent 自己观察、行动、修正.ipynb`
+`19 | 用模型驱动tool loop实现一个最小CityWalk Agent.md`
 
 **核心问题**
 
 ```text
-一个流程什么时候应该继续跑，什么时候应该结束？
+如何用模型驱动 tool-calling loop，让 Agent 自己决定何时调用工具、何时回答？
 ```
 
 **建议实验**
 
-一个简单例子
-比如让 Agent"帮我查一下今天上海的天气,并算出比昨天高几度":
+使用高德 MCP 做一个最小 CityWalk Agent：
 
-观察:收到任务
-行动:调用天气 API 查询今天数据
-观察:拿到今天温度,发现还需要昨天的数据
-行动:再调用一次 API 查昨天温度
-观察:两个数据都有了
-行动:计算差值,生成最终回答,退出循环
+```text
+agent_llm
+ -> 有 tool call：run_mcp_tools
+ -> 工具结果写回 ToolMessage
+ -> 回到 agent_llm
+ -> 无 tool call：END
+```
 
-整个过程 Agent 自己判断"信息够不够、任务完不完",而不是你事先写死步骤——这就是"自己观察、行动、修正"的含义。
+这一篇刻意只暴露 `maps_geo` 和 `maps_around_search` 两个工具，不做天气、地图链接、POI 白名单和坐标审计，把重点放在模型驱动的工具循环本身。
 
 **验收标准**
 
-- 能看到图多次经过同一个节点。
-- 能用 `recursion_limit` 证明死循环保护。
-- 能解释循环终止条件应该由 State 中的明确字段决定。
+- 能看到模型观察、发起 tool call、工具返回、再次观察的循环。
+- 能解释 Host 为什么仍然要做工具白名单检查。
+- 能用工具轮数上限防止模型一直调用工具不结束。
 
 ---
 
-### 21 | LangGraph Send：并行分发与 Map-Reduce
+### 20 | LangGraph Send：并行分发与 Map-Reduce
 
 **建议文件**
 
-`21 | LangGraph Send：并行分发与 Map-Reduce.md`
+`20 | LangGraph Send：并行分发与 Map-Reduce.md`
 
 **核心问题**
 
@@ -253,11 +253,11 @@ classify -> draft -> polish
 
 ---
 
-### 22 | LangGraph Command：节点里同时更新状态和决定下一步
+### 21 | LangGraph Command：节点里同时更新状态和决定下一步
 
 **建议文件**
 
-`22 | LangGraph Command：节点里同时更新状态和决定下一步.md`
+`21 | LangGraph Command：节点里同时更新状态和决定下一步.md`
 
 **核心问题**
 
@@ -302,11 +302,11 @@ validate_request
 
 ---
 
-### 23 | LangGraph Runtime Context：不要把配置塞进 State
+### 22 | LangGraph Runtime Context：不要把配置塞进 State
 
 **建议文件**
 
-`23 | LangGraph Runtime Context：不要把配置塞进 State.md`
+`22 | LangGraph Runtime Context：不要把配置塞进 State.md`
 
 **状态**
 
@@ -768,13 +768,13 @@ Supervisor
 
 ```text
 18 Streaming v2
-19 循环
-21 Send
-22 Command 节点返回值
-23 Runtime Context
+19 最小 CityWalk tool loop
+20 Send
+21 Command 节点返回值
+22 Runtime Context
 ```
 
-这五篇补完之后，再进入工具进阶、RAG、子图和多 Agent。原因很简单：没有 streaming，就看不清复杂图；没有循环、Send 和 Command，就写不出复杂图；没有 runtime context，后续生产配置、租户、模型选择和 store 都会污染 State。
+这五篇补完之后，再进入工具进阶、RAG、子图和多 Agent。原因很简单：没有 streaming，就看不清复杂图；没有 tool loop、Send 和 Command，就写不出复杂 Agent；没有 runtime context，后续生产配置、租户、模型选择和 store 都会污染 State。
 
 ---
 
