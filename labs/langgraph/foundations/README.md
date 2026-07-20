@@ -1,6 +1,6 @@
 # LangGraph 实战专题
 
-这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Command 跳转、Runtime Context、Checkpoint、人工审批和跨会话记忆。
+这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Command 跳转、Runtime Context、Checkpoint、人工审批、工具调用治理和跨会话记忆。
 
 LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用具备明确的状态转移、暂停恢复和人工介入边界。
 
@@ -11,6 +11,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 - Runtime Context 如何注入本次运行的环境、身份和配置。
 - Checkpoint 如何支持多轮对话、回退与持久化。
 - Human-in-the-loop 如何介入高风险操作。
+- 工具调用如何结合策略限制、错误处理、重试降级和审计日志。
 - Durable Execution 与长期记忆如何支撑可靠 Agent。
 
 ## 适合读者
@@ -25,7 +26,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 
 | 序号 | 文件 | 研究问题 | 状态 |
 | --- | --- | --- | --- |
-| 00 | [LangGraph系统学习路线.md](00%20%7C%20LangGraph系统学习路线.md) | LangGraph 的核心概念应该按什么顺序学习？ | 已完成 |
+| 00 | [LangGraph系统学习路线.md](LangGraph系统学习路线.md) | LangGraph 的核心概念应该按什么顺序学习？ | 已完成 |
 | 01 | [LangGraph 入门第一步：从开发环境搭建到可视化跑通.ipynb](01%20%7C%20LangGraph%20入门第一步：从开发环境搭建到可视化跑通.ipynb) | 如何搭建环境并运行第一个可视化 Graph？ | 已完成 |
 | 02 | [LangGraph 启动原理：CLI 如何找到并加载 Graph.md](02%20%7C%20LangGraph%20启动原理：CLI%20如何找到并加载%20Graph.md) | LangGraph CLI 如何找到并加载 Graph？ | 已完成 |
 | 03 | [LangGraph Studio 数据流：云端界面如何连接本地 Graph.md](03%20%7C%20LangGraph%20Studio%20数据流：云端界面如何连接本地%20Graph.md) | 云端 Studio 如何连接本地 Graph？ | 已完成 |
@@ -49,6 +50,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 20 | [LangGraph Send：并行分发与 Map-Reduce.md](20%20%7C%20LangGraph%20Send：并行分发与%20Map-Reduce.md) | 如何用 Send 动态分发多个任务，并用 Map-Reduce 汇总结果？ | 已完成 |
 | 21 | [LangGraph Command：节点里同时更新状态和决定下一步.md](21%20%7C%20LangGraph%20Command：节点里同时更新状态和决定下一步.md) | 如何在节点里同时更新 State 并决定下一步？ | 已完成 |
 | 22 | [LangGraph Runtime Context：不要把配置塞进 State.md](22%20%7C%20LangGraph%20Runtime%20Context：不要把配置塞进%20State.md) | 哪些信息属于业务状态，哪些信息应该作为运行时配置注入？ | 已完成 |
+| 23 | [LangGraph 工具调用治理：让工具执行可控、可恢复、可审计.md](23%20%7C%20LangGraph%20工具调用治理：让工具执行可控、可恢复、可审计.md) | 真实业务里的工具调用，如何避免变成模型随意触发的黑箱动作？ | 已完成 |
 
 ## 配套实验
 
@@ -58,6 +60,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | [experiments/20_asset_risk_map_reduce](experiments/20_asset_risk_map_reduce) | 如何用 Send 把资产风险检查动态分发出去，并用 Map-Reduce 汇总结果？ | 已完成 |
 | [experiments/21_command_registration_desk](experiments/21_command_registration_desk) | 如何用 Command 在节点里同时更新 State 并决定下一步？ | 已完成 |
 | [experiments/22_runtime_context_cicd](experiments/22_runtime_context_cicd) | 如何用 CI/CD 发布流水线区分 State 与 Runtime Context？ | 已完成 |
+| [experiments/23_tool_governance_console](experiments/23_tool_governance_console) | 如何把安全运维工具调用做成可控、可恢复、可审计的治理流程？ | 已完成 |
 
 ## 下一步
 

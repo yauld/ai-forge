@@ -15,7 +15,7 @@ AI Engineering 实战锻造场。
 | 专题 | 研究范围 | 入口 |
 | --- | --- | --- |
 | LangChain | 模型、Messages、Prompt、Tools、Memory、Agent、Middleware、LCEL、Embeddings | [查看专题](labs/langchain/foundations) |
-| LangGraph | State、Node、Edge、Reducer、Send、Command、Runtime Context、Checkpoint、Human-in-the-loop、Durable Execution、Memory | [查看专题](labs/langgraph/foundations) |
+| LangGraph | State、Node、Edge、Reducer、Send、Command、Runtime Context、Checkpoint、Human-in-the-loop、工具治理、Durable Execution、Memory | [查看专题](labs/langgraph/foundations) |
 | RAG | 文档加载、文本切分、向量库、Retriever、Prompt 与问答链路 | [查看专题](labs/rag/foundations) |
 | MCP | Host、Client、Server、Tool、Resource、Prompt、JSON-RPC、Transport 与远程服务接入 | [查看专题](labs/mcp/foundations) |
 | Sec for AI | 模型、数据、Prompt、RAG、Agent、供应链、安全评测与运行治理 | [查看专题](labs/sec-for-ai/foundations) |
@@ -134,7 +134,7 @@ uv run jupyter notebook
 
 公众号用于发布更短、更聚焦的文章版本；仓库保留完整实验和持续更新的研究记录。
 
-已整理的公众号稿按专题收录，例如 [Skills 公众号稿](drafts/skills)。
+已整理的公众号稿按专题收录，例如 [LangGraph 公众号稿](drafts/langgraph) 和 [Skills 公众号稿](drafts/skills)。
 
 <p align="center">
   <img src="assets/wechat-qr.jpg" width="220" alt="公众号二维码">

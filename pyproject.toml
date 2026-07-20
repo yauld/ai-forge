@@ -35,6 +35,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pyright>=1.1.411",
     "pytest>=9.1.1",
     "ruff>=0.15.21",
 ]

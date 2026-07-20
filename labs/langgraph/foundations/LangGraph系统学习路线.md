@@ -349,11 +349,19 @@ validate_request
 
 ---
 
-### 23 | LangGraph 工具调用进阶：让工具执行可控、可恢复、可审计
+### 23 | LangGraph 工具调用治理：让工具执行可控、可恢复、可审计
 
 **建议文件**
 
-`23 | LangGraph 工具调用进阶：让工具执行可控、可恢复、可审计.ipynb`
+`23 | LangGraph 工具调用治理：让工具执行可控、可恢复、可审计.md`
+
+**状态**
+
+已完成。配套实验位于：
+
+```text
+experiments/23_tool_governance_console
+```
 
 **核心问题**
 
@@ -371,18 +379,24 @@ validate_request
 - 工具输入输出如何进入审计日志
 - 如何限制某个节点能用的工具集合
 
-**建议实验**
+**实验设计**
 
 复用安全场景：
 
 ```text
 用户问题
- -> classify_task
- -> 只读查询工具直接执行
- -> 高风险写操作先 interrupt
- -> 人工批准后再执行
- -> audit_log 记录工具输入输出
+ -> classify_request
+ -> plan_action
+ -> enforce_tool_policy
+ -> approval_gate
+ -> execute_tool
+ -> handle_tool_error
+ -> retry_or_fallback
+ -> append_audit_log
+ -> final_response
 ```
+
+实验覆盖只读查询、高风险动作批准、高风险动作拒绝、工具失败重试降级、只读请求被错误规划成写工具后被策略节点拦截五条路径。
 
 **验收标准**
 
