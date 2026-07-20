@@ -12,15 +12,17 @@ AI Engineering 实战锻造场。
 
 ## 专题入口
 
-| 专题 | 研究范围 | 入口 |
+下面汇总 `labs/` 实验内容与 `drafts/` 发布稿、规划稿的并集；完整实验路线优先进入对应专题 README，发布稿可从 `drafts/` 阅读。
+
+| 专题 | 当前覆盖与进展 | 入口 |
 | --- | --- | --- |
-| LangChain | 模型、Messages、Prompt、Tools、Memory、Agent、Middleware、LCEL、Embeddings | [查看专题](labs/langchain/foundations) |
-| LangGraph | State、Node、Edge、Reducer、Send、Command、Runtime Context、Checkpoint、Human-in-the-loop、工具治理、Durable Execution、Memory | [查看专题](labs/langgraph/foundations) |
-| RAG | 文档加载、文本切分、向量库、Retriever、Prompt 与问答链路 | [查看专题](labs/rag/foundations) |
-| MCP | Host、Client、Server、Tool、Resource、Prompt、JSON-RPC、Transport 与远程服务接入 | [查看专题](labs/mcp/foundations) |
-| Sec for AI | 模型、数据、Prompt、RAG、Agent、供应链、安全评测与运行治理 | [查看专题](labs/sec-for-ai/foundations) |
-| Skills | Codex Skills、工作流固化与工程自动化 | [查看专题](labs/skills/foundations) |
-| Coding | Python、FastAPI 与 AI 工程所需的服务化基础 | [查看内容](labs/coding) |
+| LangChain | 已覆盖模型接入、Messages、Prompt、Tools、短期/长期记忆、Embeddings、LCEL、ReAct Agent，以及限流、兜底、人工审批、脱敏、上下文管理和动态提示词等 Middleware 工程化主题。 | [查看专题](labs/langchain/foundations) |
+| LangGraph | 已覆盖 State、Node、Edge、条件边、ToolNode、Reducer、Checkpoint、多轮对话、状态回退、Postgres 持久化、Human-in-the-loop、Durable Execution、Memory、Streaming、Send、Command、Runtime Context 和工具调用治理，并整理了 Streaming、tool loop、Send、Command、Runtime Context、工具治理等发布稿。 | [查看专题](labs/langgraph/foundations) / [发布稿](drafts/langgraph) |
+| RAG | 已覆盖 RAG 基础、向量与余弦相似度、CSV/JSON/PDF/Text/Markdown/目录加载、Text Splitter、向量库增删查与持久化、Retriever，以及最小 Prompt + LLM 问答链路。 | [查看专题](labs/rag/foundations) |
+| MCP | 已覆盖 Host、Client、Server、Tool、Resource、Prompt、初始化与能力发现、stdio/Streamable HTTP Transport、调试、输入安全、Host 权限、执行安全、审计安全、远程访问、远程授权、工具上下文规模和真实远程服务接入。 | [查看专题](labs/mcp/foundations) / [发布稿](drafts/mcp) |
+| Sec for AI | 已覆盖间接 Prompt Injection、Skill Reference 路径穿越、工具描述投毒等应用层安全问题，并在路线图中规划模型、数据、Prompt、RAG、Agent、供应链、安全评测与运行治理等方向。 | [查看专题](labs/sec-for-ai/foundations) / [发布稿](drafts/sec-for-ai) |
+| Skills | 已覆盖 Skills 在 Agent 架构中的定位、最小 SKILL.md、Action 与 Reference、Instruction-only / Executable、脚本执行、本地 runtime、MCP 工具约束，以及和 LangGraph 路由、执行、人工确认的结合。 | [查看专题](labs/skills/foundations) / [发布稿](drafts/skills) |
+| Coding | 已收录 Python `@dataclass`、FastAPI `Depends` 和 LangGraph Streaming v2 `get_stream_writer` 等 AI 工程常用编码基础与服务化实践笔记。 | [查看内容](labs/coding) |
 
 ## 研究内容一览
 
