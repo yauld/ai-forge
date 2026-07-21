@@ -53,6 +53,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 22 | [LangGraph Runtime Context：不要把配置塞进 State.md](22%20%7C%20LangGraph%20Runtime%20Context：不要把配置塞进%20State.md) | 哪些信息属于业务状态，哪些信息应该作为运行时配置注入？ | 已完成 |
 | 23 | [LangGraph 工具调用治理：让工具执行可控、可恢复、可审计.md](23%20%7C%20LangGraph%20工具调用治理：让工具执行可控、可恢复、可审计.md) | 真实业务里的工具调用，如何避免变成模型随意触发的黑箱动作？ | 已完成 |
 | 24 | [LangGraph + RAG：把最小问答链路接入图.md](24%20%7C%20LangGraph%20+%20RAG：把最小问答链路接入图.md) | 如何把一个最小 RAG 问答链路拆成 LangGraph 节点，并用 State 串起来？ | 已完成 |
+| 25 | [LangGraph 子图：把复杂 Agent 拆成模块.md](25%20%7C%20LangGraph%20子图：把复杂%20Agent%20拆成模块.md) | 如何把复杂流程封装成子图，并观察父图、子图和 checkpoint namespace 的边界？ | 已完成 |
 
 ## 配套实验
 
@@ -64,6 +65,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | [experiments/22_runtime_context_cicd](experiments/22_runtime_context_cicd) | 如何用 CI/CD 发布流水线区分 State 与 Runtime Context？ | 已完成 |
 | [experiments/23_tool_governance_console](experiments/23_tool_governance_console) | 如何把安全运维工具调用做成可控、可恢复、可审计的治理流程？ | 已完成 |
 | [experiments/24_minimal_rag_graph](experiments/24_minimal_rag_graph) | 如何把最小客服 RAG 问答链路接入 LangGraph？ | 已完成 |
+| [experiments/25_rag_subgraph_checkpoint](experiments/25_rag_subgraph_checkpoint) | 如何把客服 RAG 封装成子图，并观察 stream 层级和 checkpoint namespace？ | 已完成 |
 
 ## 下一步
 

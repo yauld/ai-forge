@@ -458,12 +458,12 @@ retrieve_docs
 
 **建议文件**
 
-`25 | LangGraph 子图：把复杂 Agent 拆成模块.ipynb`
+`25 | LangGraph 子图：把复杂 Agent 拆成模块.md`
 
 **核心问题**
 
 ```text
-复杂工作流什么时候应该拆子图，子图和父图如何共享状态？
+复杂工作流什么时候应该拆子图，子图、父图和 checkpoint namespace 分别说明了什么？
 ```
 
 **这一篇讲**
@@ -477,19 +477,50 @@ retrieve_docs
 
 **建议实验**
 
-把安全分析拆成几个子图：
+基于第 24 个最小 RAG 实验，重新设计一个带父图、RAG 子图和 checkpoint 观察的实验：
 
 ```text
-主图
- -> asset_profile_subgraph
- -> vulnerability_subgraph
- -> report_subgraph
+父图 parent_graph
+
+START
+ -> normalize_question
+ -> rag_subgraph
+ -> format_response
+ -> END
+
+RAG 子图 rag_subgraph
+
+START
+ -> retrieve_docs
+ -> 有资料：build_context
+ -> answer
+ -> END
+
+retrieve_docs
+ -> 无资料：fallback
+ -> END
 ```
+
+实验目录：
+
+```text
+labs/langgraph/foundations/experiments/25_rag_subgraph_checkpoint/
+```
+
+设计重点：
+
+- 父图只负责更高层的业务编排：整理用户问题、调用 RAG 能力模块、格式化最终回复。
+- RAG 子图封装第 24 个实验中的检索、上下文整理、回答和 fallback 细节。
+- State 明确展示父图和子图的数据交接：父图写入 `normalized_question`，子图读取它；子图写入 `retrieved_docs`、`context`、`route`、`answer`，父图再读取这些字段生成 `final_response`。
+- 编译父图时启用 `InMemorySaver`，运行时传入 `thread_id`，实验输出同时打印父图和子图的 checkpoint namespace。
+- 模型只使用本地 Ollama：`qwen3-embedding:latest` 用于向量化，`qwen3-coder:30b` 用于回答。
 
 **验收标准**
 
 - 能说明父图和子图哪些 State 字段共享。
+- 能说明 `normalize_question` 为什么属于父图职责，而 `retrieve_docs`、`build_context`、`answer` 和 `fallback` 为什么属于 RAG 子图职责。
 - 能看到 checkpoint namespace 中的子图痕迹。
+- 能通过 stream 输出区分父图节点更新和子图节点更新。
 - 能判断一个节点集合是否值得拆成子图。
 
 ---
