@@ -1,6 +1,6 @@
 # LangGraph 实战专题
 
-这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Command 跳转、Runtime Context、Checkpoint、人工审批、工具调用治理和跨会话记忆。
+这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Command 跳转、Runtime Context、Checkpoint、人工审批、工具调用治理、RAG 接入和跨会话记忆。
 
 LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用具备明确的状态转移、暂停恢复和人工介入边界。
 
@@ -12,6 +12,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 - Checkpoint 如何支持多轮对话、回退与持久化。
 - Human-in-the-loop 如何介入高风险操作。
 - 工具调用如何结合策略限制、错误处理、重试降级和审计日志。
+- RAG 问答链路如何拆成检索、上下文整理、回答和 fallback 节点。
 - Durable Execution 与长期记忆如何支撑可靠 Agent。
 
 ## 适合读者
@@ -51,6 +52,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 21 | [LangGraph Command：节点里同时更新状态和决定下一步.md](21%20%7C%20LangGraph%20Command：节点里同时更新状态和决定下一步.md) | 如何在节点里同时更新 State 并决定下一步？ | 已完成 |
 | 22 | [LangGraph Runtime Context：不要把配置塞进 State.md](22%20%7C%20LangGraph%20Runtime%20Context：不要把配置塞进%20State.md) | 哪些信息属于业务状态，哪些信息应该作为运行时配置注入？ | 已完成 |
 | 23 | [LangGraph 工具调用治理：让工具执行可控、可恢复、可审计.md](23%20%7C%20LangGraph%20工具调用治理：让工具执行可控、可恢复、可审计.md) | 真实业务里的工具调用，如何避免变成模型随意触发的黑箱动作？ | 已完成 |
+| 24 | [LangGraph + RAG：把最小问答链路接入图.md](24%20%7C%20LangGraph%20+%20RAG：把最小问答链路接入图.md) | 如何把一个最小 RAG 问答链路拆成 LangGraph 节点，并用 State 串起来？ | 已完成 |
 
 ## 配套实验
 
@@ -61,6 +63,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | [experiments/21_command_registration_desk](experiments/21_command_registration_desk) | 如何用 Command 在节点里同时更新 State 并决定下一步？ | 已完成 |
 | [experiments/22_runtime_context_cicd](experiments/22_runtime_context_cicd) | 如何用 CI/CD 发布流水线区分 State 与 Runtime Context？ | 已完成 |
 | [experiments/23_tool_governance_console](experiments/23_tool_governance_console) | 如何把安全运维工具调用做成可控、可恢复、可审计的治理流程？ | 已完成 |
+| [experiments/24_minimal_rag_graph](experiments/24_minimal_rag_graph) | 如何把最小客服 RAG 问答链路接入 LangGraph？ | 已完成 |
 
 ## 下一步
 

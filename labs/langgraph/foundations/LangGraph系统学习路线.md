@@ -406,46 +406,51 @@ experiments/23_tool_governance_console
 
 ---
 
-### 24 | LangGraph + RAG：把检索流程做成可控图
+### 24 | LangGraph + RAG：把最小问答链路接入图
 
 **建议文件**
 
-`24 | LangGraph + RAG：把检索流程做成可控图.ipynb`
+已完成：
+
+`24 | LangGraph + RAG：把最小问答链路接入图.md`
 
 **核心问题**
 
 ```text
-RAG 能不能不只是一条 retrieve -> answer 的链，而是一张可检查、可重试、可兜底的图？
+在 LangGraph 里，如何把一个最小 RAG 问答链路拆成节点，并用 State 串起来？
 ```
 
 **这一篇讲**
 
-- RAG 链路中的 rewrite、retrieve、grade、answer、verify
-- 检索结果不足时如何重写查询或走兜底路径
-- 文档评分结果应该放进独立 State 字段，而不是塞进 messages
-- 如何记录检索证据和最终回答的对应关系
-- 什么时候用图控制，什么时候让模型自由组织回答
+- RAG 中的 question、retrieved_docs、context、answer 如何放进 State
+- 向量检索接口如何作为普通节点接入 LangGraph
+- 如何把检索结果整理成回答节点需要的 context
+- 没有足够相关检索结果时如何走一个简单 fallback 分支
+- 最小 RAG chain 写法和 LangGraph 图写法有什么区别
+- 什么时候用 LangGraph 组织 RAG，什么时候普通 chain 就够了
 
 **建议实验**
 
-复用已有 RAG 学习成果，做最小可控 RAG 图：
+复用已有 RAG 学习成果，做一个最小 LangGraph RAG 图：
 
 ```text
 question
- -> rewrite_query
- -> retrieve
- -> grade_docs
- -> 文档足够：answer
- -> 文档不足：rewrite_query / fallback
- -> verify
+ -> retrieve_docs
+ -> 有足够相关资料：build_context
+ -> answer
+ -> END
+
+retrieve_docs
+ -> 无足够相关资料：fallback
  -> END
 ```
 
 **验收标准**
 
-- 能看到检索不足时的重试路径。
-- 能解释每个检索证据如何支撑最终回答。
-- 能避免把业务知识长期塞进 memory。
+- 能把向量检索接口接入 LangGraph 节点。
+- 能说明 retrieved_docs 和 context 在 State 中分别保存什么。
+- 能看到有足够相关检索结果和无足够相关检索结果时的不同路径。
+- 能比较最小 RAG chain 和 LangGraph 图式组织的差异。
 
 ---
 
