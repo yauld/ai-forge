@@ -82,9 +82,9 @@ runtime context
 ```text
 第一轮：已完成基础闭环（01-17）
 第二轮：补齐执行观察与控制流（18-22）
-第三轮：进入真实 Agent 工程模式（23-27）
-第四轮：补齐生产化与平台化能力（28-31）
-第五轮：做项目实战模板（32-33）
+第三轮：进入真实 Agent 工程模式（23-28）
+第四轮：补齐生产化与平台化能力（29-33）
+第五轮：做项目实战模板（34-35）
 ```
 
 每一轮的目标不同：
@@ -525,52 +525,152 @@ labs/langgraph/foundations/experiments/25_rag_subgraph_checkpoint/
 
 ---
 
-### 26 | LangGraph 多 Agent：让多个角色协作
+### 26 | Supervisor 多 Agent：中心 Agent 如何统一调度多个角色
 
 **建议文件**
 
-`26 | LangGraph 多 Agent：让多个角色协作.ipynb`
+`26 | Supervisor 多 Agent：中心 Agent 如何统一调度多个角色.md`
 
 **核心问题**
 
 ```text
-什么时候需要多 Agent，而不是多个普通节点？
+如何由一个中心 Agent 统一调度多个专业子Agent，完成一个复杂任务？
 ```
 
 **这一篇讲**
 
-- supervisor 模式
-- handoff 模式
-- 多 Agent 和多节点工作流的区别
-- `Command(goto=...)` 在 handoff 中的作用
-- 多 Agent 的成本、延迟和失控风险
-- 如何给每个 Agent 设定清晰职责边界
+- Supervisor 的职责：理解任务、选择 Agent、安排执行顺序和汇总结果
+- 中心 Agent 与专业子Agent的职责边界
+- 如何让 Supervisor 根据结构化结果决定下一步
+- 如何在 LangGraph 中组织多个 Agent 的共享状态
+- Supervisor 模式的成本、延迟和失控风险
 
 **建议实验**
 
 ```text
-Supervisor
- -> Research Agent
- -> Risk Analyst Agent
- -> Report Writer Agent
- -> Final Review
+用户：云南家庭旅行规划需求
+  -> Supervisor
+  -> 景点规划子Agent
+  -> 预算约束子Agent
+  -> 行程优化子Agent
+  -> Supervisor 汇总最终方案
 ```
 
-可以先用确定性函数模拟角色，再替换为真实模型调用。
+实验只保留三个专业子Agent：景点规划、预算约束、行程优化。先用确定性函数或结构化模型输出完成可观察的最小流程，再讨论如何替换为真实模型调用。
 
 **验收标准**
 
-- 能解释为什么不是所有任务都该拆成多 Agent。
-- 能比较 supervisor 和 handoff 的控制权差异。
-- 能把每个 Agent 的输入输出边界写清楚。
+- 能说明 Supervisor 如何决定调用哪个 Agent 以及是否继续调用。
+- 能画出中心 Agent 与专业子Agent之间的控制权关系。
+- 能把三个专业子Agent的输入、输出和职责边界写清楚。
+- 能解释 Supervisor 模式为什么适合需要全局统筹的任务。
 
 ---
 
-### 27 | LangGraph Functional API：什么时候不用 StateGraph
+### 27 | Handoff 多 Agent：多个 Agent 如何自主移交控制权
 
 **建议文件**
 
-`27 | LangGraph Functional API：什么时候不用 StateGraph.ipynb`
+`27 | Handoff 多 Agent：多个 Agent 如何自主移交控制权.md`
+
+**核心问题**
+
+```text
+没有统一的中心 Supervisor 时，多个 Agent 如何根据当前结果把控制权交给下一个 Agent？
+```
+
+**这一篇讲**
+
+- Handoff 与 Supervisor 的控制权差异
+- 当前 Agent 如何判断自己是否完成，以及下一个 Agent 应该是谁
+- 如何使用 `Command(goto=...)` 完成 Agent 之间的控制权移交
+- Agent 移交时需要传递哪些上下文和结构化结果
+- Handoff 模式的职责边界、循环风险和终止条件
+
+**建议实验**
+
+复用 26 的云南家庭旅行规划场景和三个专业子Agent：
+
+```text
+景点规划子Agent
+  -> handoff
+预算约束子Agent
+  -> handoff
+行程优化子Agent
+  -> END
+```
+
+预算约束子Agent如果发现超预算，就把控制权交给行程优化子Agent；预算正常时，也可以直接交给行程优化子Agent生成最终方案。
+
+**验收标准**
+
+- 能说明 Handoff 中当前 Agent 如何决定下一步。
+- 能使用 `Command(goto=...)` 把控制权和必要上下文交给另一个 Agent。
+- 能比较同一旅行规划任务在 Supervisor 与 Handoff 下的执行差异。
+- 能为 Handoff 流程设置明确的终止条件，避免 Agent 之间无限移交。
+
+---
+
+### 28 | LangGraph 多 Agent 进阶：把专业子Agent封装成子图
+
+**建议文件**
+
+`28 | LangGraph 多 Agent 进阶：把专业子Agent封装成子图.md`
+
+**核心问题**
+
+```text
+一个专业子Agent什么时候应该从一个普通节点，升级为内部完整运行的子图？
+```
+
+**这一篇讲**
+
+- 单节点 Agent与子图 Agent的结构差异
+- 为什么复杂专业子Agent需要自己的 State和内部流程
+- 父图如何把一个 Agent子图当成普通节点调用
+- 父图与 Agent子图之间如何设计输入输出边界
+- 子图内部如何使用工具、条件分支和多个普通节点
+- 什么时候拆成子图，什么时候保持一个简单节点
+
+**建议实验**
+
+继续使用 26、27 的云南家庭旅行规划场景，把“景点规划子Agent”升级为一个完整子图：
+
+```text
+Supervisor
+  -> 景点规划子图
+       -> 整理旅行约束
+       -> 筛选候选景点
+       -> 检查老人适配性
+       -> 生成初步行程
+  -> 预算约束子Agent
+  -> 行程优化子Agent
+```
+
+实验需要同时保留两个版本：
+
+```text
+版本一：景点规划子Agent = 一个模型节点
+版本二：景点规划子Agent = 一个编译后的子图
+```
+
+两种版本使用相同的 Supervisor输入和相同的最终输出，重点观察：外层 Supervisor的调度方式基本不变，但子图 Agent拥有了自己的内部状态、内部节点和内部执行边界。
+
+**验收标准**
+
+- 能说明一个 Agent为什么可以被实现成子图。
+- 能画出父图视角和子图展开视角两张图。
+- 能说明父图与景点规划子图之间传递了哪些字段。
+- 能解释子图如何承载一个专业子Agent的内部流程。
+- 能判断什么时候单节点已经足够，什么时候应该拆成子图。
+
+---
+
+### 29 | LangGraph Functional API：什么时候不用 StateGraph
+
+**建议文件**
+
+`29 | LangGraph Functional API：什么时候不用 StateGraph.ipynb`
 
 **定位**
 
@@ -593,11 +693,11 @@ Supervisor
 
 ---
 
-### 28 | LangGraph 生产化一：错误处理、重试、缓存、超时与异步并发
+### 30 | LangGraph 生产化一：错误处理、重试、缓存、超时与异步并发
 
 **建议文件**
 
-`28 | LangGraph 生产化一：错误处理、重试、缓存、超时与异步并发.ipynb`
+`30 | LangGraph 生产化一：错误处理、重试、缓存、超时与异步并发.ipynb`
 
 **核心问题**
 
@@ -624,11 +724,11 @@ Supervisor
 
 ---
 
-### 29 | LangGraph 生产化二：测试、评估、观测与图迁移
+### 31 | LangGraph 生产化二：测试、评估、观测与图迁移
 
 **建议文件**
 
-`29 | LangGraph 生产化二：测试、评估、观测与图迁移.md`
+`31 | LangGraph 生产化二：测试、评估、观测与图迁移.md`
 
 **核心问题**
 
@@ -655,11 +755,11 @@ Supervisor
 
 ---
 
-### 30 | LangGraph Platform / Agent Server：什么时候需要部署能力
+### 32 | LangGraph Platform / Agent Server：什么时候需要部署能力
 
 **建议文件**
 
-`30 | LangGraph Platform 与 Agent Server：什么时候需要部署能力.md`
+`32 | LangGraph Platform 与 Agent Server：什么时候需要部署能力.md`
 
 **核心问题**
 
@@ -686,11 +786,11 @@ Supervisor
 
 ---
 
-### 31 | LangGraph 平台能力：Auth、Cron、Webhook 与外部系统集成
+### 33 | LangGraph 平台能力：Auth、Cron、Webhook 与外部系统集成
 
 **建议文件**
 
-`31 | LangGraph 平台能力：Auth、Cron、Webhook 与外部系统集成.md`
+`33 | LangGraph 平台能力：Auth、Cron、Webhook 与外部系统集成.md`
 
 **核心问题**
 
@@ -716,11 +816,11 @@ Supervisor
 
 ---
 
-### 32 | 项目实战：安全 Agent 的 LangGraph 最小闭环
+### 34 | 项目实战：安全 Agent 的 LangGraph 最小闭环
 
 **建议文件**
 
-`32 | 项目实战：安全 Agent 的 LangGraph 最小闭环.md`
+`34 | 项目实战：安全 Agent 的 LangGraph 最小闭环.md`
 
 **核心问题**
 
@@ -765,11 +865,11 @@ Supervisor
 
 ---
 
-### 33 | 项目实战：生产级安全分析工作流
+### 35 | 项目实战：生产级安全分析工作流
 
 **建议文件**
 
-`33 | 项目实战：生产级安全分析工作流.md`
+`35 | 项目实战：生产级安全分析工作流.md`
 
 **核心问题**
 
@@ -843,7 +943,7 @@ Supervisor
 8. 小结与下一篇衔接
 ```
 
-Notebook 适合 18-28 这类需要亲自运行代码的实验。Markdown 适合 29-33 中偏部署、观测、迁移和项目设计的内容；如果某篇需要大量可执行代码，也可以改成 Notebook。
+Notebook 适合 18-22、29-30 这类需要亲自运行代码的实验。Markdown 适合 23-28、31-35 中偏治理、部署、观测、迁移和项目设计的内容；如果某篇需要大量可执行代码，也可以改成 Notebook。
 
 ---
 
@@ -851,11 +951,11 @@ Notebook 适合 18-28 这类需要亲自运行代码的实验。Markdown 适合 
 
 如果目标是"会用 LangGraph"，学到 22 就能写不少完整 demo。
 
-如果目标是"用 LangGraph 做可靠 Agent"，23-29 是分水岭。
+如果目标是"用 LangGraph 做可靠 Agent"，23-31 是分水岭。
 
-如果目标是"把 LangGraph 用在安全业务、RAG 或自动化分析里"，重点完成 24、25、32 和 33。
+如果目标是"把 LangGraph 用在安全业务、RAG 或自动化分析里"，重点完成 24、25、34 和 35。
 
-如果目标是"做企业生产项目"，28-31 不能跳过。
+如果目标是"做企业生产项目"，29-33 不能跳过。
 
 真正重要的不是记住 API，而是形成这个判断：
 
