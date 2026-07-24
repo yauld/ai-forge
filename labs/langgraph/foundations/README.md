@@ -1,6 +1,6 @@
 # LangGraph 实战专题
 
-这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Command 跳转、Runtime Context、Checkpoint、人工审批、工具调用治理、RAG 接入和跨会话记忆。
+这个专题研究如何用 LangGraph 构建可控、可恢复、可检查的 AI 工作流。当前范围固定为 foundations 中已有的 27 个实验主题，从 State、Node 和 Edge 开始，逐步进入条件分支、工具节点、Reducer、Send 并行分发、Command 跳转、Runtime Context、Checkpoint、人工审批、工具调用治理、RAG 接入、子图和多 Agent 协作。
 
 LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用具备明确的状态转移、暂停恢复和人工介入边界。
 
@@ -21,9 +21,13 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 - 希望 Agent 具备可恢复、可审计、可人工介入能力的人。
 - 想理解生产级 AI Workflow 核心机制的开发者。
 
+## 内容范围
+
+本专题当前以 27 个实验主题为完整学习路线，编号覆盖 01–27（16 号包含 A/B 两个部分）。暂不规划 28 及之后的 LangGraph 实验；后续仅在版本、API 或已有内容之间出现不一致时进行维护性修订。
+
 ## 研究路线
 
-表格同时记录已有成果和后续研究计划。已有文件可直接打开；尚未创建的文件使用计划名称占位。
+表格列出当前专题的全部实验成果，已有文件可直接打开。
 
 | 序号 | 文件 | 研究问题 | 状态 |
 | --- | --- | --- | --- |
@@ -46,7 +50,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 16A | [LangGraph Durable Execution：节点失败后从断点恢复.ipynb](16%20%7C%20LangGraph%20Durable%20Execution：节点失败后从断点恢复.ipynb) | 节点失败后如何从断点恢复？ | 已完成 |
 | 16B | [LangGraph 内容安全混合方案：Workflow 与 Agent 的 MVP 实现.md](16%20%7C%20LangGraph%20内容安全混合方案：Workflow%20与%20Agent%20的%20MVP%20实现.md) | Workflow 与 Agent 如何组合成内容安全 MVP？ | 已完成 |
 | 17 | [LangGraph 记忆系统：让个人助理跨会话记住用户.ipynb](17%20%7C%20LangGraph%20记忆系统：让个人助理跨会话记住用户.ipynb) | 如何让个人助理跨会话记住用户？ | 已完成 |
-| 18 | `LangGraph 生产工程实践：测试、观测与部署.md` | 如何测试、观测并部署可恢复的 LangGraph 工作流？ | 待研究 |
+| 18 | [LangGraph Streaming：用 v2 格式看见图每一步怎么跑.ipynb](18%20%7C%20LangGraph%20Streaming：用%20v2%20格式看见图每一步怎么跑.ipynb) | 如何观察每个节点的状态更新和模型输出？ | 已完成 |
 | 19 | [用模型驱动tool loop实现一个最小CityWalk Agent.md](19%20%7C%20用模型驱动tool%20loop实现一个最小CityWalk%20Agent.md) | 如何用模型驱动 tool loop 实现一个最小 CityWalk Agent？ | 已完成 |
 | 20 | [LangGraph Send：并行分发与 Map-Reduce.md](20%20%7C%20LangGraph%20Send：并行分发与%20Map-Reduce.md) | 如何用 Send 动态分发多个任务，并用 Map-Reduce 汇总结果？ | 已完成 |
 | 21 | [LangGraph Command：节点里同时更新状态和决定下一步.md](21%20%7C%20LangGraph%20Command：节点里同时更新状态和决定下一步.md) | 如何在节点里同时更新 State 并决定下一步？ | 已完成 |
@@ -56,7 +60,6 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 25 | [LangGraph 子图：把复杂 Agent 拆成模块.md](25%20%7C%20LangGraph%20子图：把复杂%20Agent%20拆成模块.md) | 如何把复杂流程封装成子图，并观察父图、子图和 checkpoint namespace 的边界？ | 已完成 |
 | 26 | [Supervisor 多 Agent：中心 Agent 如何统一调度多个角色.md](26%20%7C%20Supervisor%20多%20Agent：中心%20Agent%20如何统一调度多个角色.md) | 如何由一个中心 Agent 统一调度多个专业子Agent？ | 已完成 |
 | 27 | [Handoff 多 Agent：多个 Agent 如何自主移交控制权.md](27%20%7C%20Handoff%20多%20Agent：多个%20Agent%20如何自主移交控制权.md) | 多个 Agent 如何根据当前结果自主移交控制权？ | 已完成 |
-| 28 | `28 | LangGraph 多 Agent 进阶：把专业子Agent封装成子图.md` | 一个专业子Agent如何从单节点升级为内部完整运行的子图？ | 待研究 |
 
 ## 配套实验
 
