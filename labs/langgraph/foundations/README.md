@@ -55,7 +55,7 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | 24 | [LangGraph + RAG：把最小问答链路接入图.md](24%20%7C%20LangGraph%20+%20RAG：把最小问答链路接入图.md) | 如何把一个最小 RAG 问答链路拆成 LangGraph 节点，并用 State 串起来？ | 已完成 |
 | 25 | [LangGraph 子图：把复杂 Agent 拆成模块.md](25%20%7C%20LangGraph%20子图：把复杂%20Agent%20拆成模块.md) | 如何把复杂流程封装成子图，并观察父图、子图和 checkpoint namespace 的边界？ | 已完成 |
 | 26 | [Supervisor 多 Agent：中心 Agent 如何统一调度多个角色.md](26%20%7C%20Supervisor%20多%20Agent：中心%20Agent%20如何统一调度多个角色.md) | 如何由一个中心 Agent 统一调度多个专业子Agent？ | 已完成 |
-| 27 | `27 | Handoff 多 Agent：多个 Agent 如何自主移交控制权.md` | 多个 Agent 如何根据当前结果自主移交控制权？ | 待研究 |
+| 27 | [Handoff 多 Agent：多个 Agent 如何自主移交控制权.md](27%20%7C%20Handoff%20多%20Agent：多个%20Agent%20如何自主移交控制权.md) | 多个 Agent 如何根据当前结果自主移交控制权？ | 已完成 |
 | 28 | `28 | LangGraph 多 Agent 进阶：把专业子Agent封装成子图.md` | 一个专业子Agent如何从单节点升级为内部完整运行的子图？ | 待研究 |
 
 ## 配套实验
@@ -70,10 +70,12 @@ LangGraph 的价值不只是“把流程画成图”，而是让复杂 AI 应用
 | [experiments/24_minimal_rag_graph](experiments/24_minimal_rag_graph) | 如何把最小客服 RAG 问答链路接入 LangGraph？ | 已完成 |
 | [experiments/25_rag_subgraph_checkpoint](experiments/25_rag_subgraph_checkpoint) | 如何把客服 RAG 封装成子图，并观察 stream 层级和 checkpoint namespace？ | 已完成 |
 | [experiments/26_supervisor_travel_planner](experiments/26_supervisor_travel_planner) | 如何由一个中心 Supervisor 统一调度旅行规划中的多个专业子Agent？ | 已完成 |
+| [experiments/27_handoff_support_ticket](experiments/27_handoff_support_ticket) | 如何让多个 Agent 根据职责边界自主移交客服工单控制权？ | 已完成 |
 
 ## 公众号稿
 
 - [Supervisor多Agent：多个角色协作时，谁来决定下一步？](../../../drafts/langgraph/12%20%7C%20LangGraph%20Supervisor多Agent：多个角色协作时，谁来决定下一步.md)
+- [LangGraph Handoff 多Agent：让Agent自己把工单交给下一个人](../../../drafts/langgraph/13%20%7C%20LangGraph%20Handoff%20多Agent：让Agent自己把工单交给下一个人.md)
 
 ## 下一步
 

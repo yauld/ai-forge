@@ -582,31 +582,57 @@ labs/langgraph/foundations/experiments/25_rag_subgraph_checkpoint/
 **这一篇讲**
 
 - Handoff 与 Supervisor 的控制权差异
-- 当前 Agent 如何判断自己是否完成，以及下一个 Agent 应该是谁
-- 如何使用 `Command(goto=...)` 完成 Agent 之间的控制权移交
-- Agent 移交时需要传递哪些上下文和结构化结果
+- 当前 Agent 如何提出移交意图，以及程序如何校验并执行移交
+- 如何使用 `Command(update=..., goto=...)` 完成 Agent 之间的控制权移交
+- Agent 移交时需要传递哪些上下文、结构化结果和移交原因
+- 如何用目标白名单、前置条件和最大移交次数限制 Handoff
 - Handoff 模式的职责边界、循环风险和终止条件
+
+本篇只设计一个实验版本，采用生产业务中更常见的混合模式：
+
+```text
+当前 Agent 根据结果提出移交意图
+ -> 程序校验目标、前置条件和循环次数
+ -> Command(update=..., goto=...) 执行合法移交
+```
+
+模型可以判断“建议把任务交给谁以及为什么”，但不能直接获得无限制的图跳转权。程序负责维护合法目标集合，LangGraph负责执行通过校验的 `Command`。
 
 **建议实验**
 
-复用 26 的云南家庭旅行规划场景和三个专业子Agent：
+使用售后客服工单场景，而不是继续复用 26 的旅行规划。旅行规划更适合由 Supervisor 做全局统筹；Handoff 更适合“当前处理者发现自己没有权限或信息不足，于是把控制权交给另一个处理者”的任务。
+
+示例工单：
 
 ```text
-景点规划子Agent
-  -> handoff
-预算约束子Agent
-  -> handoff
-行程优化子Agent
-  -> END
+用户购买智能门锁第 15 天无法连接 App，已经超过普通退货期，但用户要求退款。
 ```
 
-预算约束子Agent如果发现超预算，就把控制权交给行程优化子Agent；预算正常时，也可以直接交给行程优化子Agent生成最终方案。
+设计三个职责边界清楚的 Agent：
+
+```text
+退款 Agent：判断退款政策，但不能诊断技术故障
+技术 Agent：判断是否疑似商品故障，但不能批准退款
+人工升级 Agent：处理超过普通政策范围的例外审批
+```
+
+主流程覆盖一条业务上自然成立的 Handoff 链路：
+
+```text
+refund_agent -> technical_agent
+technical_agent -> refund_agent
+refund_agent -> human_agent
+human_agent -> finish
+```
+
+每个 Agent 都返回结构化的移交意图，程序再根据当前 Agent 的目标白名单、State 前置条件和最大移交次数校验目标，最后执行 `Command(update=..., goto=...)`。
 
 **验收标准**
 
-- 能说明 Handoff 中当前 Agent 如何决定下一步。
-- 能使用 `Command(goto=...)` 把控制权和必要上下文交给另一个 Agent。
-- 能比较同一旅行规划任务在 Supervisor 与 Handoff 下的执行差异。
+- 能说明 Handoff 中当前 Agent 如何提出下一步，以及程序如何约束和执行下一步。
+- 能使用 `Command(update=..., goto=...)` 把控制权、必要上下文和移交原因交给另一个 Agent。
+- 能证明非法目标、缺少前置结果和超过移交次数时不会继续执行危险跳转。
+- 能比较 Supervisor 的中心调度与 Handoff 的局部自主移交差异。
 - 能为 Handoff 流程设置明确的终止条件，避免 Agent 之间无限移交。
 
 ---
